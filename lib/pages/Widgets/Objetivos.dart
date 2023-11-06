@@ -88,8 +88,6 @@ class Objetivos extends StatelessWidget {
                     fontSize: 20
                   ),
                 ),
-                Image(
-                    image: image),
               ],
             ),
           ],
