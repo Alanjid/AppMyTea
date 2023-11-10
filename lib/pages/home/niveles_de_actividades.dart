@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:soundpool/soundpool.dart';
 import 'package:stroke_text/stroke_text.dart';
+import 'package:untitled/pages/Actividades/act_movimiento1.dart';
 import 'package:untitled/pages/home/grabar_instrucciones.dart';
 
 class niveles_actividades extends StatefulWidget {
@@ -106,7 +107,7 @@ class _niveles_actividades extends State<niveles_actividades> {
                     IconButton(
                       iconSize: 120,
                       onPressed: (){
-
+                          Navigator.push(context, MaterialPageRoute(builder: (context) => movi_conejo()));
                       },
                       icon: Image(
                         image: AssetImage(

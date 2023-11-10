@@ -114,6 +114,9 @@ flutter:
     - assets/img/higiene personal.png
     - assets/img/baño_real.png
     - assets/img/botargapony.png
+    - assets/img/movimiento.jpg
+    - assets/img/movimiento1.gif
+    - assets/audios/vamos_a_movernos.mp3
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

@@ -59,11 +59,13 @@ class _sonido_grabarState extends State<sonido_grabar> {
               content: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  VolumenSlider(
-                    volume: _volume,
+                  Slider(
+                    value: _volume,
+                    min: 0,
+                    max: 100,
                     onChanged: (double newVolume) {
                       if (_isPlaying) {
-                        _soundpool.setVolume(soundId: _soundId, volume: newVolume / 100);
+                        _soundpool.setVolume(soundId: _soundId, volume: newVolume);
                       }
                       setState(() {
                         _volume = newVolume;

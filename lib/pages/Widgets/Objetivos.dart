@@ -71,27 +71,51 @@ class Objetivos extends StatelessWidget {
                 ),
               ]
             ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                  Text("Materiales: ",
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontFamily: 'lazydog',
-                      color: utils.Colors.azulitoArriba
-                    ),
-                  ),
-                Text(Materiales,
-                  style: TextStyle(
-                    fontFamily: 'lazydog',
-                    fontSize: 20
-                  ),
-                ),
-                Image(
-                    image: image),
-              ],
+            SizedBox(
+              width: 100,
             ),
+           Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+             children: [
+               SizedBox(
+                 height: 45,
+               ),
+               Text(
+                 "Materiales:",
+                 style: TextStyle(
+                     fontSize: 20,
+                     fontFamily: 'lazydog',
+                     color: utils.Colors.azulitoArriba
+                 ),
+               ),
+               Text(Materiales,
+                 style: TextStyle(
+                     fontSize: 20,
+                     fontFamily: 'lazydog'
+                 ),
+               ),
+               SizedBox(
+                 height: 150,
+                 width: 140,
+                 child: ListView.builder(
+                   scrollDirection: Axis.horizontal,
+                   itemCount: imagenes.length,
+                   itemBuilder: (context, index) {
+                     return Padding(
+                       padding: const EdgeInsets.all(8.0),
+                       child: Image.network(
+                         imagenes[index],
+                         width: 100,
+                         height: 100,
+                         fit: BoxFit.contain, // Puedes ajustar esto según tus necesidades
+                       ),
+                     );
+                   },
+                 ),
+               ),
+             ],
+           ),
           ],
         ),
       ),
