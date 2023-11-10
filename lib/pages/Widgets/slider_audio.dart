@@ -3,7 +3,11 @@ import 'package:flutter/material.dart';
 class VolumenSlider extends StatelessWidget {
   final double volume;
   final ValueChanged<double> onChanged;
-  VolumenSlider({required this.volume, required this.onChanged});
+
+  VolumenSlider({
+    required this.volume,
+    required this.onChanged,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -11,11 +15,11 @@ class VolumenSlider extends StatelessWidget {
       children: [
         Slider(
           value: volume,
-          label: volume.round().toString(),
+          min: 0.0,
+          max: 1.0,
           onChanged: onChanged,
-          divisions: 100,
-          max: 100,
         ),
+        Text('Volumen: ${(volume * 100).toInt()}%'),
       ],
     );
   }

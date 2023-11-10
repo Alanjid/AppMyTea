@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:soundpool/soundpool.dart';
 import 'package:stroke_text/stroke_text.dart';
+import 'package:untitled/pages/Actividades/act_movimiento1.dart';
 import 'package:untitled/pages/home/grabar_instrucciones.dart';
 
 class niveles_actividades extends StatefulWidget {
@@ -12,10 +13,11 @@ class _niveles_actividades extends State<niveles_actividades> {
   String texto_dictar="Realizamos las siguientes actividades";
   String audioUrl="assets/audios/actividades.mp3";
   ValueNotifier<bool> isAudioPlaying = ValueNotifier<bool>(false);
-
+  late List<String> ActividadesList;
   void initState() {
     super.initState();
     startTimer();
+    ActividadesList = ['assets/img/alimento.png','assets/img/bebidas.png','assets/img/acciones.png','assets/img/bebidas.png','assets/img/bebidas.png','assets/img/bebidas.png'];
   }
 
   @override
@@ -70,59 +72,30 @@ class _niveles_actividades extends State<niveles_actividades> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                      IconButton(
-                        iconSize: 120,
-                        onPressed: (){
-
-                      },
-                          icon: Image(
-                            image: AssetImage(
-                                "assets/img/alimento.png",
+                    SizedBox(
+                      height: 150,
+                      width: MediaQuery.sizeOf(context).width,
+                      child: ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                        itemCount: ActividadesList.length,
+                        itemBuilder: (context, index) {
+                          return Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: IconButton(
+                              icon: Image.asset(
+                                ActividadesList[index],
+                                width: 120,
+                                height: 120,
+                              ),
+                              onPressed: () {
+                                // Tu lógica cuando se presiona el botón
+                              },
+                              iconSize: 120, // Ajusta el tamaño del icono según tus necesidades
+                              padding: EdgeInsets.all(8), // Ajusta el relleno según tus necesidades
+                              color: Colors.blue, // Ajusta el color del icono según tus necesidades
                             ),
-                          ),
-                      ),
-                    IconButton(
-                      iconSize: 120,
-                      onPressed: (){
-
-                      },
-                      icon: Image(
-                        image: AssetImage(
-                            "assets/img/bebidas.png"
-                        ),
-                      ),
-                    ),
-                    IconButton(
-                      iconSize: 120,
-                      onPressed: (){
-
-                      },
-                      icon: Image(
-                        image: AssetImage(
-                            "assets/img/acciones.png"
-                        ),
-                      ),
-                    ),
-                    IconButton(
-                      iconSize: 120,
-                      onPressed: (){
-
-                      },
-                      icon: Image(
-                        image: AssetImage(
-                            "assets/img/partes del cuerpo.png"
-                        ),
-                      ),
-                    ),
-                    IconButton(
-                      iconSize: 120,
-                      onPressed: (){
-
-                      },
-                      icon: Image(
-                        image: AssetImage(
-                            "assets/img/prendas.png"
-                        ),
+                          );
+                        },
                       ),
                     ),
                   ],

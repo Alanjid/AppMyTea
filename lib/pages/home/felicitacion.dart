@@ -4,7 +4,7 @@ import 'package:confetti/confetti.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:stroke_text/stroke_text.dart';
-import 'package:untitled/pages/Actividades/actividades_rutina_diaria.dart';
+import 'package:untitled/pages/home/actividades_rutina_diaria.dart';
 import 'package:untitled/pages/home/niveles_de_actividades.dart';
 class felicitacion extends StatefulWidget {
 

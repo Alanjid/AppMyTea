@@ -16,7 +16,7 @@ class afectividad_realista extends StatefulWidget {
 class afre extends State {
   @override
   bool visible=false,visible2=false;
-  String Texto_act="Estos dos pequeños son amigos, escogemos los pictogramas que pueden ser los amigos de ellos?";
+  String Texto_act="Estos dos pequeños son amigos, escogemos los pictogramas que pueden ser los amigos de ellos";
   String audioUrl="assets/audios/audio_act_afectividad.mp3";
   String objetivo="Trabajar la afectividad de los niños";
   String instruccion="Seleccionamos los niños que pueden ser amigos";
@@ -109,9 +109,7 @@ class afre extends State {
                             width: 348,
                             height: 78,
                             child: StrokeText(
-                              text: 'Estos dos pequeños son amigos, '
-                                  'escoge los pictogramas que pueden '
-                                  'ser los amigos de ellos.',
+                              text: Texto_act,
                               strokeWidth: 4.5,
                               strokeColor: Colors.black,
                               textStyle: TextStyle(
@@ -265,10 +263,10 @@ class afre extends State {
               left: 0,
               right: 0,
               child: Objetivos(
-                  Objetivo: objetivo,
-                  Instrucciones: instruccion,
-                  Materiales: materiales,
-                  imagenes: []
+                  Objetivo: "Trabajar la afectividad del niño",
+                  Instrucciones: "Selecciona los niños que pueden ser amigos de el",
+                  Materiales: "sin material requerido",
+                  imagenes: ["assets/img/tijeras_real.png","assets/img/niñas.png","assets/img/platanos.png"]
               ),
           ),
         ],

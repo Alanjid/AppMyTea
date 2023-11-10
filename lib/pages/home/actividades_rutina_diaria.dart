@@ -15,10 +15,11 @@ class _actR_diariaState extends State<rutina_diaria> {
   String texto_dictar="Realizamos las actividades de rutina diaria";
   String audioUrl="assets/audios/audio_rutina_diaria.mp3";
   ValueNotifier<bool> isAudioPlaying = ValueNotifier<bool>(false);
-
+  late List<String> ActividadesList;
   void initState() {
     super.initState();
     startTimer();
+    ActividadesList = ['assets/img/alimento.png','assets/img/bebidas.png','assets/img/acciones.png','assets/img/bebidas.png','assets/img/bebidas.png','assets/img/bebidas.png'];
   }
 
   @override
@@ -73,59 +74,30 @@ class _actR_diariaState extends State<rutina_diaria> {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                IconButton(
-                  iconSize: 120,
-                  onPressed: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => afectividad_realista()));
-                  },
-                  icon: Image(
-                    image: AssetImage(
-                      "assets/img/abrazo.png",
-                    ),
-                  ),
-                ),
-                IconButton(
-                  iconSize: 120,
-                  onPressed: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => apren_pony_lenguaje_real()));
-                  },
-                  icon: Image(
-                    image: AssetImage(
-                        "assets/img/higiene personal.png"
-                    ),
-                  ),
-                ),
-                IconButton(
-                  iconSize: 120,
-                  onPressed: (){
-
-                  },
-                  icon: Image(
-                    image: AssetImage(
-                        "assets/img/acciones.png"
-                    ),
-                  ),
-                ),
-                IconButton(
-                  iconSize: 120,
-                  onPressed: (){
-
-                  },
-                  icon: Image(
-                    image: AssetImage(
-                        "assets/img/partes del cuerpo.png"
-                    ),
-                  ),
-                ),
-                IconButton(
-                  iconSize: 120,
-                  onPressed: (){
-
-                  },
-                  icon: Image(
-                    image: AssetImage(
-                        "assets/img/prendas.png"
-                    ),
+                SizedBox(
+                  height: 150,
+                  width: MediaQuery.sizeOf(context).width,
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    itemCount: ActividadesList.length,
+                    itemBuilder: (context, index) {
+                      return Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: IconButton(
+                          icon: Image.asset(
+                            ActividadesList[index],
+                            width: 120,
+                            height: 120,
+                          ),
+                          onPressed: () {
+                            // Tu lógica cuando se presiona el botón
+                          },
+                          iconSize: 120, // Ajusta el tamaño del icono según tus necesidades
+                          padding: EdgeInsets.all(8), // Ajusta el relleno según tus necesidades
+                          color: Colors.blue, // Ajusta el color del icono según tus necesidades
+                        ),
+                      );
+                    },
                   ),
                 ),
               ],
