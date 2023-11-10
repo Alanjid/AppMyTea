@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:soundpool/soundpool.dart';
 import 'package:stroke_text/stroke_text.dart';
-import 'package:untitled/pages/Actividades/actividades_rutina_diaria.dart';
+import 'package:untitled/pages/home/actividades_rutina_diaria.dart';
 import 'package:untitled/pages/home/grabar_instrucciones.dart';
 import 'package:flutter/widgets.dart';
 import 'package:untitled/pages/Widgets/info_actividades.dart';

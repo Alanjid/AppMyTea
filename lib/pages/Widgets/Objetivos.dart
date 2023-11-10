@@ -71,9 +71,7 @@ class Objetivos extends StatelessWidget {
                 ),
               ]
             ),
-            SizedBox(
-              width: 100,
-            ),
+
            Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
