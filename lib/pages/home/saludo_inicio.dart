@@ -1,16 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:soundpool/soundpool.dart';
 import 'package:stroke_text/stroke_text.dart';
 import 'package:untitled/pages/Widgets/Objetivos.dart';
 import 'package:untitled/pages/home/principal.dart';
-
 import 'grabar_instrucciones.dart';
 
-class saludo extends StatelessWidget {
+class saludo extends StatefulWidget {
+  @override
+  _saludoState createState() => _saludoState();
+}
+
+class _saludoState extends State<saludo> {
+  String Texto_Saludo="HOLA BIENVENIDO";
+  String audioUrl="assets/audios/bienvenida-hombre.mp3";
+
+  void initState() {
+    super.initState();
+    startTimer();
+  }
   @override
   Widget build(BuildContext context) {
 
-    String Texto_Saludo="HOLA BIENVENIDO";
-    String audioUrl="assets/audios/bienvenida.mp3";
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -71,7 +82,7 @@ class saludo extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Image.asset('assets/img/botargapony.png', width: 210,height: 250),
+                        Image.asset('assets/img/botargapony.png', width: 200,height: 200),
                       ],
                     ),
 
@@ -83,5 +94,18 @@ class saludo extends StatelessWidget {
         ),
       ),
     );
+  }
+  Future<void> audioFondo() async {
+    Soundpool pool = Soundpool();
+
+    int soundId = await rootBundle.load(audioUrl).then((ByteData soundData) {
+      return pool.load(soundData);
+    });
+    int streamId = await pool.play(soundId);
+  }
+  void startTimer() {
+    Future.delayed(const Duration(seconds: 1), () {
+      audioFondo();
+    });
   }
 }

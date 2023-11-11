@@ -56,10 +56,10 @@ class MyHomePageState extends State<MyHomePage>{
                 children: [
                   const SizedBox(
                     width: 350,
-                    height: 300,
+                    height: 250,
                     child:Image(
                         width: 100,
-                        height: 300,
+                        height: 100,
                         image: AssetImage(
                             "assets/img/logo.png"
                         )
@@ -198,8 +198,8 @@ class MyHomePageState extends State<MyHomePage>{
                                                         title: "",
                                                         desc: "Inicio de sesion correcto",
                                                         btnOkOnPress: (){
-                                                         Navigator.push(context, MaterialPageRoute(builder: (context) => rutina_diaria()));
-                                                          //Navigator.push(context, MaterialPageRoute(builder: (context) => Objetivos(Objetivo: "Nada", Instrucciones: "HAcer tarea", Materiales: "lapiz y papel", imagenes: ["assets/img/tijeras_real.png","assets/img/silla_real.png","assets/img/platanos.png","assets/img/pelotar.png"])));
+                                                         //Navigator.push(context, MaterialPageRoute(builder: (context) => rutina_diaria()));
+                                                          Navigator.push(context, MaterialPageRoute(builder: (context) => saludo()));
                                                         }
                                                     ).show();
 

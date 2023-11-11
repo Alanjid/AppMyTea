@@ -111,7 +111,7 @@ class _sonido_grabarState extends State<sonido_grabar> {
                                 ),
                               ),
                               SizedBox(
-                                height: 50,
+                                height: 20,
                               ),
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
