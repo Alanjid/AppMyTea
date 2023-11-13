@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:soundpool/soundpool.dart';
 import 'package:flutter/services.dart';
-import 'package:untitled/pages/Widgets/slider_audio.dart';
 import 'package:untitled/utils/colors.dart' as utils;
 
 class sonido_grabar extends StatefulWidget {
