@@ -13,7 +13,7 @@ class rutina_diaria extends StatefulWidget {
 
 class _actR_diariaState extends State<rutina_diaria> {
   String texto_dictar="Realizamos las actividades de rutina diaria";
-  String audioUrl="assets/audios/audio_rutina_diaria.mp3";
+  String audioUrl="assets/audios/audio_rutina_diariaH.mp3";
   ValueNotifier<bool> isAudioPlaying = ValueNotifier<bool>(false);
   late List<String> ActividadesList;
   void initState() {

@@ -91,8 +91,8 @@ flutter:
     - assets/img/acciones.png
     - assets/img/partes del cuerpo.png
     - assets/img/prendas.png
-    - assets/audios/menu.mp3
-    - assets/audios/actividades.mp3
+    - assets/audios/menuH.mp3
+    - assets/audios/actividadesH.mp3
     - assets/audios/error.mp3
     - assets/audios/bien_hecho.mp3
     - assets/audios/acierto.mp3
@@ -102,21 +102,21 @@ flutter:
     - assets/img/platanos.png
     - assets/img/pelotar.png
     - assets/img/niñas.png
-    - assets/audios/audio_act_afectividad.mp3
+    - assets/audios/audio_act_afectividadH.mp3
     - assets/img/bote_basuraa_real.png
     - assets/img/despa_papel_real.png
     - assets/img/lavabo_real.png
     - assets/img/silla_real.png
     - assets/img/tijeras_real.png
-    - assets/audios/act_baño.mp3
-    - assets/audios/audio_rutina_diaria.mp3
+    - assets/audios/act_bañoH.mp3
+    - assets/audios/audio_rutina_diariaH.mp3
     - assets/img/abrazo.png
     - assets/img/higiene personal.png
     - assets/img/baño_real.png
     - assets/img/botargapony.png
     - assets/img/movimiento.jpg
     - assets/img/movimiento1.gif
-    - assets/audios/vamos_a_movernos.mp3
+    - assets/audios/vamos_a_movernosH.mp3
     - assets/audios/bienvenida-hombre.mp3
 
   # An image asset can refer to one or more resolution-specific "variants", see

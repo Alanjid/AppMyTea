@@ -27,7 +27,7 @@ class movi_conejo extends StatefulWidget {
 
 class _HomePageState extends State {
   String Instruccion="VAMOS A MOVERNOS";
-  String audioUrl="assets/audios/vamos_a_movernos.mp3";
+  String audioUrl="assets/audios/vamos_a_movernosH.mp3";
 
   int menos =15;
   void _startCountDown() {

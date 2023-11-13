@@ -17,7 +17,7 @@ class afre extends State {
   @override
   bool visible=false,visible2=false;
   String Texto_act="Estos dos pequeños son amigos, escogemos los pictogramas que pueden ser los amigos de ellos";
-  String audioUrl="assets/audios/audio_act_afectividad.mp3";
+  String audioUrl="assets/audios/audio_act_afectividadH.mp3";
   String objetivo="Trabajar la afectividad de los niños";
   String instruccion="Seleccionamos los niños que pueden ser amigos";
   String materiales="no necesario";

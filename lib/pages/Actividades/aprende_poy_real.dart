@@ -18,7 +18,7 @@ class afre extends State {
   @override
   bool visible=false,visible2=false,visible3=false,visible4=false;
   String Texto = "¿Que objetos encuentras en el baño?";
-  String audioUrl = 'assets/audios/menu.mp3';
+  String audioUrl = 'assets/audios/act_bañoH.mp3';
 
 
   void initState() {
@@ -341,7 +341,7 @@ class afre extends State {
   Future<void> audioFondo() async {
     Soundpool pool = Soundpool();
 
-    int soundId = await rootBundle.load('assets/audios/act_baño.mp3').then((ByteData soundData) {
+    int soundId = await rootBundle.load('assets/audios/act_bañoH.mp3').then((ByteData soundData) {
       return pool.load(soundData);
     });
     int streamId = await pool.play(soundId);
