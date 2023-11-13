@@ -130,6 +130,13 @@ class Objetivos extends StatelessWidget {
                    },
                  ),
                ),
+               ElevatedButton(
+                 child: const Text("CERRAR"),
+                 onPressed: (){
+                   Navigator.pop(context);
+                 },
+
+               ),
              ],
            ),
           ],
