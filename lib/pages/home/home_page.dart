@@ -1,11 +1,6 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:untitled/pages/Actividades/act_movimiento1.dart';
-import 'package:untitled/pages/home/actividades_rutina_diaria.dart';
-import 'package:untitled/pages/Widgets/Objetivos.dart';
-import 'package:untitled/pages/home/niveles_de_actividades.dart';
-import 'package:untitled/pages/home/principal.dart';
 import 'package:untitled/pages/home/saludo_inicio.dart';
 import 'pantalla_de_carga.dart';
 import 'package:untitled/utils/colors.dart' as utils;
