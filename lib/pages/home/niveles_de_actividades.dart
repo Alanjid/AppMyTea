@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:soundpool/soundpool.dart';
 import 'package:stroke_text/stroke_text.dart';
 import 'package:untitled/pages/Actividades/act_movimiento1.dart';
-import 'package:untitled/pages/home/grabar_instrucciones.dart';
+import 'package:untitled/pages/Widgets/grabar_instrucciones.dart';
 
 class niveles_actividades extends StatefulWidget {
   @override
@@ -32,6 +32,9 @@ class _niveles_actividades extends State<niveles_actividades> {
             sonido_grabar(
                 texto_grabar: texto_dictar,
               audioPath: audioUrl,
+              onVolumeChanged: (newVolume){
+                print('Nuevo volumen: $newVolume');
+              },
             ),
             SizedBox(width: 8),
             Image.asset(
