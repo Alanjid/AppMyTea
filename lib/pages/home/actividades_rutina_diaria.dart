@@ -4,7 +4,7 @@ import 'package:soundpool/soundpool.dart';
 import 'package:stroke_text/stroke_text.dart';
 import 'package:untitled/pages/Actividades/act_afectividad.dart';
 import 'package:untitled/pages/Actividades/aprende_poy_real.dart';
-import 'package:untitled/pages/Widgets/grabar_instrucciones.dart';
+
 
 class rutina_diaria extends StatefulWidget {
   @override
@@ -31,13 +31,7 @@ class _actR_diariaState extends State<rutina_diaria> {
         title: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            sonido_grabar(
-              texto_grabar: texto_dictar,
-              audioPath: audioUrl,
-              onVolumeChanged: (newVolume){
-                print('Nuevo volumen: $newVolume');
-              },
-            ),
+
             SizedBox(width: 8),
             Image.asset(
               'assets/img/logo.png',

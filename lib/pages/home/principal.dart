@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -7,7 +6,6 @@ import 'package:soundpool/soundpool.dart';
 import 'package:stroke_text/stroke_text.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 import 'package:untitled/pages/home/actividades_rutina_diaria.dart';
-import 'package:untitled/pages/Widgets/grabar_instrucciones.dart';
 import 'package:flutter/widgets.dart';
 import 'package:untitled/pages/Widgets/info_actividades.dart';
 import 'package:untitled/pages/home/niveles_de_actividades.dart';
@@ -34,16 +32,6 @@ class _principalState extends State<principal> {
     startTimer();
   }
 
-  void _initializeSound() async {
-    _soundpool = Soundpool();
-    _soundId = await rootBundle.load(audioUrl).then((ByteData soundData) {
-      return _soundpool.load(soundData);
-    });
-    await _setVolume(_volume);
-    _streamId = await _soundpool.play(_soundId);
-  }
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -56,49 +44,59 @@ class _principalState extends State<principal> {
           children: [
             IconButton(
               onPressed: () {
+
                 showDialog(
-                  context: context,
-                  builder: (BuildContext context) {
-                    return AlertDialog(
-                      title: Text('Cambiamos la voz',
-                      textAlign: TextAlign.center,),
-                      content: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          ToggleSwitch(
-                            minWidth: 100.0,
-                            initialLabelIndex: 1,
-                            cornerRadius: 20.0,
-                            activeFgColor: Colors.white,
-                            inactiveBgColor: Colors.grey,
-                            inactiveFgColor: Colors.white,
-                            totalSwitches: 2,
-                            labels: ['Hombre', 'Mujer'],
-                            icons: [Icons.male, Icons.female],
-                            activeBgColors: [[Colors.blue],[Colors.pink]],
-                            onToggle: (index) {
-                              print('switched to: $index');
+                    context: context,
+                    builder: (BuildContext context){
+                      return AlertDialog(
+                        title: Text('Cambiamos la voz',
+                          textAlign: TextAlign.center,),
+                        content: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            ToggleSwitch(
+                              minWidth: 100.0,
+                              initialLabelIndex: 1,
+                              cornerRadius: 20.0,
+                              activeFgColor: Colors.white,
+                              inactiveBgColor: Colors.grey,
+                              inactiveFgColor: Colors.white,
+                              totalSwitches: 2,
+                              labels: ['Hombre', 'Mujer'],
+                              icons: [Icons.male, Icons.female],
+                              activeBgColors: [[Colors.blue],[Colors.pink]],
+                              onToggle: (index) {
+                                print('switched to: $index');
+                                if(index == 0){
+                                  audioUrl="assets/audios/menuH.mp3";
+                                }
+                                else{
+                                  if(index == 1){
+                                    audioUrl="assets/audiosM/menuM.mp3";
+                                  }
+                                }
+                              },
+                            ),
+
+                          ],
+                        ),
+                        actions: [
+                          TextButton(
+                            onPressed: () {
+                              Navigator.of(context).pop();
                             },
-                          ),
-                        ],
-                      ),
-                      actions: [
-                        TextButton(
-                          onPressed: () {
-                            Navigator.of(context).pop();
-                          },
-                          child: Text(
-                            "Cerrar",
-                            style: TextStyle(
-                              fontSize: 18,
-                              color: utils.Colors.azulitoArriba,
-                              decoration: TextDecoration.underline
+                            child: Text(
+                              "Cerrar",
+                              style: TextStyle(
+                                  fontSize: 18,
+                                  color: utils.Colors.azulitoArriba,
+                                  decoration: TextDecoration.underline
+                              ),
                             ),
                           ),
-                        ),
-                      ],
-                    );
-                  },
+                        ],
+                      );
+                    }
                 );
               },
               icon: Image.asset('assets/img/iconobocina.gif'),
@@ -131,8 +129,8 @@ class _principalState extends State<principal> {
                 children: [
                   Slider(
                     value: _sliderValue,
-                    activeColor:Colors.blueGrey,
-                    inactiveColor: Colors.blueGrey,
+                    activeColor: Colors.redAccent,
+                    inactiveColor: Colors.redAccent,
                     min: 0,
                     max: 100,
                     divisions: 100,
@@ -163,6 +161,7 @@ class _principalState extends State<principal> {
                           children: [
                             IconButton(
                               onPressed: () {
+                                dispose();
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
@@ -194,6 +193,7 @@ class _principalState extends State<principal> {
                           children: [
                             IconButton(
                               onPressed: () {
+                                _pauseAudio();
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
@@ -270,5 +270,19 @@ class _principalState extends State<principal> {
     Repite.cancel();  // Cancelar el temporizador antes de liberar el widget
     _soundpool.release();
     super.dispose();
+  }
+  void _pauseAudio() {
+    if (_streamId != null) {
+      _soundpool.pause(_streamId);
+    }
+  }
+
+  void _initializeSound() async {
+    _soundpool = Soundpool();
+    _soundId = await rootBundle.load(audioUrl).then((ByteData soundData) {
+      return _soundpool.load(soundData);
+    });
+    await _setVolume(_volume);
+    _streamId = await _soundpool.play(_soundId);
   }
 }

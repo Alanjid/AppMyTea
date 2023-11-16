@@ -119,6 +119,12 @@ flutter:
     - assets/img/movimiento1.gif
     - assets/audios/vamos_a_movernosH.mp3
     - assets/audios/bienvenida-hombre.mp3
+    - assets/audiosM/act_bañoM.mp3
+    - assets/audiosM/actividadesM.mp3
+    - assets/audiosM/audio_act_afectividadM.mp3
+    - assets/audiosM/audio_rutina_diariaM.mp3
+    - assets/audiosM/menuM.mp3
+    - assets/audiosM/vamos_a_movernosM.mp3
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

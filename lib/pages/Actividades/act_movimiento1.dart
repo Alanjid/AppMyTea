@@ -6,7 +6,6 @@ import 'package:stroke_text/stroke_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:soundpool/soundpool.dart';
 
-import '../Widgets/grabar_instrucciones.dart';
 
 class movi_conejo extends StatefulWidget {
   //_HomePageState createState()=> _HomePageState();
@@ -66,13 +65,6 @@ class _HomePageState extends State {
                 fontSize: 30,
                 fontFamily: 'lazydog',
               ),
-            ),
-            sonido_grabar(
-              texto_grabar: Instruccion,
-              audioPath: audioUrl,
-              onVolumeChanged: (newVolume){
-                print('Nuevo volumen: $newVolume');
-              },
             ),
           ],
         ),

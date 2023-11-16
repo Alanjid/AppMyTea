@@ -4,7 +4,6 @@ import 'package:soundpool/soundpool.dart';
 import 'package:stroke_text/stroke_text.dart';
 import 'package:untitled/pages/Widgets/Objetivos.dart';
 import 'package:untitled/pages/home/principal.dart';
-import '../Widgets/grabar_instrucciones.dart';
 
 class saludo extends StatefulWidget {
   @override
@@ -30,13 +29,6 @@ class _saludoState extends State<saludo> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            sonido_grabar(
-              texto_grabar: Texto_Saludo,
-              audioPath: audioUrl,
-              onVolumeChanged: (newVolume){
-                print('Nuevo volumen: $newVolume');
-              },
-            ),
             SizedBox(width: 300),
             Image.asset(
               'assets/img/logo.png',
