@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:soundpool/soundpool.dart';
 import 'package:stroke_text/stroke_text.dart';
+import 'package:toggle_switch/toggle_switch.dart';
 import 'package:untitled/pages/home/actividades_rutina_diaria.dart';
 import 'package:untitled/pages/Widgets/grabar_instrucciones.dart';
 import 'package:flutter/widgets.dart';
@@ -59,19 +60,41 @@ class _principalState extends State<principal> {
                   context: context,
                   builder: (BuildContext context) {
                     return AlertDialog(
-                      title: Text('Ajustar el volumen'),
+                      title: Text('Cambiamos la voz',
+                      textAlign: TextAlign.center,),
                       content: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
+                          ToggleSwitch(
+                            minWidth: 100.0,
+                            initialLabelIndex: 1,
+                            cornerRadius: 20.0,
+                            activeFgColor: Colors.white,
+                            inactiveBgColor: Colors.grey,
+                            inactiveFgColor: Colors.white,
+                            totalSwitches: 2,
+                            labels: ['Hombre', 'Mujer'],
+                            icons: [Icons.male, Icons.female],
+                            activeBgColors: [[Colors.blue],[Colors.pink]],
+                            onToggle: (index) {
+                              print('switched to: $index');
+                            },
+                          ),
                         ],
                       ),
                       actions: [
-                        Text("Volumen: ${(_volume * 100).round()}%"),
                         TextButton(
                           onPressed: () {
                             Navigator.of(context).pop();
                           },
-                          child: Text("Cerrar"),
+                          child: Text(
+                            "Cerrar",
+                            style: TextStyle(
+                              fontSize: 18,
+                              color: utils.Colors.azulitoArriba,
+                              decoration: TextDecoration.underline
+                            ),
+                          ),
                         ),
                       ],
                     );
