@@ -124,8 +124,8 @@ class _niveles_actividades extends State<niveles_actividades> {
                     children: [
                       Slider(
                         value: _sliderValue,
-                        activeColor:Colors.blueGrey,
-                        inactiveColor: Colors.blueGrey,
+                        activeColor:Colors.redAccent,
+                        inactiveColor: Colors.redAccent,
                         min: 0,
                         max: 100,
                         divisions: 100,
@@ -211,11 +211,6 @@ class _niveles_actividades extends State<niveles_actividades> {
     Repite.cancel();  // Cancelar el temporizador antes de liberar el widget
     _soundpool.release();
     super.dispose();
-  }
-  void _pauseAudio() {
-    if (_streamId != null) {
-      _soundpool.pause(_streamId);
-    }
   }
 
   void _initializeSound() async {

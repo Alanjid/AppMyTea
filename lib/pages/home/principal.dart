@@ -160,9 +160,9 @@ class _principalState extends State<principal> {
                         Row(
                           children: [
                             IconButton(
-                              onPressed: () {
-                                dispose();
-                                Navigator.push(
+                              onPressed: () async {
+                                await _setVolume(0);
+                                 await Navigator.push(
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) => niveles_actividades(),
@@ -192,8 +192,8 @@ class _principalState extends State<principal> {
                         Row(
                           children: [
                             IconButton(
-                              onPressed: () {
-                                _pauseAudio();
+                              onPressed: () async {
+                                await _setVolume(0);
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
@@ -271,11 +271,6 @@ class _principalState extends State<principal> {
     _soundpool.release();
     super.dispose();
   }
-  void _pauseAudio() {
-    if (_streamId != null) {
-      _soundpool.pause(_streamId);
-    }
-  }
 
   void _initializeSound() async {
     _soundpool = Soundpool();
@@ -284,5 +279,5 @@ class _principalState extends State<principal> {
     });
     await _setVolume(_volume);
     _streamId = await _soundpool.play(_soundId);
-  }
+  } 
 }
