@@ -1,12 +1,9 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:untitled/pages/Actividades/act_movimiento1.dart';
-import 'package:untitled/pages/home/actividades_rutina_diaria.dart';
-import 'package:untitled/pages/Widgets/Objetivos.dart';
-import 'package:untitled/pages/home/niveles_de_actividades.dart';
 import 'package:untitled/pages/home/principal.dart';
 import 'package:untitled/pages/home/saludo_inicio.dart';
+import '../Widgets/Objetivos.dart';
 import 'pantalla_de_carga.dart';
 import 'package:untitled/utils/colors.dart' as utils;
 class MyHomePage extends StatefulWidget {
@@ -23,7 +20,7 @@ class MyHomePageState extends State<MyHomePage>{
   @override
   void initState() {
     super.initState();
-    Future.delayed(const Duration(seconds: 1), () {
+    Future.delayed(const Duration(seconds: 0), () {
       setState(() {
         isLoading = false;
       });
@@ -56,10 +53,10 @@ class MyHomePageState extends State<MyHomePage>{
                 children: [
                   const SizedBox(
                     width: 350,
-                    height: 300,
+                    height: 250,
                     child:Image(
                         width: 100,
-                        height: 300,
+                        height: 100,
                         image: AssetImage(
                             "assets/img/logo.png"
                         )
@@ -199,12 +196,10 @@ class MyHomePageState extends State<MyHomePage>{
                                                         desc: "Inicio de sesion correcto",
                                                         btnOkOnPress: (){
                                                          Navigator.push(context, MaterialPageRoute(builder: (context) => saludo()));
-                                                          //Navigator.push(context, MaterialPageRoute(builder: (context) => Objetivos(Objetivo: "Nada", Instrucciones: "HAcer tarea", Materiales: "lapiz y papel", imagenes: ["assets/img/tijeras_real.png","assets/img/silla_real.png","assets/img/platanos.png","assets/img/pelotar.png"])));
+                                                          //Navigator.push(context, MaterialPageRoute(builder: (context) => Objetivos(Objetivo: "que el niño trabaje la afectividad por medio de los pictogramas mostrados", Instrucciones: "HAcer tarea aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", Materiales: "lapiz y papel, goma, pelotas, sacapuntas, y otras cosillas", imagenes: ["assets/img/tijeras_real.png","assets/img/silla_real.png","assets/img/platanos.png","assets/img/pelotar.png"])));
                                                         }
                                                     ).show();
-
                                                   },
-
                                                 ).show();
                                               },
                                             ),

@@ -5,7 +5,6 @@ import 'package:stroke_text/stroke_text.dart';
 import 'package:untitled/pages/home/felicitacion.dart';
 import 'package:soundpool/soundpool.dart';
 import '../Widgets/Objetivos.dart';
-import '../home/grabar_instrucciones.dart';
 
 class afectividad_realista extends StatefulWidget {
   @override
@@ -17,7 +16,7 @@ class afre extends State {
   @override
   bool visible=false,visible2=false;
   String Texto_act="Estos dos pequeños son amigos, escogemos los pictogramas que pueden ser los amigos de ellos";
-  String audioUrl="assets/audios/audio_act_afectividad.mp3";
+  String audioUrl="assets/audios/audio_act_afectividadH.mp3";
   String objetivo="Trabajar la afectividad de los niños";
   String instruccion="Seleccionamos los niños que pueden ser amigos";
   String materiales="no necesario";
@@ -50,10 +49,7 @@ class afre extends State {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            sonido_grabar(
-              texto_grabar: Texto_act,
-              audioPath: audioUrl,
-            ),
+
             StrokeText(
               text: "¿Les gusta hacer amigos?",
               strokeWidth: 6,

@@ -5,9 +5,6 @@ import 'package:flutter/services.dart';
 import 'package:stroke_text/stroke_text.dart';
 import 'package:soundpool/soundpool.dart';
 import 'package:untitled/pages/home/felicitacion.dart';
-import 'package:audioplayers/audioplayers.dart';
-import '../home/grabar_instrucciones.dart';
-import '../Widgets/info_actividades.dart';
 
 class apren_pony_lenguaje_real extends StatefulWidget {
   @override
@@ -18,7 +15,7 @@ class afre extends State {
   @override
   bool visible=false,visible2=false,visible3=false,visible4=false;
   String Texto = "¿Que objetos encuentras en el baño?";
-  String audioUrl = 'assets/audios/menu.mp3';
+  String audioUrl = 'assets/audios/act_bañoH.mp3';
 
 
   void initState() {
@@ -41,10 +38,7 @@ class afre extends State {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            sonido_grabar(
-              texto_grabar: Texto,
-              audioPath: audioUrl,
-            ),
+
             StrokeText(
               text: Texto,
               strokeWidth: 6,
@@ -341,7 +335,7 @@ class afre extends State {
   Future<void> audioFondo() async {
     Soundpool pool = Soundpool();
 
-    int soundId = await rootBundle.load('assets/audios/act_baño.mp3').then((ByteData soundData) {
+    int soundId = await rootBundle.load('assets/audios/act_bañoH.mp3').then((ByteData soundData) {
       return pool.load(soundData);
     });
     int streamId = await pool.play(soundId);
