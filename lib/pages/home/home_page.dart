@@ -195,7 +195,7 @@ class MyHomePageState extends State<MyHomePage>{
                                                         title: "",
                                                         desc: "Inicio de sesion correcto",
                                                         btnOkOnPress: (){
-                                                         Navigator.push(context, MaterialPageRoute(builder: (context) => principal()));
+                                                         Navigator.push(context, MaterialPageRoute(builder: (context) => saludo()));
                                                           //Navigator.push(context, MaterialPageRoute(builder: (context) => Objetivos(Objetivo: "que el niño trabaje la afectividad por medio de los pictogramas mostrados", Instrucciones: "HAcer tarea aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", Materiales: "lapiz y papel, goma, pelotas, sacapuntas, y otras cosillas", imagenes: ["assets/img/tijeras_real.png","assets/img/silla_real.png","assets/img/platanos.png","assets/img/pelotar.png"])));
                                                         }
                                                     ).show();

@@ -17,7 +17,6 @@ class principal extends StatefulWidget {
 }
 
 class _principalState extends State<principal> {
-  double _volume = 0.5; // Agrega _volume como una propiedad y establece el valor inicial
   String Texto_Menu = "Este es el menu";
   String audioUrl = 'assets/audios/menuH.mp3';
   late Soundpool _soundpool;
@@ -25,6 +24,7 @@ class _principalState extends State<principal> {
   late int _streamId;
   late Timer Repite;
   double _sliderValue=50.0;
+  double _volume = 0.5; // Agrega _volume como una propiedad y establece el valor inicial
 
   @override
   void initState() {
@@ -260,7 +260,7 @@ class _principalState extends State<principal> {
 
 
   void startTimer() {
-    Repite =Timer.periodic(Duration(seconds: 5), (timer) {
+    Repite =Timer.periodic(Duration(seconds: 3), (timer) {
       _initializeSound();
     });
   }
