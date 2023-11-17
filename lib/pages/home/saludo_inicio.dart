@@ -36,7 +36,6 @@ class saludo extends StatelessWidget {
                 Navigator.push(context, MaterialPageRoute(builder: (context) => principal()));
               },
             ),
-
           ],
         ),
       ),
