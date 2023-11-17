@@ -6,7 +6,6 @@ import 'package:stroke_text/stroke_text.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 import 'package:untitled/pages/home/principal.dart';
 import 'package:untitled/utils/colors.dart' as utils;
-
 class saludo extends StatefulWidget {
   @override
   _saludoState createState() => _saludoState();
