@@ -51,6 +51,7 @@ class _niveles_actividades extends State<niveles_actividades> {
               fit: BoxFit.cover
           ),
         ),
+
         child: Column(
               children: [
                 SizedBox(
@@ -90,10 +91,12 @@ class _niveles_actividades extends State<niveles_actividades> {
                               onPressed: () {
                                 // Tu lógica cuando se presiona el botón
                               },
+
                               iconSize: 120, // Ajusta el tamaño del icono según tus necesidades
                               padding: EdgeInsets.all(8), // Ajusta el relleno según tus necesidades
                               color: Colors.blue, // Ajusta el color del icono según tus necesidades
                             ),
+
                           );
                         },
                       ),
@@ -103,8 +106,10 @@ class _niveles_actividades extends State<niveles_actividades> {
               ],
         ),
       ),
+
     );
   }
+
   Future<void> audioFondo() async {
     Soundpool pool = Soundpool();
 
