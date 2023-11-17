@@ -5,9 +5,6 @@ import 'package:flutter/services.dart';
 import 'package:stroke_text/stroke_text.dart';
 import 'package:soundpool/soundpool.dart';
 import 'package:untitled/pages/home/felicitacion.dart';
-import 'package:audioplayers/audioplayers.dart';
-import '../home/grabar_instrucciones.dart';
-import '../Widgets/info_actividades.dart';
 
 class apren_pony_lenguaje_real extends StatefulWidget {
   @override
@@ -41,10 +38,7 @@ class afre extends State {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            sonido_grabar(
-              texto_grabar: Texto,
-              audioPath: audioUrl,
-            ),
+
             StrokeText(
               text: Texto,
               strokeWidth: 6,

@@ -5,7 +5,6 @@ import 'package:stroke_text/stroke_text.dart';
 import 'package:untitled/pages/home/felicitacion.dart';
 import 'package:soundpool/soundpool.dart';
 import '../Widgets/Objetivos.dart';
-import '../home/grabar_instrucciones.dart';
 
 class afectividad_realista extends StatefulWidget {
   @override
@@ -50,10 +49,7 @@ class afre extends State {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            sonido_grabar(
-              texto_grabar: Texto_act,
-              audioPath: audioUrl,
-            ),
+
             StrokeText(
               text: "¿Les gusta hacer amigos?",
               strokeWidth: 6,

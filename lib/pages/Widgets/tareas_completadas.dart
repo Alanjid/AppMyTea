@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:stroke_text/stroke_text.dart';
-import '../home/grabar_instrucciones.dart';
 class tareas_comp_diarias extends StatelessWidget {
 
   String Texto_TC="HAS COMPLETADO TUS ACTIVIDADES DEL DIA, VUELVE MAÑANA PARA SEGUIR TRABAJANDO.";
@@ -15,10 +14,7 @@ class tareas_comp_diarias extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            sonido_grabar(
-              texto_grabar: Texto_TC,
-              audioPath: audioUrl,
-            ),
+
             SizedBox(width: 300),
             Image.asset(
               'assets/img/logo.png',
