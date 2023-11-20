@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:untitled/utils/colors.dart' as utils;
 
 class Objetivos extends StatelessWidget {
-  const Objetivos({
+  final GlobalKey<State> _key = GlobalKey<State>();
+   Objetivos({
     required this.Objetivo,
     required this.Instrucciones,
     required this.Materiales,
@@ -13,6 +14,7 @@ class Objetivos extends StatelessWidget {
   final String Instrucciones;
   final String Materiales;
   final List<String> imagenes; // Lista de rutas de imágenes
+
 
   @override
   Widget build(BuildContext context) {
@@ -134,7 +136,7 @@ class Objetivos extends StatelessWidget {
                ElevatedButton(
                  child: const Text("CERRAR"),
                  onPressed: (){
-                   Navigator.pop(context);
+                   Navigator.of(_key.currentContext!).pop();
                  },
 
                ),

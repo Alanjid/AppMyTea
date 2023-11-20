@@ -254,17 +254,13 @@ class afre extends State {
               ),
             ),
           ),
-          Positioned(
-            top: 0,
-              left: 0,
-              right: 0,
-              child: Objetivos(
+          Objetivos(
                   Objetivo: "Trabajar la afectividad del niño",
                   Instrucciones: "Selecciona los niños que pueden ser amigos de el",
                   Materiales: "sin material requerido",
                   imagenes: ["assets/img/tijeras_real.png","assets/img/niñas.png","assets/img/platanos.png"]
               ),
-          ),
+
         ],
       )
 

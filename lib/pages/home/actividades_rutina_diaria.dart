@@ -23,9 +23,11 @@ class _actR_diariaState extends State<rutina_diaria> {
   late Timer Repite;
   double _sliderValue=50.0;
   double _volume = 0.5;
+  int _selectedSwitch=0;
 
   void initState() {
     super.initState();
+    _initializeSound();
     startTimer();
     ActividadesList = ['assets/img/alimento.png','assets/img/bebidas.png','assets/img/acciones.png','assets/img/bebidas.png','assets/img/bebidas.png','assets/img/bebidas.png'];
   }
@@ -53,7 +55,7 @@ class _actR_diariaState extends State<rutina_diaria> {
                           children: [
                             ToggleSwitch(
                               minWidth: 100.0,
-                              initialLabelIndex: 1,
+                              initialLabelIndex: _selectedSwitch,
                               cornerRadius: 20.0,
                               activeFgColor: Colors.white,
                               inactiveBgColor: Colors.grey,
@@ -63,6 +65,9 @@ class _actR_diariaState extends State<rutina_diaria> {
                               icons: [Icons.male, Icons.female],
                               activeBgColors: [[Colors.blue],[Colors.pink]],
                               onToggle: (index) {
+                                setState(() {
+                                  _selectedSwitch=index!;
+                                });
                                 print('switched to: $index');
                                 if(index == 0){
                                   audioUrl="assets/audios/audio_rutina_diariaH.mp3";
@@ -202,7 +207,7 @@ class _actR_diariaState extends State<rutina_diaria> {
 
 
   void startTimer() {
-    Repite =Timer.periodic(Duration(seconds: 5), (timer) {
+    Repite =Timer.periodic(Duration(seconds: 10), (timer) {
       _initializeSound();
     });
   }

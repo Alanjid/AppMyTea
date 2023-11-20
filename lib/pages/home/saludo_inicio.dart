@@ -20,10 +20,11 @@ class _saludoState extends State<saludo> {
   late Timer Repite;
   double _sliderValue=50.0;
   double _volume = 0.5; // Agrega _volume como una propiedad y establece el valor inicial
+  int _selectedSwitch = 0;
 
   void initState() {
     super.initState();
-    startTimer();
+    _initializeSound();
     startTimer();
   }
   @override
@@ -52,7 +53,7 @@ class _saludoState extends State<saludo> {
                           children: [
                             ToggleSwitch(
                               minWidth: 100.0,
-                              initialLabelIndex: 1,
+                              initialLabelIndex: _selectedSwitch,
                               cornerRadius: 20.0,
                               activeFgColor: Colors.white,
                               inactiveBgColor: Colors.grey,
@@ -62,6 +63,9 @@ class _saludoState extends State<saludo> {
                               icons: [Icons.male, Icons.female],
                               activeBgColors: [[Colors.blue],[Colors.pink]],
                               onToggle: (index) {
+                                setState(() {
+                                  _selectedSwitch=index!;
+                                });
                                 print('switched to: $index');
                                 if(index == 0){
                                   audioUrl="assets/audios/bienvenida-hombre.mp3";
@@ -73,7 +77,6 @@ class _saludoState extends State<saludo> {
                                 }
                               },
                             ),
-
                           ],
                         ),
                         actions: [
@@ -107,7 +110,8 @@ class _saludoState extends State<saludo> {
             SizedBox(width: 40,),
             IconButton(
               icon: Icon(Icons.arrow_forward),
-              onPressed: () {
+              onPressed: () async {
+                await _setVolume(0);
                 Navigator.push(context, MaterialPageRoute(builder: (context) => principal()));
               },
             ),
@@ -150,7 +154,7 @@ class _saludoState extends State<saludo> {
             ButtonBar(
               alignment: MainAxisAlignment.center,
               children: <Widget>[
-                Column(
+                Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
@@ -191,7 +195,7 @@ class _saludoState extends State<saludo> {
 
 
   void startTimer() {
-    Repite =Timer.periodic(Duration(seconds: 3), (timer) {
+    Repite =Timer.periodic(Duration(seconds: 10), (timer) {
       _initializeSound();
     });
   }
@@ -211,5 +215,6 @@ class _saludoState extends State<saludo> {
     await _setVolume(_volume);
     _streamId = await _soundpool.play(_soundId);
   }
+
 
 }

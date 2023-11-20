@@ -2,9 +2,7 @@ import 'package:untitled/utils/colors.dart' as utils;
 import 'package:flutter/material.dart';
 
 class info_pictogramas extends StatelessWidget{
-  const info_pictogramas({required this.img1}): super();
-
-  final String img1;
+  const info_pictogramas();
 
   Widget build(BuildContext context){
     return IconButton(
@@ -159,7 +157,6 @@ class info_pictogramas extends StatelessWidget{
                                          onPressed: (){
                                            Navigator.pop(context);
                                          },
-
                                        ),
                                      ],
                                    ),
