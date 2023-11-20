@@ -1,10 +1,14 @@
+import 'dart:async';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:stroke_text/stroke_text.dart';
+import 'package:toggle_switch/toggle_switch.dart';
 import 'package:untitled/pages/home/felicitacion.dart';
 import 'package:soundpool/soundpool.dart';
 import '../Widgets/Objetivos.dart';
+import 'package:untitled/utils/colors.dart' as utils;
 
 class afectividad_realista extends StatefulWidget {
   @override
@@ -21,15 +25,24 @@ class afre extends State {
   String instruccion="Seleccionamos los niños que pueden ser amigos";
   String materiales="no necesario";
   String img="";
+  late Soundpool _soundpool;
+  late int _soundId;
+  late int _streamId;
+  late Timer Repite;
+  double _sliderValue=50.0;
+  double _volume = 0.5; // Agrega _volume como una propiedad y establece el valor inicial
+  int _selectedSwitch = 0;
 
   void initState() {
     super.initState();
+    _initializeSound();
     startTimer();
   }
 
   Widget build(BuildContext context) {
     if(visible==true && visible2==true) {
-      Future.delayed(Duration(seconds:2), () {
+      Future.delayed(Duration(seconds:2), () async {
+        await _setVolume(0);
         Navigator.push(context, MaterialPageRoute(builder: (context) =>
             felicitacion(
                 photo: 'assets/img/felicitar.png', width: 400, heigth: 400)));
@@ -59,7 +72,77 @@ class afre extends State {
                 fontFamily: 'lazydog',
               ),
             ),
-            SizedBox(width: 200),
+            IconButton(
+              onPressed: () {
+
+                showDialog(
+                    context: context,
+                    builder: (BuildContext context){
+                      return AlertDialog(
+                        title: Text('Cambiamos la voz',
+                          textAlign: TextAlign.center,),
+                        content: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            ToggleSwitch(
+                              minWidth: 100.0,
+                              initialLabelIndex: _selectedSwitch,
+                              cornerRadius: 20.0,
+                              activeFgColor: Colors.white,
+                              inactiveBgColor: Colors.grey,
+                              inactiveFgColor: Colors.white,
+                              totalSwitches: 2,
+                              labels: ['Hombre', 'Mujer'],
+                              icons: [Icons.male, Icons.female],
+                              activeBgColors: [[Colors.blue],[Colors.pink]],
+                              onToggle: (index) {
+                                setState(() {
+                                  _selectedSwitch=index!;
+                                });
+                                print('switched to: $index');
+                                if(index == 0){
+                                  audioUrl="assets/audios/audio_act_afectividadH.mp3";
+                                }
+                                else{
+                                  if(index == 1){
+                                    audioUrl="assets/audiosM/audio_act_afectividadM.mp3";
+                                  }
+                                }
+                              },
+                            ),
+
+                          ],
+                        ),
+                        actions: [
+                          TextButton(
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                            child: Text(
+                              "Cerrar",
+                              style: TextStyle(
+                                  fontSize: 18,
+                                  color: utils.Colors.azulitoArriba,
+                                  decoration: TextDecoration.underline
+                              ),
+                            ),
+                          ),
+                        ],
+                      );
+                    }
+                );
+              },
+              icon: Image.asset('assets/img/iconobocina.gif'),
+              iconSize: 70,
+            ),
+            SizedBox(width: 20),
+            Objetivos(
+                Objetivo: "Trabajar la afectividad del niño",
+                Instrucciones: "Selecciona los niños que pueden ser amigos de el",
+                Materiales: "sin material requerido",
+                imagenes: ["assets/img/tijeras_real.png","assets/img/niñas.png","assets/img/platanos.png"]
+            ),
+            SizedBox(width: 20,),
             Image.asset(
               'assets/img/logo.png',
               width: 60,
@@ -87,7 +170,27 @@ class afre extends State {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  //Aqui irann el pony y las columnas de las actividades Pony
+                  Container(
+                    width: 300,
+                    child: Column(
+                      children: [
+                        Slider(
+                          value: _sliderValue,
+                          activeColor: Colors.redAccent,
+                          inactiveColor: Colors.redAccent,
+                          min: 0,
+                          max: 100,
+                          divisions: 100,
+                          label: _sliderValue.round().toString(),
+                          onChanged: (double newVolume) {
+                            setState(() {
+                              _setVolume(newVolume / 100);
+                            });
+                          },
+                        ),
+                      ],
+                    ),
+                  ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -254,47 +357,49 @@ class afre extends State {
               ),
             ),
           ),
-          Objetivos(
-                  Objetivo: "Trabajar la afectividad del niño",
-                  Instrucciones: "Selecciona los niños que pueden ser amigos de el",
-                  Materiales: "sin material requerido",
-                  imagenes: ["assets/img/tijeras_real.png","assets/img/niñas.png","assets/img/platanos.png"]
-              ),
-
         ],
       )
 
     );
     throw UnimplementedError();
   }
-  Future<void> audioFondo() async {
-    Soundpool pool = Soundpool();
-
-    int soundId = await rootBundle.load(audioUrl).then((ByteData soundData) {
-      return pool.load(soundData);
+  Future<void> _setVolume(double newVolume) async {
+    await _soundpool.setVolume(soundId: _soundId, volume: newVolume);
+    setState(() {
+      _volume = newVolume;
+      _sliderValue=newVolume *100;
     });
-    int streamId = await pool.play(soundId);
   }
+
+
   void startTimer() {
-    Future.delayed(const Duration(seconds: 1), () {
-      audioFondo();
+    Repite =Timer.periodic(Duration(seconds: 10), (timer) {
+      _initializeSound();
     });
   }
-}
-Future<void> soundpool() async {
-  Soundpool pool = Soundpool();
 
-  int soundId = await rootBundle.load('assets/audios/acierto.mp3').then((ByteData soundData) {
-    return pool.load(soundData);
-  });
-  int streamId = await pool.play(soundId);
-}
+  @override
+  void dispose() {
+    Repite.cancel();  // Cancelar el temporizador antes de liberar el widget
+    _soundpool.release();
+    super.dispose();
+  }
 
-Future<void> soundpool2() async {
+  void _initializeSound() async {
+    _soundpool = Soundpool();
+    _soundId = await rootBundle.load(audioUrl).then((ByteData soundData) {
+      return _soundpool.load(soundData);
+    });
+    await _setVolume(_volume);
+    _streamId = await _soundpool.play(_soundId);
+  }
+
+  Future<void> soundpool2() async {
   Soundpool pool = Soundpool();
 
   int soundId = await rootBundle.load('assets/audios/error.mp3').then((ByteData soundData) {
     return pool.load(soundData);
   });
   int streamId = await pool.play(soundId);
+}
 }
