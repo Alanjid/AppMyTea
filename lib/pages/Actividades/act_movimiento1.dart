@@ -5,7 +5,8 @@ import 'package:flutter/services.dart';
 import 'package:stroke_text/stroke_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:soundpool/soundpool.dart';
-
+import 'package:toggle_switch/toggle_switch.dart';
+import 'package:untitled/utils/colors.dart' as utils;
 
 class movi_conejo extends StatefulWidget {
   //_HomePageState createState()=> _HomePageState();
@@ -79,6 +80,69 @@ class _HomePageState extends State {
                 fontFamily: 'lazydog',
               ),
             ),
+            IconButton(
+              onPressed: () {
+
+                showDialog(
+                    context: context,
+                    builder: (BuildContext context){
+                      return AlertDialog(
+                        title: Text('Cambiamos la voz',
+                          textAlign: TextAlign.center,),
+                        content: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            ToggleSwitch(
+                              minWidth: 100.0,
+                              initialLabelIndex: _selectedSwitch,
+                              cornerRadius: 20.0,
+                              activeFgColor: Colors.white,
+                              inactiveBgColor: Colors.grey,
+                              inactiveFgColor: Colors.white,
+                              totalSwitches: 2,
+                              labels: ['Hombre', 'Mujer'],
+                              icons: [Icons.male, Icons.female],
+                              activeBgColors: [[Colors.blue],[Colors.pink]],
+                              onToggle: (index) {
+                                setState(() {
+                                  _selectedSwitch=index!;
+                                });
+                                print('switched to: $index');
+                                if(index == 0){
+                                  audioUrl="assets/audios/vamos_a_movernosH.mp3";
+                                }
+                                else{
+                                  if(index == 1){
+                                    audioUrl="assets/audiosM/vamos_a_movernosM.mp3";
+                                  }
+                                }
+                              },
+                            ),
+
+                          ],
+                        ),
+                        actions: [
+                          TextButton(
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                            child: Text(
+                              "Cerrar",
+                              style: TextStyle(
+                                  fontSize: 18,
+                                  color: utils.Colors.azulitoArriba,
+                                  decoration: TextDecoration.underline
+                              ),
+                            ),
+                          ),
+                        ],
+                      );
+                    }
+                );
+              },
+              icon: Image.asset('assets/img/iconobocina.gif'),
+              iconSize: 70,
+            ),
           ],
         ),
       ),
@@ -91,40 +155,65 @@ class _HomePageState extends State {
               fit: BoxFit.cover
           ),
         ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
+        child:Column(
           children: [
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  menos==0?'  ¡BIEN ''\n''HECHO!':menos.toString(),
-                  style: TextStyle(fontSize: 50),
-                ),
-                MaterialButton(onPressed: () {
-                  _startCountDown();
-                },
-                  child: const Text('COMENZAR',style: TextStyle(fontSize: 27,color:Colors.white),
-                    // color: Colors.deepPurpleAccent,
+            Container(
+              width: 300,
+              child: Column(
+                children: [
+                  Slider(
+                    value: _sliderValue,
+                    activeColor: Colors.redAccent,
+                    inactiveColor: Colors.redAccent,
+                    min: 0,
+                    max: 100,
+                    divisions: 100,
+                    label: _sliderValue.round().toString(),
+                    onChanged: (double newVolume) {
+                      setState(() {
+                        _setVolume(newVolume / 100);
+                      });
+                    },
                   ),
-                  color: Colors.deepPurpleAccent,
+                ],
+              ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      menos==0?'  ¡BIEN ''\n''HECHO!':menos.toString(),
+                      style: TextStyle(fontSize: 50),
+                    ),
+                    MaterialButton(onPressed: () {
+                      _startCountDown();
+                    },
+                      child: const Text('COMENZAR',style: TextStyle(fontSize: 27,color:Colors.white),
+                        // color: Colors.deepPurpleAccent,
+                      ),
+                      color: Colors.deepPurpleAccent,
+                    ),
+                  ],
+                ),
+                Container(
+                  decoration: BoxDecoration(
+                      shape: BoxShape.rectangle,
+                      borderRadius: BorderRadius.circular(8),
+                      border: Border.all(width: 4,color: Colors.deepPurpleAccent),
+                      color: Colors.white
+                  ),
+                  child: Image.asset(
+                    'assets/img/movimiento1.gif',
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ],
             ),
-            Container(
-              decoration: BoxDecoration(
-                  shape: BoxShape.rectangle,
-                  borderRadius: BorderRadius.circular(8),
-                  border: Border.all(width: 4,color: Colors.deepPurpleAccent),
-                  color: Colors.white
-              ),
-              child: Image.asset(
-                'assets/img/movimiento1.gif',
-                fit: BoxFit.cover,
-              ),
-            ),
           ],
-        ),
+        )
       ),
     );
   }
