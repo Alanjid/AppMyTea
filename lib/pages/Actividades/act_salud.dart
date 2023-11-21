@@ -1,0 +1,746 @@
+import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:flutter/services.dart';
+import 'package:stroke_text/stroke_text.dart';
+import 'package:soundpool/soundpool.dart';
+
+import '../Widgets/salud_abrir_animacion.dart';
+
+
+class act_salud extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    timeDilation = 5.0;
+    return Scaffold(
+      appBar: AppBar(
+        elevation: 0,
+        toolbarHeight: 50,
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            StrokeText(
+              text: 'ME LAVO LAS MANOS',
+              strokeWidth: 6,
+              strokeColor: Colors.green,
+              textStyle: TextStyle(
+                fontSize: 28,
+                fontFamily: 'lazydog',
+              ),
+            ),
+            IconButton(
+              onPressed: (){
+              },
+              icon: Image.asset('assets/img/iconobocina.gif'),
+              iconSize: 60,
+            ),
+          ],
+        ),
+      ),
+      body:
+      Container(
+
+        width: MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.height,
+        decoration: BoxDecoration(
+          image: DecorationImage(
+              image: AssetImage('assets/img/fondoNM.png'),
+              fit: BoxFit.cover
+          ),
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Container(
+                  width:45.0,
+                  height: 45.0,
+                ),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                SizedBox(width: 0,),
+                StrokeText(
+                  text: 'ABRIR',
+                  strokeWidth: 4,
+                  strokeColor: Colors.green,
+                  textStyle: TextStyle(
+                    fontFamily: 'lazydog',
+                    fontSize: 25,
+                  ),
+                ),
+                SizedBox(width: 10,),
+                StrokeText(
+                  text: 'AGUA',
+                  strokeWidth: 4,
+                  strokeColor: Colors.green,
+                  textStyle: TextStyle(
+                    fontFamily: 'lazydog',
+                    fontSize: 25,
+                  ),
+                ),
+                SizedBox(width: 8,),
+                StrokeText(
+                  text: 'CERRAR',
+                  strokeWidth: 4,
+                  strokeColor: Colors.green,
+                  textStyle: TextStyle(
+                    fontFamily: 'lazydog',
+                    fontSize: 25,
+                  ),
+                ),
+                SizedBox(width: 8,),
+                StrokeText(
+                  text: 'JABÓN',
+                  strokeWidth: 4,
+                  strokeColor: Colors.green,
+                  textStyle: TextStyle(
+                    fontFamily: 'lazydog',
+                    fontSize: 25,
+                  ),
+                ),
+                SizedBox(width: 0,),
+                StrokeText(
+                  text: 'ENJABONAR',
+                  strokeWidth: 4,
+                  strokeColor: Colors.green,
+                  textStyle: TextStyle(
+                    fontFamily: 'lazydog',
+                    fontSize: 25,
+                  ),
+                ),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Container(
+                  width:90.0,
+                  height: 90.0,
+                  padding: const EdgeInsets.all(0),
+                  decoration: BoxDecoration(
+                      shape: BoxShape.rectangle,
+                      borderRadius: BorderRadius.circular(20),
+                      border: Border.all(width: 2,color: Colors.green),
+                      color: Colors.white
+                  ),
+                  child: salud_abrir_animacion(
+                    photo: 'assets/img/abrir.png',
+                    width: 100.0,
+                    heigth: 200,
+                    onTap: () {//esto son las acciones que hará cuando se de click en la imagen
+                      soundpool();
+                      Navigator.of(context).push(MaterialPageRoute<void>(
+                          builder: (BuildContext context) {
+                            return Scaffold(
+                              appBar: AppBar(
+                                title: const Text('LAVAR MANOS'),
+                              ),
+                              body: Container(
+                                width: MediaQuery.of(context).size.width,
+                                height: MediaQuery.of(context).size.height,
+                                decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                      image: AssetImage('assets/img/fondo.gif'),
+                                      fit: BoxFit.cover
+                                  ),
+                                ),
+                                padding: const EdgeInsets.all(16),
+                                alignment: Alignment.center,
+                                child: salud_abrir_animacion(
+                                  photo: 'assets/img/abrir_real.png',
+                                  width: 700.0,
+                                  heigth: 700,
+                                  onTap: () {
+                                    Navigator.of(context).pop();//hace que regrese a la ultima ventana
+                                  },
+                                ),
+                              ),
+
+                            );
+                          }
+                      ));
+                    },
+                  ),
+                ),
+
+                Container(
+                  width:90.0,
+                  height: 90.0,
+                  padding: const EdgeInsets.all(0),
+                  decoration: BoxDecoration(
+                      shape: BoxShape.rectangle,
+                      borderRadius: BorderRadius.circular(20),
+                      border: Border.all(width: 2,color: Colors.green),
+                      color: Colors.white
+                  ),
+                  child: salud_abrir_animacion(
+                    photo: 'assets/img/enjuagar.png',
+                    width: 100.0,
+                    heigth: 200,
+                    onTap: () {//esto son las acciones que hará cuando se de click en la imagen
+                      soundpool2();
+                      Navigator.of(context).push(MaterialPageRoute<void>(
+                          builder: (BuildContext context) {
+                            return Scaffold(
+                              appBar: AppBar(
+                                title: const Text('LAVAR MANOS'),
+                              ),
+                              body: Container(
+                                width: MediaQuery.of(context).size.width,
+                                height: MediaQuery.of(context).size.height,
+                                decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                      image: AssetImage('assets/img/fondo.gif'),
+                                      fit: BoxFit.cover
+                                  ),
+                                ),
+                                padding: const EdgeInsets.all(16),
+                                alignment: Alignment.center,
+                                child: salud_abrir_animacion(
+                                  photo: 'assets/img/agua_real.png',
+                                  width: 700.0,heigth: 700,
+                                  onTap: () {
+                                    Navigator.of(context).pop();//hace que regrese a la ultima ventana
+                                  },
+                                ),
+                              ),
+
+                            );
+                          }
+                      ));
+                    },
+                  ),
+                ),
+                Container(
+                  width:90.0,
+                  height: 90.0,
+                  padding: const EdgeInsets.all(0),
+                  decoration: BoxDecoration(
+                      shape: BoxShape.rectangle,
+                      borderRadius: BorderRadius.circular(20),
+                      border: Border.all(width: 2,color: Colors.green),
+                      color: Colors.white
+                  ),
+                  child: salud_abrir_animacion(
+                    photo: 'assets/img/cerrar.png',
+                    width: 100.0,heigth: 200,
+                    onTap: () {//esto son las acciones que hará cuando se de click en la imagen
+                      soundpool3();
+                      Navigator.of(context).push(MaterialPageRoute<void>(
+                          builder: (BuildContext context) {
+                            return Scaffold(
+                              appBar: AppBar(
+                                title: const Text('LAVAR MANOS'),
+                              ),
+                              body: Container(
+                                width: MediaQuery.of(context).size.width,
+                                height: MediaQuery.of(context).size.height,
+                                decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                      image: AssetImage('assets/img/fondo.gif'),
+                                      fit: BoxFit.cover
+                                  ),
+                                ),
+                                padding: const EdgeInsets.all(16),
+                                alignment: Alignment.center,
+                                child: salud_abrir_animacion(
+                                  photo: 'assets/img/cerrar_real.png',
+                                  width: 700.0,heigth: 700,
+                                  onTap: () {
+                                    Navigator.of(context).pop();//hace que regrese a la ultima ventana
+                                  },
+                                ),
+                              ),
+
+                            );
+                          }
+                      ));
+                    },
+                  ),
+                ),
+                Container(
+                  width:90.0,
+                  height: 90.0,
+                  padding: const EdgeInsets.all(0),
+                  decoration: BoxDecoration(
+                      shape: BoxShape.rectangle,
+                      borderRadius: BorderRadius.circular(20),
+                      border: Border.all(width: 2,color: Colors.green),
+                      color: Colors.white
+                  ),
+                  child: salud_abrir_animacion(
+                    photo: 'assets/img/jabon.png',
+                    width: 100.0,heigth: 200,
+                    onTap: () {//esto son las acciones que hará cuando se de click en la imagen
+                      soundpool4();
+                      Navigator.of(context).push(MaterialPageRoute<void>(
+                          builder: (BuildContext context) {
+                            return Scaffold(
+                              appBar: AppBar(
+                                title: const Text('LAVAR MANOS'),
+                              ),
+                              body: Container(
+                                width: MediaQuery.of(context).size.width,
+                                height: MediaQuery.of(context).size.height,
+                                decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                      image: AssetImage('assets/img/fondo.gif'),
+                                      fit: BoxFit.cover
+                                  ),
+                                ),
+                                padding: const EdgeInsets.all(16),
+                                alignment: Alignment.center,
+                                child: salud_abrir_animacion(
+                                  photo: 'assets/img/jabon_real.png',
+                                  width: 700.0,heigth: 700,
+                                  onTap: () {
+                                    Navigator.of(context).pop();//hace que regrese a la ultima ventana
+                                  },
+                                ),
+                              ),
+
+                            );
+                          }
+                      ));
+                    },
+                  ),
+                ),
+                Container(
+                  width:90.0,
+                  height: 90.0,
+                  padding: const EdgeInsets.all(0),
+                  decoration: BoxDecoration(
+                      shape: BoxShape.rectangle,
+                      borderRadius: BorderRadius.circular(20),
+                      border: Border.all(width: 2,color: Colors.green),
+                      color: Colors.white
+                  ),
+                  child: salud_abrir_animacion(
+                    photo: 'assets/img/enjabonar.png',
+                    width: 100.0,heigth: 200,
+                    onTap: () {//esto son las acciones que hará cuando se de click en la imagen
+                      soundpool5();
+                      Navigator.of(context).push(MaterialPageRoute<void>(
+                          builder: (BuildContext context) {
+                            return Scaffold(
+                              appBar: AppBar(
+                                title: const Text('LAVAR MANOS'),
+                              ),
+                              body: Container(
+                                width: MediaQuery.of(context).size.width,
+                                height: MediaQuery.of(context).size.height,
+                                decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                      image: AssetImage('assets/img/fondo.gif'),
+                                      fit: BoxFit.cover
+                                  ),
+                                ),
+                                padding: const EdgeInsets.all(16),
+                                alignment: Alignment.center,
+                                child: salud_abrir_animacion(
+                                  photo: 'assets/img/enjuagar_real.png',
+                                  width: 700.0,heigth: 700,
+                                  onTap: () {
+                                    Navigator.of(context).pop();//hace que regrese a la ultima ventana
+                                  },
+                                ),
+                              ),
+
+                            );
+                          }
+                      ));
+                    },
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(height: 50,),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(width: 20,),
+                StrokeText(
+                  text: 'ABRIR',
+                  strokeWidth: 4,
+                  strokeColor: Colors.green,
+                  textStyle: TextStyle(
+                    fontFamily: 'lazydog',
+                    fontSize: 25,
+                  ),
+                ),
+                SizedBox(width: 60,),
+                StrokeText(
+                  text: 'TALLAR',
+                  strokeWidth: 4,
+                  strokeColor: Colors.green,
+                  textStyle: TextStyle(
+                    fontFamily: 'lazydog',
+                    fontSize: 25,
+                  ),
+                ),
+                SizedBox(width: 70,),
+                StrokeText(
+                  text: 'LIMPIAR',
+                  strokeWidth: 4,
+                  strokeColor: Colors.green,
+                  textStyle: TextStyle(
+                    fontFamily: 'lazydog',
+                    fontSize: 25,
+                  ),
+                ),
+                SizedBox(width: 50,),
+                StrokeText(
+                  text: 'CERRAR',
+                  strokeWidth: 4,
+                  strokeColor: Colors.green,
+                  textStyle: TextStyle(
+                    fontFamily: 'lazydog',
+                    fontSize: 25,
+                  ),
+                ),
+                SizedBox(width: 65,),
+                StrokeText(
+                  text: 'SECAR',
+                  strokeWidth: 4,
+                  strokeColor: Colors.green,
+                  textStyle: TextStyle(
+                    fontFamily: 'lazydog',
+                    fontSize: 25,
+                  ),
+                ),
+                SizedBox(width: 10,),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Container(
+                  width:90.0,
+                  height: 90.0,
+                  padding: const EdgeInsets.all(0),
+                  decoration: BoxDecoration(
+                      shape: BoxShape.rectangle,
+                      borderRadius: BorderRadius.circular(20),
+                      border: Border.all(width: 2,color: Colors.green),
+                      color: Colors.white
+                  ),
+                  child:  salud_abrir_animacion(
+                    photo: 'assets/img/abrir.png',
+                    width: 100.0,heigth: 200,
+                    onTap: () {//esto son las acciones que hará cuando se de click en la imagen
+                      soundpool();
+                      Navigator.of(context).push(MaterialPageRoute<void>(
+                          builder: (BuildContext context) {
+                            return Scaffold(
+                              appBar: AppBar(
+                                title: const Text('LAVAR MANOS'),
+                              ),
+                              body: Container(
+                                width: MediaQuery.of(context).size.width,
+                                height: MediaQuery.of(context).size.height,
+                                decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                      image: AssetImage('assets/img/fondo.gif'),
+                                      fit: BoxFit.cover
+                                  ),
+                                ),
+                                padding: const EdgeInsets.all(16),
+                                alignment: Alignment.center,
+                                child: salud_abrir_animacion(
+                                  photo: 'assets/img/abrir_real.png',
+                                  width: 700.0,heigth: 700,
+                                  onTap: () {
+                                    Navigator.of(context).pop();//hace que regrese a la ultima ventana
+                                  },
+                                ),
+                              ),
+
+                            );
+                          }
+                      ));
+                    },
+                  ),
+                ),
+                Container(
+                  width:90.0,
+                  height: 90.0,
+                  padding: const EdgeInsets.all(0),
+                  decoration: BoxDecoration(
+                      shape: BoxShape.rectangle,
+                      borderRadius: BorderRadius.circular(20),
+                      border: Border.all(width: 2,color: Colors.green),
+                      color: Colors.white
+                  ),
+                  child:  salud_abrir_animacion(
+                    photo: 'assets/img/tallar1.png',
+                    width: 100.0,heigth: 200,
+                    onTap: () {//esto son las acciones que hará cuando se de click en la imagen
+                      soundpool6();
+                      Navigator.of(context).push(MaterialPageRoute<void>(
+                          builder: (BuildContext context) {
+                            return Scaffold(
+                              appBar: AppBar(
+                                title: const Text('LAVAR MANOS'),
+                              ),
+                              body: Container(
+                                width: MediaQuery.of(context).size.width,
+                                height: MediaQuery.of(context).size.height,
+                                decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                      image: AssetImage('assets/img/fondo.gif'),
+                                      fit: BoxFit.cover
+                                  ),
+                                ),
+                                padding: const EdgeInsets.all(16),
+                                alignment: Alignment.center,
+                                child: salud_abrir_animacion(
+                                  photo: 'assets/img/enjuagar_real.png',
+                                  width: 700.0,heigth: 700,
+                                  onTap: () {
+                                    Navigator.of(context).pop();//hace que regrese a la ultima ventana
+                                  },
+                                ),
+                              ),
+
+                            );
+                          }
+                      ));
+                    },
+                  ),
+                ),
+                Container(
+                  width:90.0,
+                  height: 90.0,
+                  padding: const EdgeInsets.all(0),
+                  decoration: BoxDecoration(
+                      shape: BoxShape.rectangle,
+                      borderRadius: BorderRadius.circular(20),
+                      border: Border.all(width: 2,color: Colors.green),
+                      color: Colors.white
+                  ),
+                  child: salud_abrir_animacion(
+                    photo: 'assets/img/enjuagar.png',
+                    width: 100.0,heigth: 200,
+                    onTap: () {//esto son las acciones que hará cuando se de click en la imagen
+                      soundpool7();
+                      Navigator.of(context).push(MaterialPageRoute<void>(
+                          builder: (BuildContext context) {
+                            return Scaffold(
+                              appBar: AppBar(
+                                title: const Text('LAVAR MANOS'),
+                              ),
+                              body: Container(
+                                width: MediaQuery.of(context).size.width,
+                                height: MediaQuery.of(context).size.height,
+                                decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                      image: AssetImage('assets/img/fondo.gif'),
+                                      fit: BoxFit.cover
+                                  ),
+                                ),
+                                padding: const EdgeInsets.all(16),
+                                alignment: Alignment.center,
+                                child: salud_abrir_animacion(
+                                  photo: 'assets/img/agua_real.png',
+                                  width: 700.0,heigth: 700,
+                                  onTap: () {
+                                    Navigator.of(context).pop();//hace que regrese a la ultima ventana
+                                  },
+                                ),
+                              ),
+
+                            );
+                          }
+                      ));
+                    },
+                  ),
+                ),
+                Container(
+                  width:90.0,
+                  height: 90.0,
+                  padding: const EdgeInsets.all(0),
+                  decoration: BoxDecoration(
+                      shape: BoxShape.rectangle,
+                      borderRadius: BorderRadius.circular(20),
+                      border: Border.all(width: 2,color: Colors.green),
+                      color: Colors.white
+                  ),
+                  child: salud_abrir_animacion(
+                    photo: 'assets/img/cerrar.png',
+                    width: 70.0,heigth: 200,
+                    onTap: () {//esto son las acciones que hará cuando se de click en la imagen
+                      soundpool3();
+                      Navigator.of(context).push(MaterialPageRoute<void>(
+                          builder: (BuildContext context) {
+                            return Scaffold(
+                              appBar: AppBar(
+                                title: const Text('LAVAR MANOS'),
+                              ),
+                              body: Container(
+                                width: MediaQuery.of(context).size.width,
+                                height: MediaQuery.of(context).size.height,
+                                decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                      image: AssetImage('assets/img/fondo.gif'),
+                                      fit: BoxFit.cover
+                                  ),
+                                ),
+                                padding: const EdgeInsets.all(16),
+                                alignment: Alignment.center,
+                                child: salud_abrir_animacion(
+                                  photo: 'assets/img/cerrar_real.png',
+                                  width: 700.0,heigth: 700,
+                                  onTap: () {
+                                    Navigator.of(context).pop();//hace que regrese a la ultima ventana
+                                  },
+                                ),
+                              ),
+
+                            );
+                          }
+                      ));
+                    },
+                  ),
+                ),
+                Container(
+                  width:90.0,
+                  height: 90.0,
+                  padding: const EdgeInsets.all(0),
+                  decoration: BoxDecoration(
+                    shape: BoxShape.rectangle,
+                    border: Border.all(width: 2,color: Colors.green),
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: salud_abrir_animacion(
+                    photo: 'assets/img/secar.png',
+                    width: 70.0,heigth: 200,
+                    onTap: () {//esto son las acciones que hará cuando se de click en la imagen
+                      soundpool8();
+                      Navigator.of(context).push(MaterialPageRoute<void>(
+                          builder: (BuildContext context) {
+                            return Scaffold(
+                              appBar: AppBar(
+                                title: const Text('LAVAR MANOS'),
+                              ),
+                              body: Container(
+                                width: MediaQuery.of(context).size.width,
+                                height: MediaQuery.of(context).size.height,
+                                decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                      image: AssetImage('assets/img/fondo.gif'),
+                                      fit: BoxFit.cover
+                                  ),
+                                ),
+                                padding: const EdgeInsets.all(16),
+                                alignment: Alignment.center,
+                                child: salud_abrir_animacion(
+                                  photo: 'assets/img/secar_real.png',
+                                  width: 700.0,heigth: 700,
+                                  onTap: () {
+                                    Navigator.of(context).pop();//hace que regrese a la ultima ventana
+                                  },
+                                ),
+                              ),
+
+                            );
+                          }
+                      ));
+                    },
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+
+  }
+
+  Future<void> soundpool() async {
+    Soundpool pool = Soundpool();
+
+    int soundId = await rootBundle.load('assets/audiosM/abrir.m4a').then((ByteData soundData) {
+      return pool.load(soundData);
+    });
+    int streamId = await pool.play(soundId);
+  }
+
+  Future<void> soundpool2() async {
+    Soundpool pool = Soundpool();
+
+    int soundId = await rootBundle.load('assets/audiosM/agua.m4a').then((ByteData soundData) {
+      return pool.load(soundData);
+    });
+    int streamId = await pool.play(soundId);
+  }//fin soundpool2
+
+  Future<void> soundpool3() async {
+    Soundpool pool = Soundpool();
+
+    int soundId = await rootBundle.load('assets/audiosM/cerrar.m4a').then((ByteData soundData) {
+      return pool.load(soundData);
+    });
+    int streamId = await pool.play(soundId);
+  }//fin soundpool3
+
+  Future<void> soundpool4() async {
+    Soundpool pool = Soundpool();
+
+    int soundId = await rootBundle.load('assets/audiosM/jabon.m4a').then((ByteData soundData) {
+      return pool.load(soundData);
+    });
+    int streamId = await pool.play(soundId);
+  }//fin soundpool4
+
+  Future<void> soundpool5() async {
+    Soundpool pool = Soundpool();
+
+    int soundId = await rootBundle.load('assets/audiosM/enjabonar.m4a').then((ByteData soundData) {
+      return pool.load(soundData);
+    });
+    int streamId = await pool.play(soundId);
+  }//fin soundpool5
+
+  Future<void> soundpool6() async {
+    Soundpool pool = Soundpool();
+
+    int soundId = await rootBundle.load('assets/audiosM/tallar.m4a').then((ByteData soundData) {
+      return pool.load(soundData);
+    });
+    int streamId = await pool.play(soundId);
+  }//fin soundpool6
+
+  Future<void> soundpool7() async {
+    Soundpool pool = Soundpool();
+
+    int soundId = await rootBundle.load('assets/audiosM/limpiar.m4a').then((ByteData soundData) {
+      return pool.load(soundData);
+    });
+    int streamId = await pool.play(soundId);
+  }//fin soundpool7
+
+  Future<void> soundpool8() async {
+    Soundpool pool = Soundpool();
+
+    int soundId = await rootBundle.load('assets/audiosM/secar.m4a').then((ByteData soundData) {
+      return pool.load(soundData);
+    });
+    int streamId = await pool.play(soundId);
+  }//fin soundpool8
+}
+
+
+
