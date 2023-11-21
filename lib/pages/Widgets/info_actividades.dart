@@ -2,9 +2,7 @@ import 'package:untitled/utils/colors.dart' as utils;
 import 'package:flutter/material.dart';
 
 class info_pictogramas extends StatelessWidget{
-  const info_pictogramas({required this.img1}): super();
-
-  final String img1;
+  const info_pictogramas();
 
   Widget build(BuildContext context){
     return IconButton(
@@ -125,6 +123,8 @@ class info_pictogramas extends StatelessWidget{
                           ),
                        Container(
                          child:Column(
+                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                           crossAxisAlignment: CrossAxisAlignment.start,
                            children: [
                              Container(
                                width: 300,
@@ -148,7 +148,24 @@ class info_pictogramas extends StatelessWidget{
                                        Text("PRENDAS DE VESTIR"),
                                      ],
                                    ),
-                                   SizedBox(height: 138,),
+                                   SizedBox(height: 20,),
+                                   Row(
+                                     children: [
+                                       Container(
+                                         width: 50,
+                                         height: 50,
+                                         decoration: BoxDecoration(
+                                           border: Border.all(color: Colors.black, width: 2.0), // Configura el borde negro
+                                         ),
+                                         child: Image(
+                                           image: AssetImage("assets/img/matemáticas.png"),
+                                         ),
+                                       ),
+                                       SizedBox(width: 20,),
+                                       Text("MATEMÁTICAS"),
+                                     ],
+                                   ),
+                                   SizedBox(height: 20,),
                                    Row(
                                      children: [
                                        SizedBox(
@@ -159,7 +176,6 @@ class info_pictogramas extends StatelessWidget{
                                          onPressed: (){
                                            Navigator.pop(context);
                                          },
-
                                        ),
                                      ],
                                    ),

@@ -25,10 +25,12 @@ class _principalState extends State<principal> {
   late Timer Repite;
   double _sliderValue=50.0;
   double _volume = 0.5; // Agrega _volume como una propiedad y establece el valor inicial
+  int _selectedSwitch = 0;
 
   @override
   void initState() {
     super.initState();
+    _initializeSound();
     startTimer();
   }
 
@@ -56,7 +58,7 @@ class _principalState extends State<principal> {
                           children: [
                             ToggleSwitch(
                               minWidth: 100.0,
-                              initialLabelIndex: 1,
+                              initialLabelIndex: _selectedSwitch,
                               cornerRadius: 20.0,
                               activeFgColor: Colors.white,
                               inactiveBgColor: Colors.grey,
@@ -66,6 +68,9 @@ class _principalState extends State<principal> {
                               icons: [Icons.male, Icons.female],
                               activeBgColors: [[Colors.blue],[Colors.pink]],
                               onToggle: (index) {
+                                setState(() {
+                                  _selectedSwitch=index!;
+                                });
                                 print('switched to: $index');
                                 if(index == 0){
                                   audioUrl="assets/audios/menuH.mp3";
@@ -103,7 +108,7 @@ class _principalState extends State<principal> {
               iconSize: 70,
             ),
             SizedBox(width: 300),
-            info_pictogramas(img1: "assets/img/alimento.png"),
+            info_pictogramas(),
             Image.asset(
               'assets/img/logo.png',
               width: 60,
@@ -260,7 +265,7 @@ class _principalState extends State<principal> {
 
 
   void startTimer() {
-    Repite =Timer.periodic(Duration(seconds: 3), (timer) {
+    Repite =Timer.periodic(Duration(seconds: 10), (timer) {
       _initializeSound();
     });
   }
