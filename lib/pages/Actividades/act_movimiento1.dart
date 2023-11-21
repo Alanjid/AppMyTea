@@ -27,8 +27,21 @@ class movi_conejo extends StatefulWidget {
 class _HomePageState extends State {
   String Instruccion="VAMOS A MOVERNOS";
   String audioUrl="assets/audios/vamos_a_movernosH.mp3";
-
+  late Soundpool _soundpool;
+  late int _soundId;
+  late int _streamId;
+  late Timer Repite;
+  double _sliderValue=50.0;
+  double _volume = 0.5; // Agrega _volume como una propiedad y establece el valor inicial
+  int _selectedSwitch = 0;
   int menos =15;
+
+  void initState() {
+    super.initState();
+    _initializeSound();
+    startTimer();
+  }
+
   void _startCountDown() {
     Timer.periodic(Duration(seconds: 1), (timer)   {
       if (menos > 0) {
@@ -124,5 +137,34 @@ class _HomePageState extends State {
     });
     int streamId = await pool.play(soundId);
   }
+  Future<void> _setVolume(double newVolume) async {
+    await _soundpool.setVolume(soundId: _soundId, volume: newVolume);
+    setState(() {
+      _volume = newVolume;
+      _sliderValue=newVolume *100;
+    });
+  }
 
+
+  void startTimer() {
+    Repite =Timer.periodic(Duration(seconds: 10), (timer) {
+      _initializeSound();
+    });
+  }
+
+  @override
+  void dispose() {
+    Repite.cancel();  // Cancelar el temporizador antes de liberar el widget
+    _soundpool.release();
+    super.dispose();
+  }
+
+  void _initializeSound() async {
+    _soundpool = Soundpool();
+    _soundId = await rootBundle.load(audioUrl).then((ByteData soundData) {
+      return _soundpool.load(soundData);
+    });
+    await _setVolume(_volume);
+    _streamId = await _soundpool.play(_soundId);
+  }
 }
