@@ -6,7 +6,6 @@ import 'package:stroke_text/stroke_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:soundpool/soundpool.dart';
 
-import '../home/grabar_instrucciones.dart';
 
 class movi_conejo extends StatefulWidget {
   //_HomePageState createState()=> _HomePageState();
@@ -27,7 +26,7 @@ class movi_conejo extends StatefulWidget {
 
 class _HomePageState extends State {
   String Instruccion="VAMOS A MOVERNOS";
-  String audioUrl="assets/audios/vamos_a_movernos.mp3";
+  String audioUrl="assets/audios/vamos_a_movernosH.mp3";
 
   int menos =15;
   void _startCountDown() {
@@ -66,10 +65,6 @@ class _HomePageState extends State {
                 fontSize: 30,
                 fontFamily: 'lazydog',
               ),
-            ),
-            sonido_grabar(
-              texto_grabar: Instruccion,
-              audioPath: audioUrl,
             ),
           ],
         ),
