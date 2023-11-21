@@ -127,6 +127,7 @@ flutter:
     - assets/audiosM/vamos_a_movernosM.mp3
     - assets/audiosM/bienvenidaM.mp3
     - assets/img/matemáticas.png
+    - assets/img/pic_salud.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

@@ -29,7 +29,7 @@ class _niveles_actividades extends State<niveles_actividades> {
     super.initState();
     _initializeSound();
     startTimer();
-    ActividadesList = ['assets/img/alimento.png','assets/img/bebidas.png','assets/img/acciones.png','assets/img/bebidas.png','assets/img/bebidas.png','assets/img/bebidas.png'];
+    ActividadesList = ['assets/img/alimento.png','assets/img/pic_salud.png','assets/img/acciones.png','assets/img/bebidas.png','assets/img/bebidas.png','assets/img/bebidas.png'];
   }
 
   @override
