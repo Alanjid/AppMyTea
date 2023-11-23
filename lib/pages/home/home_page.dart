@@ -200,9 +200,9 @@ class MyHomePageState extends State<MyHomePage>{
                                                         title: "",
                                                         desc: "Inicio de sesion correcto",
                                                         btnOkOnPress: (){
-                                                         //Navigator.push(context, MaterialPageRoute(builder: (context) => saludo()));
+                                                         Navigator.push(context, MaterialPageRoute(builder: (context) => saludo()));
                                                          //Navigator.push(context, MaterialPageRoute(builder: (context) => afectividad_realista()));
-                                                          Navigator.push(context, MaterialPageRoute(builder: (context) => n1_rd_salud_pt2()));
+                                                          //Navigator.push(context, MaterialPageRoute(builder: (context) => n1_rd_salud_pt2()));
                                                           //Navigator.push(context, MaterialPageRoute(builder: (context) => movi_conejo()));
                                                           //Navigator.push(context, MaterialPageRoute(builder: (context) => apren_pony_lenguaje_real()));
                                                         }
