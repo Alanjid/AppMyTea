@@ -127,6 +127,21 @@ flutter:
     - assets/audiosM/vamos_a_movernosM.mp3
     - assets/audiosM/bienvenidaM.mp3
     - assets/img/matemáticas.png
+    - assets/img/abrir.png
+    - assets/img/abrir_real.png
+    - assets/img/enjuagar.png
+    - assets/img/agua_real.png
+    - assets/img/cerrar.png
+    - assets/img/cerrar_real.png
+    - assets/img/jabon.png
+    - assets/img/jabon_real.png
+    - assets/img/enjabonar.png
+    - assets/img/enjuagar_real.png
+    - assets/img/secar.png
+    - assets/img/secar_real.png
+    - assets/img/tallar1.png
+    - assets/img/enjuagar_real.png
+    - assets/audios/nos_lavamos_las_manosH.mp3
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

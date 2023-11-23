@@ -7,7 +7,7 @@ import 'package:stroke_text/stroke_text.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 import 'package:untitled/pages/home/felicitacion.dart';
 import 'package:soundpool/soundpool.dart';
-import '../Widgets/Objetivos.dart';
+import '../../Widgets/Objetivos.dart';
 import 'package:untitled/utils/colors.dart' as utils;
 
 class afectividad_realista extends StatefulWidget {
