@@ -9,6 +9,7 @@ import 'package:toggle_switch/toggle_switch.dart';
 import 'package:untitled/pages/Actividades/Higiene/n1_rd_salud_pt2.dart';
 import 'package:untitled/pages/Actividades/Acciones/act_movimiento1.dart';
 import 'package:untitled/pages/Actividades/Higiene/aprende_poy_real.dart';
+import 'package:untitled/pages/Widgets/tareas_completadas.dart';
 import 'package:untitled/pages/home/principal.dart';
 import 'package:untitled/pages/home/saludo_inicio.dart';
 import 'package:untitled/utils/colors.dart' as utils;
@@ -25,12 +26,12 @@ class _niveles_actividades extends State<niveles_actividades> with SingleTickerP
   String audioUrl="assets/audios/actividadesH.mp3";
   ValueNotifier<bool> isAudioPlaying = ValueNotifier<bool>(false);
   late List<Actividad> ActividadesList;
-  Actividad alimento= Actividad(imagePath:'assets/img/alimento.png' , isEnabled: true);
-  Actividad bebidas= Actividad(imagePath:'assets/img/bebidas.png' , isEnabled: true );
-  Actividad acciones= Actividad(imagePath:'assets/img/acciones.png' , isEnabled: true);
-  Actividad partesCuerpo= Actividad(imagePath:'assets/img/partes del cuerpo.png' , isEnabled: true);
-  Actividad prendas= Actividad(imagePath:'assets/img/prendas.png' , isEnabled: true);
-  Actividad matematicas= Actividad(imagePath:'assets/img/matemáticas.png' , isEnabled: true);
+  Actividad alimento= Actividad(imagePath:'assets/img/alimento.png' , isEnabled: true,Nombre: 'Alimentos');
+  Actividad bebidas= Actividad(imagePath:'assets/img/bebidas.png' , isEnabled: true ,Nombre: 'Bebidas');
+  Actividad acciones= Actividad(imagePath:'assets/img/acciones.png' , isEnabled: true,Nombre: 'Acciones');
+  Actividad partesCuerpo= Actividad(imagePath:'assets/img/partes del cuerpo.png' , isEnabled: true, Nombre: 'Partes del cuerpo');
+  Actividad prendas= Actividad(imagePath:'assets/img/prendas.png' , isEnabled: true, Nombre: 'Prendas de vestir');
+  Actividad matematicas= Actividad(imagePath:'assets/img/matemáticas.png' , isEnabled: true, Nombre: 'Matemàticas');
   late Soundpool _soundpool;
   late int _soundId;
   late int _streamId;
@@ -180,61 +181,69 @@ class _niveles_actividades extends State<niveles_actividades> with SingleTickerP
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    SizedBox(
-                      height: 150,
-                      width: MediaQuery.sizeOf(context).width,
-                      child: ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        itemCount: ActividadesList.length,
-                        itemBuilder: (context, index) {
-                          Actividad actividad = ActividadesList[index];
-                          return Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child:Visibility(
-                              visible: actividad.isEnabled,
-                              child: IconButton(
-                                icon: Image.asset(
-                                  actividad.imagePath,
-                                  width: 120,
-                                  height: 120,
-                                ),
-                                onPressed: () {
-                                  String actSelec= ActividadesList[index].toString();
-                                  switch (actSelec){
-                                    case 'assets/img/alimento.png':
-                                      _setVolume(0);
-                                      Navigator.push(context, MaterialPageRoute(builder: (context) => principal()));
-                                      break;
-                                    case 'assets/img/bebidas.png':
-                                      _setVolume(0);
-                                      Navigator.push(context, MaterialPageRoute(builder: (context) => saludo()));
-                                      break;
-                                    case 'assets/img/acciones.png':
-                                      _setVolume(0);
-                                      Navigator.push(context, MaterialPageRoute(builder: (context)=> apren_pony_lenguaje_real()));
-                                      break;
-                                    case 'assets/img/partes del cuerpo.png':
-                                      _setVolume(0);
-                                      Navigator.push(context, MaterialPageRoute(builder: (context)=> n1_rd_salud_pt2()));
-                                      break;
-                                    case 'assets/img/prendas.png':
-                                      _setVolume(0);
-                                      Navigator.push(context, MaterialPageRoute(builder: (context)=>principal()));
-                                      break;
-                                    case 'assets/img/matemáticas.png':
-                                      _setVolume(0);
-                                      Navigator.push(context, MaterialPageRoute(builder: (context)=>principal()));
-                                      break;
-                                  }
-                                },
-                                iconSize: 120, // Ajusta el tamaño del icono según tus necesidades
-                                padding: EdgeInsets.all(8), // Ajusta el relleno según tus necesidades
-                                color: Colors.blue, // Ajusta el color del icono según tus necesidades
-                              ),
-                            )
-                          );
-                        },
-                      ),
+                    Column(
+                      children: [
+                        SizedBox(
+                          height: 150,
+                          width: MediaQuery.sizeOf(context).width,
+                          child: ListView.builder(
+                            scrollDirection: Axis.horizontal,
+                            itemCount: ActividadesList.length,
+                            itemBuilder: (context, index) {
+                              Actividad actividad = ActividadesList[index];
+                              return Row(
+                                children: [
+                                  Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child:Visibility(
+                                        visible: actividad.isEnabled,
+                                        child: IconButton(
+                                          icon: Image.asset(
+                                            actividad.imagePath,
+                                            width: 120,
+                                            height: 120,
+                                          ),
+                                          onPressed: () {
+                                            switch (actividad.imagePath){
+                                              case 'assets/img/alimento.png':
+                                                _setVolume(0);
+                                                Navigator.push(context, MaterialPageRoute(builder: (context) => tareas_comp_diarias()));
+                                                break;
+                                              case 'assets/img/bebidas.png':
+                                                _setVolume(0);
+                                                Navigator.push(context, MaterialPageRoute(builder: (context) => tareas_comp_diarias()));
+                                                break;
+                                              case 'assets/img/acciones.png':
+                                                _setVolume(0);
+                                                Navigator.push(context, MaterialPageRoute(builder: (context)=> apren_pony_lenguaje_real()));
+                                                break;
+                                              case 'assets/img/partes del cuerpo.png':
+                                                _setVolume(0);
+                                                Navigator.push(context, MaterialPageRoute(builder: (context)=> n1_rd_salud_pt2()));
+                                                break;
+                                              case 'assets/img/prendas.png':
+                                                _setVolume(0);
+                                                Navigator.push(context, MaterialPageRoute(builder: (context)=>tareas_comp_diarias()));
+                                                break;
+                                              case 'assets/img/matemáticas.png':
+                                                _setVolume(0);
+                                                Navigator.push(context, MaterialPageRoute(builder: (context)=> tareas_comp_diarias()));
+                                                break;
+                                            }
+                                          },
+                                          iconSize: 120, // Ajusta el tamaño del icono según tus necesidades
+                                          padding: EdgeInsets.all(8), // Ajusta el relleno según tus necesidades
+                                          color: Colors.blue, // Ajusta el color del icono según tus necesidades
+                                        ),
+                                      )
+                                  ),
+
+                                ],
+                              );
+                            },
+                          ),
+                        )
+                      ],
                     ),
                   ],
                 ),

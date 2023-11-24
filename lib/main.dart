@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:untitled/pages/Widgets/tareas_completadas.dart';
 import 'package:untitled/pages/home/home_page.dart';
 import 'package:untitled/utils/colors.dart' as utils;
 

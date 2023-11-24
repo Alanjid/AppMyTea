@@ -1,6 +1,6 @@
 class Actividad{
   String imagePath;
   bool isEnabled;
-
-  Actividad({required this.imagePath, required this.isEnabled});
+  String Nombre;
+  Actividad({required this.imagePath, required this.isEnabled, required this.Nombre});
 }
