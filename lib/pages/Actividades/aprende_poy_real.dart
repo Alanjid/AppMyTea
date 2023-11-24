@@ -4,7 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:stroke_text/stroke_text.dart';
 import 'package:soundpool/soundpool.dart';
+import 'package:toggle_switch/toggle_switch.dart';
 import 'package:untitled/pages/home/felicitacion.dart';
+import 'package:untitled/utils/colors.dart' as utils;
 
 class apren_pony_lenguaje_real extends StatefulWidget {
   @override
@@ -16,10 +18,18 @@ class afre extends State {
   bool visible=false,visible2=false,visible3=false,visible4=false;
   String Texto = "¿Que objetos encuentras en el baño?";
   String audioUrl = 'assets/audios/act_bañoH.mp3';
+  late Soundpool _soundpool;
+  late int _soundId;
+  late int _streamId;
+  late Timer Repite;
+  double _sliderValue=50.0;
+  double _volume = 0.5;
+  int _selectedSwitch =0;
 
 
   void initState() {
     super.initState();
+    _initializeSound();
     startTimer();
   }
   Widget build(BuildContext context) {
@@ -48,7 +58,69 @@ class afre extends State {
                 fontFamily: 'lazydog',
               ),
             ),
-            SizedBox(width: 300),
+            SizedBox(width: 20),
+            IconButton(
+              onPressed: () {
+                showDialog(
+                    context: context,
+                    builder: (BuildContext context){
+                      return AlertDialog(
+                        title: Text('Cambiamos la voz',
+                          textAlign: TextAlign.center,),
+                        content: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            ToggleSwitch(
+                              minWidth: 100.0,
+                              initialLabelIndex: _selectedSwitch,
+                              cornerRadius: 20.0,
+                              activeFgColor: Colors.white,
+                              inactiveBgColor: Colors.grey,
+                              inactiveFgColor: Colors.white,
+                              totalSwitches: 2,
+                              labels: ['Hombre', 'Mujer'],
+                              icons: [Icons.male, Icons.female],
+                              activeBgColors: [[Colors.blue],[Colors.pink]],
+                              onToggle: (index) {
+                                setState(() {
+                                  _selectedSwitch=index!;
+                                });
+                                print('switched to: $index');
+                                if(index == 0){
+                                  audioUrl="assets/audios/act_bañoH.mp3";
+                                }
+                                else{
+                                  if(index == 1){
+                                    audioUrl="assets/audiosM/act_bañoM.mp3";
+                                  }
+                                }
+                              },
+                            ),
+
+                          ],
+                        ),
+                        actions: [
+                          TextButton(
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                            child: Text(
+                              "Cerrar",
+                              style: TextStyle(
+                                  fontSize: 18,
+                                  color: utils.Colors.azulitoArriba,
+                                  decoration: TextDecoration.underline
+                              ),
+                            ),
+                          ),
+                        ],
+                      );
+                    }
+                );
+              },
+              icon: Image.asset('assets/img/iconobocina.gif'),
+              iconSize: 70,
+            ),
             Image.asset(
               'assets/img/logo.png',
               width: 60,
@@ -70,7 +142,27 @@ class afre extends State {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-
+            Container(
+              width: 300,
+              child: Column(
+                children: [
+                  Slider(
+                    value: _sliderValue,
+                    activeColor:Colors.redAccent,
+                    inactiveColor: Colors.redAccent,
+                    min: 0,
+                    max: 100,
+                    divisions: 100,
+                    label: _sliderValue.round().toString(),
+                    onChanged: (double newVolume) {
+                      setState(() {
+                        _setVolume(newVolume / 100);
+                      });
+                    },
+                  ),
+                ],
+              ),
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -93,7 +185,7 @@ class afre extends State {
                           setState(()  {
                             visible=true;
                           });
-                          soundpool();
+                          soundpool1();
                         },
                         icon: Image.asset('assets/img/baño_real.png',height: 200,width: 200.0,),
                       ),
@@ -151,7 +243,7 @@ class afre extends State {
                           setState(()  {
                             visible2=true;
                           });
-                          soundpool();
+                          soundpool1();
                         },
                         icon: Image.asset('assets/img/despa_papel_real.png',height: 200,width: 200.0,),
                       ),
@@ -232,7 +324,7 @@ class afre extends State {
                           setState(()  {
                             visible4=true;
                           });
-                          soundpool();
+                          soundpool1();
                         },
                         icon: Image.asset('assets/img/bote_basuraa_real.png',height: 200,width: 200.0,),
                       ),
@@ -269,7 +361,7 @@ class afre extends State {
                           setState(()  {
                             visible3=true;
                           });
-                          soundpool();
+                          soundpool1();
                         },
                         icon: Image.asset('assets/img/lavabo_real.png',height: 200,width: 200.0,),
                       ),
@@ -314,7 +406,7 @@ class afre extends State {
     );
   } //fin constructor
 
-  Future<void> soundpool() async {
+  Future<void> soundpool1() async {
     Soundpool pool = Soundpool();
 
     int soundId = await rootBundle.load('assets/audios/acierto.mp3').then((ByteData soundData) {
@@ -331,18 +423,31 @@ class afre extends State {
     });
     int streamId = await pool.play(soundId);
   }
-
-  Future<void> audioFondo() async {
-    Soundpool pool = Soundpool();
-
-    int soundId = await rootBundle.load('assets/audios/act_bañoH.mp3').then((ByteData soundData) {
-      return pool.load(soundData);
+  Future<void> _setVolume(double newVolume) async {
+    await _soundpool.setVolume(soundId: _soundId, volume: newVolume);
+    setState(() {
+      _volume = newVolume;
+      _sliderValue=newVolume *100;
     });
-    int streamId = await pool.play(soundId);
+  }
+
+  @override
+  void dispose() {
+    Repite.cancel();  // Cancelar el temporizador antes de liberar el widget
+    _soundpool.release();
+    super.dispose();
   }
   void startTimer() {
-    Future.delayed(const Duration(seconds: 1), () {
-      audioFondo();
+    Repite =Timer.periodic(Duration(seconds: 10), (timer) {
+      _initializeSound();
     });
+  }
+  void _initializeSound() async {
+    _soundpool = Soundpool();
+    _soundId = await rootBundle.load(audioUrl).then((ByteData soundData) {
+      return _soundpool.load(soundData);
+    });
+    await _setVolume(_volume);
+    _streamId = await _soundpool.play(_soundId);
   }
 }

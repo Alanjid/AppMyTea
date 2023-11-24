@@ -1,11 +1,16 @@
 import 'dart:async';
+import 'dart:collection';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:soundpool/soundpool.dart';
 import 'package:stroke_text/stroke_text.dart';
 import 'package:toggle_switch/toggle_switch.dart';
+import 'package:untitled/pages/Actividades/Higiene/n1_rd_salud_pt2.dart';
 import 'package:untitled/pages/Actividades/act_movimiento1.dart';
+import 'package:untitled/pages/Actividades/aprende_poy_real.dart';
+import 'package:untitled/pages/home/principal.dart';
+import 'package:untitled/pages/home/saludo_inicio.dart';
 import 'package:untitled/utils/colors.dart' as utils;
 
 class niveles_actividades extends StatefulWidget {
@@ -25,6 +30,7 @@ class _niveles_actividades extends State<niveles_actividades> with SingleTickerP
   double _volume = 0.5;
   int _selectedSwitch =0;
   late AnimationController _animationController;
+  final Map<int, String> actividades = HashMap();
 
   void initState() {
     super.initState();
@@ -35,7 +41,8 @@ class _niveles_actividades extends State<niveles_actividades> with SingleTickerP
       duration: Duration(seconds: 2),
     );
     _animationController.repeat(reverse: true);
-    ActividadesList = ['assets/img/alimento.png',
+    ActividadesList = [
+      'assets/img/alimento.png',
       'assets/img/bebidas.png',
       'assets/img/acciones.png',
       'assets/img/partes del cuerpo.png',
@@ -188,7 +195,27 @@ class _niveles_actividades extends State<niveles_actividades> with SingleTickerP
                                 height: 120,
                               ),
                               onPressed: () {
-                                // Tu lógica cuando se presiona el botón
+                                  String actSelec= ActividadesList[index].toString();
+                                  switch (actSelec){
+                                    case 'assets/img/alimento.png':
+                                      Navigator.push(context, MaterialPageRoute(builder: (context) => principal()));
+                                      break;
+                                    case 'assets/img/bebidas.png':
+                                      Navigator.push(context, MaterialPageRoute(builder: (context) => saludo()));
+                                      break;
+                                    case 'assets/img/acciones.png':
+                                      Navigator.push(context, MaterialPageRoute(builder: (context)=> apren_pony_lenguaje_real()));
+                                      break;
+                                    case 'assets/img/partes del cuerpo.png':
+                                      Navigator.push(context, MaterialPageRoute(builder: (context)=> n1_rd_salud_pt2()));
+                                      break;
+                                    case 'assets/img/prendas.png':
+                                      Navigator.push(context, MaterialPageRoute(builder: (context)=>principal()));
+                                      break;
+                                    case 'assets/img/matemáticas.png':
+                                      Navigator.push(context, MaterialPageRoute(builder: (context)=>principal()));
+                                      break;
+                                  }
                               },
                               iconSize: 120, // Ajusta el tamaño del icono según tus necesidades
                               padding: EdgeInsets.all(8), // Ajusta el relleno según tus necesidades

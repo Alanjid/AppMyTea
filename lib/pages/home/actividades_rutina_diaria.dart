@@ -29,7 +29,14 @@ class _actR_diariaState extends State<rutina_diaria> {
     super.initState();
     _initializeSound();
     startTimer();
-    ActividadesList = ['assets/img/alimento.png','assets/img/bebidas.png','assets/img/acciones.png','assets/img/bebidas.png','assets/img/bebidas.png','assets/img/bebidas.png'];
+    ActividadesList = [
+      'assets/img/alimento.png',
+      'assets/img/bebidas.png',
+      'assets/img/acciones.png',
+      'assets/img/partes del cuerpo.png',
+      'assets/img/prendas.png',
+      'assets/img/matemáticas.png'
+    ];
   }
 
   @override
