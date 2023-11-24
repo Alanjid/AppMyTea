@@ -5,7 +5,8 @@ import 'package:flutter/services.dart';
 import 'package:stroke_text/stroke_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:soundpool/soundpool.dart';
-
+import 'package:toggle_switch/toggle_switch.dart';
+import 'package:untitled/utils/colors.dart' as utils;
 
 class movi_conejo extends StatefulWidget {
   //_HomePageState createState()=> _HomePageState();
@@ -27,8 +28,21 @@ class movi_conejo extends StatefulWidget {
 class _HomePageState extends State {
   String Instruccion="VAMOS A MOVERNOS";
   String audioUrl="assets/audios/vamos_a_movernosH.mp3";
-
+  late Soundpool _soundpool;
+  late int _soundId;
+  late int _streamId;
+  late Timer Repite;
+  double _sliderValue=50.0;
+  double _volume = 0.5; // Agrega _volume como una propiedad y establece el valor inicial
+  int _selectedSwitch = 0;
   int menos =15;
+
+  void initState() {
+    super.initState();
+    _initializeSound();
+    startTimer();
+  }
+
   void _startCountDown() {
     Timer.periodic(Duration(seconds: 1), (timer)   {
       if (menos > 0) {
@@ -66,6 +80,69 @@ class _HomePageState extends State {
                 fontFamily: 'lazydog',
               ),
             ),
+            IconButton(
+              onPressed: () {
+
+                showDialog(
+                    context: context,
+                    builder: (BuildContext context){
+                      return AlertDialog(
+                        title: Text('Cambiamos la voz',
+                          textAlign: TextAlign.center,),
+                        content: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            ToggleSwitch(
+                              minWidth: 100.0,
+                              initialLabelIndex: _selectedSwitch,
+                              cornerRadius: 20.0,
+                              activeFgColor: Colors.white,
+                              inactiveBgColor: Colors.grey,
+                              inactiveFgColor: Colors.white,
+                              totalSwitches: 2,
+                              labels: ['Hombre', 'Mujer'],
+                              icons: [Icons.male, Icons.female],
+                              activeBgColors: [[Colors.blue],[Colors.pink]],
+                              onToggle: (index) {
+                                setState(() {
+                                  _selectedSwitch=index!;
+                                });
+                                print('switched to: $index');
+                                if(index == 0){
+                                  audioUrl="assets/audios/vamos_a_movernosH.mp3";
+                                }
+                                else{
+                                  if(index == 1){
+                                    audioUrl="assets/audiosM/vamos_a_movernosM.mp3";
+                                  }
+                                }
+                              },
+                            ),
+
+                          ],
+                        ),
+                        actions: [
+                          TextButton(
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                            child: Text(
+                              "Cerrar",
+                              style: TextStyle(
+                                  fontSize: 18,
+                                  color: utils.Colors.azulitoArriba,
+                                  decoration: TextDecoration.underline
+                              ),
+                            ),
+                          ),
+                        ],
+                      );
+                    }
+                );
+              },
+              icon: Image.asset('assets/img/iconobocina.gif'),
+              iconSize: 70,
+            ),
           ],
         ),
       ),
@@ -78,40 +155,65 @@ class _HomePageState extends State {
               fit: BoxFit.cover
           ),
         ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
+        child:Column(
           children: [
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  menos==0?'  ¡BIEN ''\n''HECHO!':menos.toString(),
-                  style: TextStyle(fontSize: 50),
-                ),
-                MaterialButton(onPressed: () {
-                  _startCountDown();
-                },
-                  child: const Text('COMENZAR',style: TextStyle(fontSize: 27,color:Colors.white),
-                    // color: Colors.deepPurpleAccent,
+            Container(
+              width: 300,
+              child: Column(
+                children: [
+                  Slider(
+                    value: _sliderValue,
+                    activeColor: Colors.redAccent,
+                    inactiveColor: Colors.redAccent,
+                    min: 0,
+                    max: 100,
+                    divisions: 100,
+                    label: _sliderValue.round().toString(),
+                    onChanged: (double newVolume) {
+                      setState(() {
+                        _setVolume(newVolume / 100);
+                      });
+                    },
                   ),
-                  color: Colors.deepPurpleAccent,
+                ],
+              ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      menos==0?'  ¡BIEN ''\n''HECHO!':menos.toString(),
+                      style: TextStyle(fontSize: 50),
+                    ),
+                    MaterialButton(onPressed: () {
+                      _startCountDown();
+                    },
+                      child: const Text('COMENZAR',style: TextStyle(fontSize: 27,color:Colors.white),
+                        // color: Colors.deepPurpleAccent,
+                      ),
+                      color: Colors.deepPurpleAccent,
+                    ),
+                  ],
+                ),
+                Container(
+                  decoration: BoxDecoration(
+                      shape: BoxShape.rectangle,
+                      borderRadius: BorderRadius.circular(8),
+                      border: Border.all(width: 4,color: Colors.deepPurpleAccent),
+                      color: Colors.white
+                  ),
+                  child: Image.asset(
+                    'assets/img/movimiento1.gif',
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ],
             ),
-            Container(
-              decoration: BoxDecoration(
-                  shape: BoxShape.rectangle,
-                  borderRadius: BorderRadius.circular(8),
-                  border: Border.all(width: 4,color: Colors.deepPurpleAccent),
-                  color: Colors.white
-              ),
-              child: Image.asset(
-                'assets/img/movimiento1.gif',
-                fit: BoxFit.cover,
-              ),
-            ),
           ],
-        ),
+        )
       ),
     );
   }
@@ -124,5 +226,34 @@ class _HomePageState extends State {
     });
     int streamId = await pool.play(soundId);
   }
+  Future<void> _setVolume(double newVolume) async {
+    await _soundpool.setVolume(soundId: _soundId, volume: newVolume);
+    setState(() {
+      _volume = newVolume;
+      _sliderValue=newVolume *100;
+    });
+  }
 
+
+  void startTimer() {
+    Repite =Timer.periodic(Duration(seconds: 10), (timer) {
+      _initializeSound();
+    });
+  }
+
+  @override
+  void dispose() {
+    Repite.cancel();  // Cancelar el temporizador antes de liberar el widget
+    _soundpool.release();
+    super.dispose();
+  }
+
+  void _initializeSound() async {
+    _soundpool = Soundpool();
+    _soundId = await rootBundle.load(audioUrl).then((ByteData soundData) {
+      return _soundpool.load(soundData);
+    });
+    await _setVolume(_volume);
+    _streamId = await _soundpool.play(_soundId);
+  }
 }
