@@ -12,7 +12,7 @@ class niveles_actividades extends StatefulWidget {
   @override
   _niveles_actividades createState() => _niveles_actividades();
 }
-class _niveles_actividades extends State<niveles_actividades> {
+class _niveles_actividades extends State<niveles_actividades> with SingleTickerProviderStateMixin{
   String texto_dictar="Realizamos las siguientes actividades";
   String audioUrl="assets/audios/actividadesH.mp3";
   ValueNotifier<bool> isAudioPlaying = ValueNotifier<bool>(false);
@@ -24,12 +24,24 @@ class _niveles_actividades extends State<niveles_actividades> {
   double _sliderValue=50.0;
   double _volume = 0.5;
   int _selectedSwitch =0;
+  late AnimationController _animationController;
 
   void initState() {
     super.initState();
     _initializeSound();
     startTimer();
-    ActividadesList = ['assets/img/alimento.png','assets/img/bebidas.png','assets/img/acciones.png','assets/img/bebidas.png','assets/img/bebidas.png','assets/img/bebidas.png'];
+    _animationController = AnimationController(
+      vsync: this,
+      duration: Duration(seconds: 2),
+    );
+    _animationController.repeat(reverse: true);
+    ActividadesList = ['assets/img/alimento.png',
+      'assets/img/bebidas.png',
+      'assets/img/acciones.png',
+      'assets/img/partes del cuerpo.png',
+      'assets/img/prendas.png',
+      'assets/img/matemáticas.png'
+    ];
   }
 
   @override
@@ -156,9 +168,6 @@ class _niveles_actividades extends State<niveles_actividades> {
                     fontFamily: 'lazydog',
                   ),
                 ),
-                SizedBox(
-                  height: 50,
-                ),
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -191,6 +200,37 @@ class _niveles_actividades extends State<niveles_actividades> {
                     ),
                   ],
                 ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    StrokeText(
+                      text: 'Movemos a la derecha para ver mas actividades',
+                      strokeWidth: 6,
+                      strokeColor: Colors.red,
+                      textStyle: TextStyle(
+                        fontSize: 25,
+                        fontFamily: 'lazydog',
+                      ),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        for(int i=0;i<4;i++)
+                          SlideTransition(
+                              position: Tween<Offset>(
+                                begin: Offset(0,0),
+                                end: Offset(1,0),
+                              ).animate(_animationController),
+                            child: Icon(
+                              Icons.arrow_forward,
+                              size: 30,
+                              color: Colors.white,
+                            ),
+                          )
+                      ],
+                    )
+                  ],
+                )
               ],
         ),
       ),
@@ -216,6 +256,7 @@ class _niveles_actividades extends State<niveles_actividades> {
     Repite.cancel();  // Cancelar el temporizador antes de liberar el widget
     _soundpool.release();
     super.dispose();
+    _animationController.dispose();
   }
 
   void _initializeSound() async {
