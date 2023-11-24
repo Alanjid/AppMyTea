@@ -198,21 +198,27 @@ class _niveles_actividades extends State<niveles_actividades> with SingleTickerP
                                   String actSelec= ActividadesList[index].toString();
                                   switch (actSelec){
                                     case 'assets/img/alimento.png':
+                                      _setVolume(0);
                                       Navigator.push(context, MaterialPageRoute(builder: (context) => principal()));
                                       break;
                                     case 'assets/img/bebidas.png':
+                                      _setVolume(0);
                                       Navigator.push(context, MaterialPageRoute(builder: (context) => saludo()));
                                       break;
                                     case 'assets/img/acciones.png':
+                                      _setVolume(0);
                                       Navigator.push(context, MaterialPageRoute(builder: (context)=> apren_pony_lenguaje_real()));
                                       break;
                                     case 'assets/img/partes del cuerpo.png':
+                                      _setVolume(0);
                                       Navigator.push(context, MaterialPageRoute(builder: (context)=> n1_rd_salud_pt2()));
                                       break;
                                     case 'assets/img/prendas.png':
+                                      _setVolume(0);
                                       Navigator.push(context, MaterialPageRoute(builder: (context)=>principal()));
                                       break;
                                     case 'assets/img/matemáticas.png':
+                                      _setVolume(0);
                                       Navigator.push(context, MaterialPageRoute(builder: (context)=>principal()));
                                       break;
                                   }
