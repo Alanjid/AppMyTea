@@ -6,6 +6,7 @@ import 'package:soundpool/soundpool.dart';
 import 'package:stroke_text/stroke_text.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 import 'package:untitled/pages/Actividades/Acciones/act_movimiento1.dart';
+import 'package:untitled/pages/Widgets/tareas_completadas.dart';
 import 'package:untitled/pages/home/principal.dart';
 import 'package:untitled/pages/home/saludo_inicio.dart';
 import 'package:untitled/utils/colors.dart' as utils;
@@ -24,12 +25,12 @@ class _actR_diariaState extends State<rutina_diaria> with SingleTickerProviderSt
   String texto_dictar="Realizamos las actividades de rutina diaria";
   String audioUrl="assets/audios/audio_rutina_diariaH.mp3";
   ValueNotifier<bool> isAudioPlaying = ValueNotifier<bool>(false);
-  Actividad alimento= Actividad(imagePath:'assets/img/alimento.png' , isEnabled: false);
-  Actividad bebidas= Actividad(imagePath:'assets/img/bebidas.png' , isEnabled: false);
-  Actividad acciones= Actividad(imagePath:'assets/img/acciones.png' , isEnabled: true);
-  Actividad partesCuerpo= Actividad(imagePath:'assets/img/partes del cuerpo.png' , isEnabled: true);
-  Actividad prendas= Actividad(imagePath:'assets/img/prendas.png' , isEnabled: true);
-  Actividad matematicas= Actividad(imagePath:'assets/img/matemáticas.png' , isEnabled: true);
+  Actividad alimento= Actividad(imagePath:'assets/img/alimento.png' , isEnabled: false,Nombre: 'Alimentos');
+  Actividad bebidas= Actividad(imagePath:'assets/img/bebidas.png' , isEnabled: false ,Nombre: 'Bebidas');
+  Actividad acciones= Actividad(imagePath:'assets/img/acciones.png' , isEnabled: true,Nombre: 'Acciones');
+  Actividad partesCuerpo= Actividad(imagePath:'assets/img/partes del cuerpo.png' , isEnabled: true, Nombre: 'Partes del cuerpo');
+  Actividad prendas= Actividad(imagePath:'assets/img/prendas.png' , isEnabled: false, Nombre: 'Prendas de vestir');
+  Actividad matematicas= Actividad(imagePath:'assets/img/matemáticas.png' , isEnabled: false, Nombre: 'Matemàticas');
   late List<Actividad> ActividadesList;
   late Soundpool _soundpool;
   late int _soundId;
@@ -206,11 +207,11 @@ class _actR_diariaState extends State<rutina_diaria> with SingleTickerProviderSt
                               switch (actividad.imagePath){
                                 case 'assets/img/alimento.png':
                                   _setVolume(0);
-                                  //Navigator.push(context, MaterialPageRoute(builder: (context) => saludo()));
+                                  Navigator.push(context, MaterialPageRoute(builder: (context) => tareas_comp_diarias()));
                                   break;
                                 case 'assets/img/bebidas.png':
                                   _setVolume(0);
-                                  //Navigator.push(context, MaterialPageRoute(builder: (context) => saludo()));
+                                  Navigator.push(context, MaterialPageRoute(builder: (context) => tareas_comp_diarias()));
                                   break;
                                 case 'assets/img/acciones.png':
                                   _setVolume(0);
@@ -222,11 +223,11 @@ class _actR_diariaState extends State<rutina_diaria> with SingleTickerProviderSt
                                   break;
                                 case 'assets/img/prendas.png':
                                   _setVolume(0);
-                                  // Navigator.push(context, MaterialPageRoute(builder: (context)=>principal()));
+                                  Navigator.push(context, MaterialPageRoute(builder: (context)=>tareas_comp_diarias()));
                                   break;
                                 case 'assets/img/matemáticas.png':
                                   _setVolume(0);
-                                  //Navigator.push(context, MaterialPageRoute(builder: (context)=>principal()));
+                                  Navigator.push(context, MaterialPageRoute(builder: (context)=>tareas_comp_diarias()));
                                   break;
                               }
                             },
