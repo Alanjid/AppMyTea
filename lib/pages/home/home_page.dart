@@ -3,9 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:untitled/pages/Actividades/Afectividad/act_afectividad.dart';
 import 'package:untitled/pages/Actividades/Higiene/n1_rd_salud_pt2.dart';
-import 'package:untitled/pages/Actividades/act_movimiento1.dart';
-import 'package:untitled/pages/Actividades/aprende_poy_real.dart';
+import 'package:untitled/pages/Actividades/Acciones/act_movimiento1.dart';
+import 'package:untitled/pages/Actividades/Higiene/aprende_poy_real.dart';
 import 'package:untitled/pages/Widgets/info_actividades.dart';
+import 'package:untitled/pages/home/actividades_rutina_diaria.dart';
 import 'package:untitled/pages/home/niveles_de_actividades.dart';
 import 'package:untitled/pages/home/principal.dart';
 import 'package:untitled/pages/home/saludo_inicio.dart';
@@ -206,7 +207,7 @@ class MyHomePageState extends State<MyHomePage>{
                                                           //Navigator.push(context, MaterialPageRoute(builder: (context) => n1_rd_salud_pt2()));
                                                           //Navigator.push(context, MaterialPageRoute(builder: (context) => movi_conejo()));
                                                           //Navigator.push(context, MaterialPageRoute(builder: (context) => apren_pony_lenguaje_real()));
-                                                          Navigator.push(context, MaterialPageRoute(builder: (context) => niveles_actividades()));
+                                                          Navigator.push(context, MaterialPageRoute(builder: (context) => rutina_diaria()));
                                                         }
                                                     ).show();
                                                   },

@@ -7,11 +7,14 @@ import 'package:soundpool/soundpool.dart';
 import 'package:stroke_text/stroke_text.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 import 'package:untitled/pages/Actividades/Higiene/n1_rd_salud_pt2.dart';
-import 'package:untitled/pages/Actividades/act_movimiento1.dart';
-import 'package:untitled/pages/Actividades/aprende_poy_real.dart';
+import 'package:untitled/pages/Actividades/Acciones/act_movimiento1.dart';
+import 'package:untitled/pages/Actividades/Higiene/aprende_poy_real.dart';
 import 'package:untitled/pages/home/principal.dart';
 import 'package:untitled/pages/home/saludo_inicio.dart';
 import 'package:untitled/utils/colors.dart' as utils;
+
+import '../Widgets/ActividadEstado.dart';
+import 'actividades_rutina_diaria.dart';
 
 class niveles_actividades extends StatefulWidget {
   @override
@@ -21,7 +24,13 @@ class _niveles_actividades extends State<niveles_actividades> with SingleTickerP
   String texto_dictar="Realizamos las siguientes actividades";
   String audioUrl="assets/audios/actividadesH.mp3";
   ValueNotifier<bool> isAudioPlaying = ValueNotifier<bool>(false);
-  late List<String> ActividadesList;
+  late List<Actividad> ActividadesList;
+  Actividad alimento= Actividad(imagePath:'assets/img/alimento.png' , isEnabled: true);
+  Actividad bebidas= Actividad(imagePath:'assets/img/bebidas.png' , isEnabled: true );
+  Actividad acciones= Actividad(imagePath:'assets/img/acciones.png' , isEnabled: true);
+  Actividad partesCuerpo= Actividad(imagePath:'assets/img/partes del cuerpo.png' , isEnabled: true);
+  Actividad prendas= Actividad(imagePath:'assets/img/prendas.png' , isEnabled: true);
+  Actividad matematicas= Actividad(imagePath:'assets/img/matemáticas.png' , isEnabled: true);
   late Soundpool _soundpool;
   late int _soundId;
   late int _streamId;
@@ -30,7 +39,6 @@ class _niveles_actividades extends State<niveles_actividades> with SingleTickerP
   double _volume = 0.5;
   int _selectedSwitch =0;
   late AnimationController _animationController;
-  final Map<int, String> actividades = HashMap();
 
   void initState() {
     super.initState();
@@ -41,14 +49,7 @@ class _niveles_actividades extends State<niveles_actividades> with SingleTickerP
       duration: Duration(seconds: 2),
     );
     _animationController.repeat(reverse: true);
-    ActividadesList = [
-      'assets/img/alimento.png',
-      'assets/img/bebidas.png',
-      'assets/img/acciones.png',
-      'assets/img/partes del cuerpo.png',
-      'assets/img/prendas.png',
-      'assets/img/matemáticas.png'
-    ];
+    ActividadesList = [alimento,bebidas,acciones,partesCuerpo,prendas,matematicas];
   }
 
   @override
@@ -186,15 +187,18 @@ class _niveles_actividades extends State<niveles_actividades> with SingleTickerP
                         scrollDirection: Axis.horizontal,
                         itemCount: ActividadesList.length,
                         itemBuilder: (context, index) {
+                          Actividad actividad = ActividadesList[index];
                           return Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child: IconButton(
-                              icon: Image.asset(
-                                ActividadesList[index],
-                                width: 120,
-                                height: 120,
-                              ),
-                              onPressed: () {
+                            child:Visibility(
+                              visible: actividad.isEnabled,
+                              child: IconButton(
+                                icon: Image.asset(
+                                  actividad.imagePath,
+                                  width: 120,
+                                  height: 120,
+                                ),
+                                onPressed: () {
                                   String actSelec= ActividadesList[index].toString();
                                   switch (actSelec){
                                     case 'assets/img/alimento.png':
@@ -222,11 +226,12 @@ class _niveles_actividades extends State<niveles_actividades> with SingleTickerP
                                       Navigator.push(context, MaterialPageRoute(builder: (context)=>principal()));
                                       break;
                                   }
-                              },
-                              iconSize: 120, // Ajusta el tamaño del icono según tus necesidades
-                              padding: EdgeInsets.all(8), // Ajusta el relleno según tus necesidades
-                              color: Colors.blue, // Ajusta el color del icono según tus necesidades
-                            ),
+                                },
+                                iconSize: 120, // Ajusta el tamaño del icono según tus necesidades
+                                padding: EdgeInsets.all(8), // Ajusta el relleno según tus necesidades
+                                color: Colors.blue, // Ajusta el color del icono según tus necesidades
+                              ),
+                            )
                           );
                         },
                       ),
