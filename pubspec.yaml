@@ -142,6 +142,7 @@ flutter:
     - assets/img/tallar1.png
     - assets/img/enjuagar_real.png
     - assets/audios/nos_lavamos_las_manosH.mp3
+    - assets/img/ropero.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

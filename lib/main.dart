@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:untitled/pages/Actividades/Higiene/n1_rd_salud_pt2.dart';
+import 'package:untitled/pages/Actividades/Prendas/act1_prendas.dart';
 import 'package:untitled/pages/Widgets/tareas_completadas.dart';
 import 'package:untitled/pages/home/home_page.dart';
 import 'package:untitled/utils/colors.dart' as utils;
@@ -28,7 +29,7 @@ void main() {
           primaryColor: utils.Colors.azulitoArriba
         ),
         routes: {
-          'home' :(BuildContext context) => MyHomePage(),
+          'home' :(BuildContext context) => act1_prendas(),
         },
       );
     }
