@@ -7,30 +7,57 @@ import 'package:soundpool/soundpool.dart';
 import 'package:stroke_text/stroke_text.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 import 'package:untitled/pages/Actividades/Higiene/n1_rd_salud_pt2.dart';
-import 'package:untitled/pages/Actividades/act_movimiento1.dart';
-import 'package:untitled/pages/Actividades/aprende_poy_real.dart';
+import 'package:untitled/pages/Actividades/Acciones/act_movimiento1.dart';
+import 'package:untitled/pages/Actividades/Higiene/aprende_poy_real.dart';
+import 'package:untitled/pages/Widgets/tareas_completadas.dart';
 import 'package:untitled/pages/home/principal.dart';
 import 'package:untitled/pages/home/saludo_inicio.dart';
 import 'package:untitled/utils/colors.dart' as utils;
+
+import '../Widgets/ActividadEstado.dart';
+import 'actividades_rutina_diaria.dart';
 
 class niveles_actividades extends StatefulWidget {
   @override
   _niveles_actividades createState() => _niveles_actividades();
 }
-class _niveles_actividades extends State<niveles_actividades> with SingleTickerProviderStateMixin{
-  String texto_dictar="Realizamos las siguientes actividades";
-  String audioUrl="assets/audios/actividadesH.mp3";
+
+class _niveles_actividades extends State<niveles_actividades>
+    with SingleTickerProviderStateMixin {
+  String texto_dictar = "Realizamos las siguientes actividades";
+  String audioUrl = "assets/audios/actividadesH.mp3";
   ValueNotifier<bool> isAudioPlaying = ValueNotifier<bool>(false);
-  late List<String> ActividadesList;
+  late List<Actividad> ActividadesList;
+  Actividad alimento = Actividad(
+      imagePath: 'assets/img/alimento.png',
+      isEnabled: true,
+      Nombre: 'Alimentos');
+  Actividad bebidas = Actividad(
+      imagePath: 'assets/img/bebidas.png', isEnabled: true, Nombre: 'Bebidas');
+  Actividad acciones = Actividad(
+      imagePath: 'assets/img/acciones.png',
+      isEnabled: true,
+      Nombre: 'Acciones');
+  Actividad partesCuerpo = Actividad(
+      imagePath: 'assets/img/partes del cuerpo.png',
+      isEnabled: true,
+      Nombre: 'Partes del cuerpo');
+  Actividad prendas = Actividad(
+      imagePath: 'assets/img/prendas.png',
+      isEnabled: true,
+      Nombre: 'Prendas de vestir');
+  Actividad matematicas = Actividad(
+      imagePath: 'assets/img/matemáticas.png',
+      isEnabled: true,
+      Nombre: 'Matemàticas');
   late Soundpool _soundpool;
   late int _soundId;
   late int _streamId;
   late Timer Repite;
-  double _sliderValue=50.0;
+  double _sliderValue = 50.0;
   double _volume = 0.5;
-  int _selectedSwitch =0;
+  int _selectedSwitch = 0;
   late AnimationController _animationController;
-  final Map<int, String> actividades = HashMap();
 
   void initState() {
     super.initState();
@@ -42,12 +69,12 @@ class _niveles_actividades extends State<niveles_actividades> with SingleTickerP
     );
     _animationController.repeat(reverse: true);
     ActividadesList = [
-      'assets/img/alimento.png',
-      'assets/img/bebidas.png',
-      'assets/img/acciones.png',
-      'assets/img/partes del cuerpo.png',
-      'assets/img/prendas.png',
-      'assets/img/matemáticas.png'
+      alimento,
+      bebidas,
+      acciones,
+      partesCuerpo,
+      prendas,
+      matematicas
     ];
   }
 
@@ -64,10 +91,12 @@ class _niveles_actividades extends State<niveles_actividades> with SingleTickerP
               onPressed: () {
                 showDialog(
                     context: context,
-                    builder: (BuildContext context){
+                    builder: (BuildContext context) {
                       return AlertDialog(
-                        title: Text('Cambiamos la voz',
-                          textAlign: TextAlign.center,),
+                        title: Text(
+                          'Cambiamos la voz',
+                          textAlign: TextAlign.center,
+                        ),
                         content: Column(
                           mainAxisSize: MainAxisSize.min,
                           children: [
@@ -81,23 +110,25 @@ class _niveles_actividades extends State<niveles_actividades> with SingleTickerP
                               totalSwitches: 2,
                               labels: ['Hombre', 'Mujer'],
                               icons: [Icons.male, Icons.female],
-                              activeBgColors: [[Colors.blue],[Colors.pink]],
+                              activeBgColors: [
+                                [Colors.blue],
+                                [Colors.pink]
+                              ],
                               onToggle: (index) {
                                 setState(() {
-                                  _selectedSwitch=index!;
+                                  _selectedSwitch = index!;
                                 });
                                 print('switched to: $index');
-                                if(index == 0){
-                                  audioUrl="assets/audios/actividadesH.mp3";
-                                }
-                                else{
-                                  if(index == 1){
-                                    audioUrl="assets/audiosM/actividadesM.mp3";
+                                if (index == 0) {
+                                  audioUrl = "assets/audios/actividadesH.mp3";
+                                } else {
+                                  if (index == 1) {
+                                    audioUrl =
+                                        "assets/audiosM/actividadesM.mp3";
                                   }
                                 }
                               },
                             ),
-
                           ],
                         ),
                         actions: [
@@ -110,14 +141,12 @@ class _niveles_actividades extends State<niveles_actividades> with SingleTickerP
                               style: TextStyle(
                                   fontSize: 18,
                                   color: utils.Colors.azulitoArriba,
-                                  decoration: TextDecoration.underline
-                              ),
+                                  decoration: TextDecoration.underline),
                             ),
                           ),
                         ],
                       );
-                    }
-                );
+                    });
               },
               icon: Image.asset('assets/img/iconobocina.gif'),
               iconSize: 70,
@@ -136,48 +165,45 @@ class _niveles_actividades extends State<niveles_actividades> with SingleTickerP
         height: MediaQuery.of(context).size.height,
         decoration: BoxDecoration(
           image: DecorationImage(
-              image: AssetImage('assets/img/fondoNM.png'),
-              fit: BoxFit.cover
-          ),
+              image: AssetImage('assets/img/fondoNM.png'), fit: BoxFit.cover),
         ),
         child: Column(
+          children: [
+            Container(
+              width: 300,
+              child: Column(
+                children: [
+                  Slider(
+                    value: _sliderValue,
+                    activeColor: Colors.redAccent,
+                    inactiveColor: Colors.redAccent,
+                    min: 0,
+                    max: 100,
+                    divisions: 100,
+                    label: _sliderValue.round().toString(),
+                    onChanged: (double newVolume) {
+                      setState(() {
+                        _setVolume(newVolume / 100);
+                      });
+                    },
+                  ),
+                ],
+              ),
+            ),
+            StrokeText(
+              text: texto_dictar,
+              strokeWidth: 6,
+              strokeColor: Colors.green,
+              textStyle: TextStyle(
+                fontSize: 38,
+                fontFamily: 'lazydog',
+              ),
+            ),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Container(
-                  width: 300,
-                  child: Column(
-                    children: [
-                      Slider(
-                        value: _sliderValue,
-                        activeColor:Colors.redAccent,
-                        inactiveColor: Colors.redAccent,
-                        min: 0,
-                        max: 100,
-                        divisions: 100,
-                        label: _sliderValue.round().toString(),
-                        onChanged: (double newVolume) {
-                          setState(() {
-                            _setVolume(newVolume / 100);
-                          });
-                        },
-                      ),
-                    ],
-                  ),
-                ),
-                SizedBox(
-                  height: 20,
-                ),
-                StrokeText(
-                  text: texto_dictar,
-                  strokeWidth: 6,
-                  strokeColor: Colors.green,
-                  textStyle: TextStyle(
-                    fontSize: 38,
-                    fontFamily: 'lazydog',
-                  ),
-                ),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                Column(
                   children: [
                     SizedBox(
                       height: 150,
@@ -198,27 +224,21 @@ class _niveles_actividades extends State<niveles_actividades> with SingleTickerP
                                   String actSelec= ActividadesList[index].toString();
                                   switch (actSelec){
                                     case 'assets/img/alimento.png':
-                                      _setVolume(0);
                                       Navigator.push(context, MaterialPageRoute(builder: (context) => principal()));
                                       break;
                                     case 'assets/img/bebidas.png':
-                                      _setVolume(0);
                                       Navigator.push(context, MaterialPageRoute(builder: (context) => saludo()));
                                       break;
                                     case 'assets/img/acciones.png':
-                                      _setVolume(0);
                                       Navigator.push(context, MaterialPageRoute(builder: (context)=> apren_pony_lenguaje_real()));
                                       break;
                                     case 'assets/img/partes del cuerpo.png':
-                                      _setVolume(0);
                                       Navigator.push(context, MaterialPageRoute(builder: (context)=> n1_rd_salud_pt2()));
                                       break;
                                     case 'assets/img/prendas.png':
-                                      _setVolume(0);
                                       Navigator.push(context, MaterialPageRoute(builder: (context)=>principal()));
                                       break;
                                     case 'assets/img/matemáticas.png':
-                                      _setVolume(0);
                                       Navigator.push(context, MaterialPageRoute(builder: (context)=>principal()));
                                       break;
                                   }
@@ -230,63 +250,56 @@ class _niveles_actividades extends State<niveles_actividades> with SingleTickerP
                           );
                         },
                       ),
-                    ),
+                    )
                   ],
                 ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
+              ],
+            ),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    StrokeText(
-                      text: 'Movemos a la derecha para ver mas actividades',
-                      strokeWidth: 6,
-                      strokeColor: Colors.red,
-                      textStyle: TextStyle(
-                        fontSize: 25,
-                        fontFamily: 'lazydog',
-                      ),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        for(int i=0;i<4;i++)
-                          SlideTransition(
-                              position: Tween<Offset>(
-                                begin: Offset(0,0),
-                                end: Offset(1,0),
-                              ).animate(_animationController),
-                            child: Icon(
-                              Icons.arrow_forward,
-                              size: 30,
-                              color: Colors.white,
-                            ),
-                          )
-                      ],
-                    )
+                    for (int i = 0; i < 4; i++)
+                      SlideTransition(
+                        position: Tween<Offset>(
+                          begin: Offset(0, 0),
+                          end: Offset(1, 0),
+                        ).animate(_animationController),
+                        child: Icon(
+                          Icons.arrow_forward,
+                          size: 30,
+                          color: Colors.white,
+                        ),
+                      )
                   ],
                 )
               ],
+            )
+          ],
         ),
       ),
     );
   }
+
   Future<void> _setVolume(double newVolume) async {
     await _soundpool.setVolume(soundId: _soundId, volume: newVolume);
     setState(() {
       _volume = newVolume;
-      _sliderValue=newVolume *100;
+      _sliderValue = newVolume * 100;
     });
   }
 
-
   void startTimer() {
-    Repite =Timer.periodic(Duration(seconds: 10), (timer) {
+    Repite = Timer.periodic(Duration(seconds: 10), (timer) {
       _initializeSound();
     });
   }
 
   @override
   void dispose() {
-    Repite.cancel();  // Cancelar el temporizador antes de liberar el widget
+    Repite.cancel(); // Cancelar el temporizador antes de liberar el widget
     _soundpool.release();
     super.dispose();
     _animationController.dispose();
@@ -300,5 +313,4 @@ class _niveles_actividades extends State<niveles_actividades> with SingleTickerP
     await _setVolume(_volume);
     _streamId = await _soundpool.play(_soundId);
   }
-
 }
