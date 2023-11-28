@@ -247,18 +247,12 @@ class n1_rd_salu extends State {
                               body: Container(
                                 width: MediaQuery.of(context).size.width,
                                 height: MediaQuery.of(context).size.height,
-                                decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                      image: AssetImage('assets/img/fondoNM.png'),
-                                      fit: BoxFit.cover
-                                  ),
-                                ),
                                 padding: const EdgeInsets.all(16),
                                 alignment: Alignment.center,
                                 child: salud_abrir_animacion(
                                   photo: 'assets/img/abrir_real.png',
-                                  width: 500.0,
-                                  heigth: 200,
+                                  width: 700.0,
+                                  heigth: 700,
                                   onTap: () {
                                     Navigator.of(context).pop();//hace que regrese a la ultima ventana
                                   },
@@ -296,17 +290,11 @@ class n1_rd_salu extends State {
                               body: Container(
                                 width: MediaQuery.of(context).size.width,
                                 height: MediaQuery.of(context).size.height,
-                                decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                      image: AssetImage('assets/img/fondoNM.png'),
-                                      fit: BoxFit.cover
-                                  ),
-                                ),
                                 padding: const EdgeInsets.all(16),
                                 alignment: Alignment.center,
                                 child: salud_abrir_animacion(
                                   photo: 'assets/img/agua_real.png',
-                                  width: 500.0,heigth: 200,
+                                  width: 700.0,heigth: 700,
                                   onTap: () {
                                     Navigator.of(context).pop();//hace que regrese a la ultima ventana
                                   },
@@ -343,17 +331,11 @@ class n1_rd_salu extends State {
                               body: Container(
                                 width: MediaQuery.of(context).size.width,
                                 height: MediaQuery.of(context).size.height,
-                                decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                      image: AssetImage('assets/img/fondoNM.png'),
-                                      fit: BoxFit.cover
-                                  ),
-                                ),
                                 padding: const EdgeInsets.all(16),
                                 alignment: Alignment.center,
                                 child: salud_abrir_animacion(
                                   photo: 'assets/img/cerrar_real.png',
-                                  width: 500.0,heigth: 200,
+                                  width: 700.0,heigth: 700,
                                   onTap: () {
                                     Navigator.of(context).pop();//hace que regrese a la ultima ventana
                                   },
@@ -390,17 +372,11 @@ class n1_rd_salu extends State {
                               body: Container(
                                 width: MediaQuery.of(context).size.width,
                                 height: MediaQuery.of(context).size.height,
-                                decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                      image: AssetImage('assets/img/fondoNM.png'),
-                                      fit: BoxFit.cover
-                                  ),
-                                ),
                                 padding: const EdgeInsets.all(16),
                                 alignment: Alignment.center,
                                 child: salud_abrir_animacion(
                                   photo: 'assets/img/jabon_real.png',
-                                  width: 500.0,heigth: 200,
+                                  width: 700.0,heigth: 700,
                                   onTap: () {
                                     Navigator.of(context).pop();//hace que regrese a la ultima ventana
                                   },
@@ -437,17 +413,11 @@ class n1_rd_salu extends State {
                               body: Container(
                                 width: MediaQuery.of(context).size.width,
                                 height: MediaQuery.of(context).size.height,
-                                decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                      image: AssetImage('assets/img/fondoNM.png'),
-                                      fit: BoxFit.cover
-                                  ),
-                                ),
                                 padding: const EdgeInsets.all(16),
                                 alignment: Alignment.center,
                                 child: salud_abrir_animacion(
                                   photo: 'assets/img/enjuagar_real.png',
-                                  width: 500.0,heigth: 200,
+                                  width: 700.0,heigth: 700,
                                   onTap: () {
                                     Navigator.of(context).pop();//hace que regrese a la ultima ventana
                                   },
@@ -462,7 +432,7 @@ class n1_rd_salu extends State {
                 ),
               ],
             ),
-            SizedBox(height: 10,),
+            SizedBox(height: 50,),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -548,17 +518,11 @@ class n1_rd_salu extends State {
                               body: Container(
                                 width: MediaQuery.of(context).size.width,
                                 height: MediaQuery.of(context).size.height,
-                                decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                      image: AssetImage('assets/img/fondoNM.png'),
-                                      fit: BoxFit.cover
-                                  ),
-                                ),
                                 padding: const EdgeInsets.all(16),
                                 alignment: Alignment.center,
                                 child: salud_abrir_animacion(
                                   photo: 'assets/img/abrir_real.png',
-                                  width: 500.0,heigth: 200,
+                                  width: 700.0,heigth: 700,
                                   onTap: () {
                                     Navigator.of(context).pop();//hace que regrese a la ultima ventana
                                   },
@@ -595,17 +559,11 @@ class n1_rd_salu extends State {
                               body: Container(
                                 width: MediaQuery.of(context).size.width,
                                 height: MediaQuery.of(context).size.height,
-                                decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                      image: AssetImage('assets/img/fondoNM.png'),
-                                      fit: BoxFit.cover
-                                  ),
-                                ),
                                 padding: const EdgeInsets.all(16),
                                 alignment: Alignment.center,
                                 child: salud_abrir_animacion(
                                   photo: 'assets/img/enjuagar_real.png',
-                                  width: 500.0,heigth: 200,
+                                  width: 700.0,heigth: 700,
                                   onTap: () {
                                     Navigator.of(context).pop();//hace que regrese a la ultima ventana
                                   },
@@ -642,17 +600,11 @@ class n1_rd_salu extends State {
                               body: Container(
                                 width: MediaQuery.of(context).size.width,
                                 height: MediaQuery.of(context).size.height,
-                                decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                      image: AssetImage('assets/img/fondoNM.png'),
-                                      fit: BoxFit.cover
-                                  ),
-                                ),
                                 padding: const EdgeInsets.all(16),
                                 alignment: Alignment.center,
                                 child: salud_abrir_animacion(
                                   photo: 'assets/img/agua_real.png',
-                                  width: 500.0,heigth: 200,
+                                  width: 700.0,heigth: 700,
                                   onTap: () {
                                     Navigator.of(context).pop();//hace que regrese a la ultima ventana
                                   },
@@ -689,17 +641,11 @@ class n1_rd_salu extends State {
                               body: Container(
                                 width: MediaQuery.of(context).size.width,
                                 height: MediaQuery.of(context).size.height,
-                                decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                      image: AssetImage('assets/img/fondoNM.png'),
-                                      fit: BoxFit.cover
-                                  ),
-                                ),
                                 padding: const EdgeInsets.all(16),
                                 alignment: Alignment.center,
                                 child: salud_abrir_animacion(
                                   photo: 'assets/img/cerrar_real.png',
-                                  width: 500.0,heigth: 200,
+                                  width: 700.0,heigth: 700,
                                   onTap: () {
                                     Navigator.of(context).pop();//hace que regrese a la ultima ventana
                                   },
@@ -736,17 +682,11 @@ class n1_rd_salu extends State {
                               body: Container(
                                 width: MediaQuery.of(context).size.width,
                                 height: MediaQuery.of(context).size.height,
-                                decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                      image: AssetImage('assets/img/fondoNM.png'),
-                                      fit: BoxFit.cover
-                                  ),
-                                ),
                                 padding: const EdgeInsets.all(16),
                                 alignment: Alignment.center,
                                 child: salud_abrir_animacion(
                                   photo: 'assets/img/secar_real.png',
-                                  width: 500.0,heigth: 200,
+                                  width: 700.0,heigth: 700,
                                   onTap: () {
                                     Navigator.of(context).pop();//hace que regrese a la ultima ventana
                                   },

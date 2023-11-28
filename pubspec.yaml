@@ -45,6 +45,7 @@ dependencies:
   awesome_dialog: ^3.1.0
   passwordfield: ^0.2.0
   toggle_switch: ^2.1.0
+  get: ^4.6.5
 
 dev_dependencies:
 
@@ -142,6 +143,7 @@ flutter:
     - assets/img/tallar1.png
     - assets/img/enjuagar_real.png
     - assets/audios/nos_lavamos_las_manosH.mp3
+    - assets/img/ropero.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
