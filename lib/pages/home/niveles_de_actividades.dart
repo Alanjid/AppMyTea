@@ -10,6 +10,8 @@ import 'package:untitled/pages/Actividades/Higiene/n1_rd_salud_pt2.dart';
 import 'package:untitled/pages/Actividades/Acciones/act_movimiento1.dart';
 import 'package:untitled/pages/Actividades/Higiene/aprende_poy_real.dart';
 import 'package:untitled/pages/Widgets/tareas_completadas.dart';
+import 'package:untitled/pages/home/principal.dart';
+import 'package:untitled/pages/home/saludo_inicio.dart';
 import 'package:untitled/utils/colors.dart' as utils;
 
 import '../Widgets/ActividadEstado.dart';
@@ -210,84 +212,71 @@ class _niveles_actividades extends State<niveles_actividades>
                         scrollDirection: Axis.horizontal,
                         itemCount: ActividadesList.length,
                         itemBuilder: (context, index) {
-                          Actividad actividad = ActividadesList[index];
-                          return Row(
-                            children: [
-                              Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Visibility(
-                                    visible: actividad.isEnabled,
-                                    child: IconButton(
-                                      icon: Image.asset(
-                                        actividad.imagePath,
-                                        width:
-                                            MediaQuery.of(context).size.width *
-                                                0.3,
-                                        height:
-                                            MediaQuery.of(context).size.height *
-                                                0.3,
-                                      ),
-                                      onPressed: () {
-                                        switch (actividad.imagePath) {
-                                          case 'assets/img/alimento.png':
-                                            _setVolume(0);
-                                            Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        tareas_comp_diarias()));
-                                            break;
-                                          case 'assets/img/bebidas.png':
-                                            _setVolume(0);
-                                            Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        tareas_comp_diarias()));
-                                            break;
-                                          case 'assets/img/acciones.png':
-                                            _setVolume(0);
-                                            Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        apren_pony_lenguaje_real()));
-                                            break;
-                                          case 'assets/img/partes del cuerpo.png':
-                                            _setVolume(0);
-                                            Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        n1_rd_salud_pt2()));
-                                            break;
-                                          case 'assets/img/prendas.png':
-                                            _setVolume(0);
-                                            Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        tareas_comp_diarias()));
-                                            break;
-                                          case 'assets/img/matemáticas.png':
-                                            _setVolume(0);
-                                            Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        tareas_comp_diarias()));
-                                            break;
-                                        }
-                                      },
-                                      iconSize:
-                                          120, // Ajusta el tamaño del icono según tus necesidades
-                                      padding: EdgeInsets.all(
-                                          8), // Ajusta el relleno según tus necesidades
-                                      color: Colors
-                                          .blue, // Ajusta el color del icono según tus necesidades
-                                    ),
-                                  )),
-                            ],
+                          return Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: IconButton(
+                              icon: Image.asset(
+                                ActividadesList[index],
+                                width: 120,
+                                height: 120,
+                              ),
+                              onPressed: () {
+                                String actSelec =
+                                    ActividadesList[index].toString();
+                                switch (actSelec) {
+                                  case 'assets/img/alimento.png':
+                                    _setVolume(0);
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => principal()));
+                                    break;
+                                  case 'assets/img/bebidas.png':
+                                    _setVolume(0);
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => saludo()));
+                                    break;
+                                  case 'assets/img/acciones.png':
+                                    _setVolume(0);
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                apren_pony_lenguaje_real()));
+                                    break;
+                                  case 'assets/img/partes del cuerpo.png':
+                                    _setVolume(0);
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                n1_rd_salud_pt2()));
+                                    break;
+                                  case 'assets/img/prendas.png':
+                                    _setVolume(0);
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => principal()));
+                                    break;
+                                  case 'assets/img/matemáticas.png':
+                                    _setVolume(0);
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => principal()));
+                                    break;
+                                }
+                              },
+                              iconSize:
+                                  120, // Ajusta el tamaño del icono según tus necesidades
+                              padding: EdgeInsets.all(
+                                  8), // Ajusta el relleno según tus necesidades
+                              color: Colors
+                                  .blue, // Ajusta el color del icono según tus necesidades
+                            ),
                           );
                         },
                       ),
