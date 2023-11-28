@@ -1,5 +1,3 @@
-
-
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -15,23 +13,24 @@ class act1_prendas extends StatefulWidget {
 
   @override
   // ignore: library_private_types_in_public_api
-  _act1_prendas createState()=> _act1_prendas();
+  _act1_prendas createState() => _act1_prendas();
 }
 
 // ignore: camel_case_types
-class _act1_prendas extends State{
-  String Texto_act="Preparo la ropa de mañana";
-  String audioUrl="";
-  String objetivo="Trabajar la afectividad de los niños";
-  String instruccion="Seleccionamos los niños que pueden ser amigos";
-  String materiales="no necesario";
-  String img="";
+class _act1_prendas extends State {
+  String Texto_act = "Preparo la ropa de mañana";
+  String audioUrl = "";
+  String objetivo = "";
+  String instruccion = "";
+  String materiales = "";
+  int _streamId = 0;
+  String img = "";
   late Soundpool _soundpool;
   late int _soundId;
-  late int _streamId;
   late Timer Repite;
-  double _sliderValue=50.0;
-  double _volume = 0.5; // Agrega _volume como una propiedad y establece el valor inicial
+  double _sliderValue = 50.0;
+  double _volume =
+      0.5; // Agrega _volume como una propiedad y establece el valor inicial
   int _selectedSwitch = 0;
 
   void initState() {
@@ -41,17 +40,17 @@ class _act1_prendas extends State{
   }
 
   @override
-  Widget build(BuildContext context){
-    return  Scaffold(
-        backgroundColor: Colors.white,
-        appBar: AppBar(
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.white,
+      appBar: AppBar(
         elevation: 0,
         toolbarHeight: 40,
         title: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-             StrokeText(
+            StrokeText(
               text: Texto_act,
               strokeWidth: 6,
               strokeColor: Colors.green,
@@ -64,10 +63,12 @@ class _act1_prendas extends State{
               onPressed: () {
                 showDialog(
                     context: context,
-                    builder: (BuildContext context){
+                    builder: (BuildContext context) {
                       return AlertDialog(
-                        title: const Text('Cambiamos la voz',
-                          textAlign: TextAlign.center,),
+                        title: const Text(
+                          'Cambiamos la voz',
+                          textAlign: TextAlign.center,
+                        ),
                         content: Column(
                           mainAxisSize: MainAxisSize.min,
                           children: [
@@ -81,23 +82,24 @@ class _act1_prendas extends State{
                               totalSwitches: 2,
                               labels: const ['Hombre', 'Mujer'],
                               icons: const [Icons.male, Icons.female],
-                              activeBgColors: const [[Colors.blue],[Colors.pink]],
+                              activeBgColors: const [
+                                [Colors.blue],
+                                [Colors.pink]
+                              ],
                               onToggle: (index) {
                                 setState(() {
-                                  _selectedSwitch=index!;
+                                  _selectedSwitch = index!;
                                 });
                                 print('switched to: $index');
-                                if(index == 0){
-                                  audioUrl="";
-                                }
-                                else{
-                                  if(index == 1){
-                                    audioUrl="";
+                                if (index == 0) {
+                                  audioUrl = "";
+                                } else {
+                                  if (index == 1) {
+                                    audioUrl = "";
                                   }
                                 }
                               },
                             ),
-
                           ],
                         ),
                         actions: [
@@ -110,14 +112,12 @@ class _act1_prendas extends State{
                               style: TextStyle(
                                   fontSize: 18,
                                   color: utils.Colors.azulitoArriba,
-                                  decoration: TextDecoration.underline
-                              ),
+                                  decoration: TextDecoration.underline),
                             ),
                           ),
                         ],
                       );
-                    }
-                );
+                    });
               },
               icon: Image.asset('assets/img/iconobocina.gif'),
               iconSize: 70,
@@ -127,9 +127,10 @@ class _act1_prendas extends State{
                 Objetivo: "",
                 Instrucciones: "",
                 Materiales: "",
-                imagenes: ["assets/img/prendas.png"]
+                imagenes: const ["assets/img/prendas.png"]),
+            const SizedBox(
+              width: 20,
             ),
-            const SizedBox(width: 20,),
             Image.asset(
               'assets/img/logo.png',
               width: 60,
@@ -139,117 +140,122 @@ class _act1_prendas extends State{
         ),
       ),
       body: Stack(
-          children: [
-            Positioned.fill(
-              child: Container(
-                width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height,
-                decoration: const BoxDecoration(
+        children: [
+          Positioned.fill(
+            child: Container(
+              width: MediaQuery.of(context).size.width,
+              height: MediaQuery.of(context).size.height,
+              decoration: const BoxDecoration(
                   image: DecorationImage(
-                    image: AssetImage('assets/img/fondoNM.png',
-                    ),
-                    fit: BoxFit.cover,
-                  )
-              ),
+                image: AssetImage(
+                  'assets/img/fondoNM.png',
+                ),
+                fit: BoxFit.cover,
+              )),
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  //Slider de volumen
-                  Container(
-                    width: 300,
-                    height: 50,
-                    child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    //Slider de volumen
+                    SizedBox(
+                      width: 300,
+                      height: 50,
+                      child: Column(
+                        children: [
+                          Slider(
+                            value: _sliderValue,
+                            activeColor: Colors.redAccent,
+                            inactiveColor: Colors.redAccent,
+                            min: 0,
+                            max: 100,
+                            divisions: 100,
+                            label: _sliderValue.round().toString(),
+                            onChanged: (double newVolume) {
+                              setState(() {
+                                _setVolume(newVolume / 100);
+                              });
+                            },
+                          ),
+                        ],
+                      ),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Slider(
-                          value: _sliderValue,
-                          activeColor: Colors.redAccent,
-                          inactiveColor: Colors.redAccent,
-                          min: 0,
-                          max: 100,
-                          divisions: 100,
-                          label: _sliderValue.round().toString(),
-                          onChanged: (double newVolume) {
-                            setState(() {
-                              _setVolume(newVolume / 100);
-                            });
-                          },
+                        //AQUI IRA EL ROPERO
+                        Stack(
+                          children: [
+                            Container(
+                              width: 300.0,
+                              height: 270.0,
+                              decoration: const BoxDecoration(
+                                  image: DecorationImage(
+                                image: AssetImage(
+                                  'assets/img/ropero.png',
+                                ),
+                                fit: BoxFit.fill,
+                              )), // Color del contenedor
+                            ),
+                            Positioned(
+                              top: 20,
+                              left: 50,
+                              child: IconButton(
+                                onPressed: () {
+                                  setState(() {});
+                                  //soundpool();
+                                },
+                                icon: Image.asset(
+                                  'assets/img/prendas.png',
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                        Stack(
+                          children: [
+                            Column(
+                              children: [
+                                Container(
+                                  width: 300.0,
+                                  height: 270.0,
+                                  color: const Color.fromARGB(255, 255, 255,
+                                      255), // Color del contenedor
+                                )
+                              ],
+                            )
+                          ],
                         ),
                       ],
                     ),
-                  ),
-                  Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            //AQUI IRA EL ROPERO
-                            Stack(
-                              children: [
-                                    Container(
-                                      width: 300.0,
-                                      height: 270.0,
-                                      decoration: const BoxDecoration(
-                                      image: DecorationImage(
-                                            image: AssetImage('assets/img/ropero.png',
-                                        ),
-                                        fit: BoxFit.fill,
-                                              )
-                                      ), // Color del contenedor
-                                    ),
-                                    Positioned(
-                                      child: IconButton(
-                                        icon: Icon(Icons.access_alarm_outlined),
-                                        onPressed: (){
-                                          
-                                        },
-                                      )
-                                      ),
-                                  ],
-                                )
-                              ],
-
-                            ),
-                            const SizedBox(width: 50,),
-                            Stack(
-                              children: [
-                                Column(
-                                  children: [
-                                    Container(
-                                      width: 300.0,
-                                      height: 270.0,
-                                      color: Color.fromARGB(255, 255, 255, 255), // Color del contenedor
-                                    )
-                                  ],
-                                )
-                              ],
-
-                            ),
-                          ]
-                        ),
-              ),
-              ),
-          ],
+                    const SizedBox(
+                      width: 50,
+                    ),
+                  ]),
+            ),
+          ),
+        ],
       ),
     );
   }
+
   Future<void> _setVolume(double newVolume) async {
     await _soundpool.setVolume(soundId: _soundId, volume: newVolume);
     setState(() {
       _volume = newVolume;
-      _sliderValue=newVolume *100;
+      _sliderValue = newVolume * 100;
     });
   }
 
-
   void startTimer() {
-    Repite =Timer.periodic(const Duration(seconds: 10), (timer) {
+    Repite = Timer.periodic(const Duration(seconds: 10), (timer) {
       _initializeSound();
     });
   }
 
   @override
   void dispose() {
-    Repite.cancel();  // Cancelar el temporizador antes de liberar el widget
+    Repite.cancel(); // Cancelar el temporizador antes de liberar el widget
     _soundpool.release();
     super.dispose();
   }
@@ -265,12 +271,13 @@ class _act1_prendas extends State{
   }
 
   Future<void> soundpool2() async {
-  // ignore: deprecated_member_use
-  Soundpool pool = Soundpool();
+    // ignore: deprecated_member_use
+    Soundpool pool = Soundpool();
 
-  int soundId = await rootBundle.load('assets/audios/error.mp3').then((ByteData soundData) {
-    return pool.load(soundData);
-  });
-  int streamId = await pool.play(soundId);
-}
+    int soundId = await rootBundle
+        .load('assets/audios/error.mp3')
+        .then((ByteData soundData) {
+      return pool.load(soundData);
+    });
+  }
 }
