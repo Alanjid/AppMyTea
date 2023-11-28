@@ -118,8 +118,12 @@ class _saludoState extends State<saludo> {
               width: 40,
             ),
             IconButton(
-                icon: Icon(Icons.arrow_forward),
-                onPressed: () => con.goToMenuPage()),
+              icon: Icon(Icons.arrow_forward),
+              onPressed: () async {
+                await _setVolume(0);
+                con.goToMenuPage();
+              },
+            )
           ],
         ),
       ),
