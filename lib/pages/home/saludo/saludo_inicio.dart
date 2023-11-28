@@ -1,37 +1,41 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 import 'package:soundpool/soundpool.dart';
 import 'package:stroke_text/stroke_text.dart';
 import 'package:toggle_switch/toggle_switch.dart';
-import 'package:untitled/pages/home/principal.dart';
+import 'package:untitled/pages/Login/login_controller.dart';
+import 'package:untitled/pages/home/Menu/principal.dart';
+import 'package:untitled/pages/home/saludo/saludo_controller.dart';
 import 'package:untitled/utils/colors.dart' as utils;
+
 class saludo extends StatefulWidget {
   @override
   _saludoState createState() => _saludoState();
 }
 
 class _saludoState extends State<saludo> {
-  String Texto_Saludo="HOLA BIENVENIDO";
-  String audioUrl="assets/audios/bienvenida-hombre.mp3";
+  String Texto_Saludo = "HOLA BIENVENIDO";
+  String audioUrl = "assets/audios/bienvenida-hombre.mp3";
   late Soundpool _soundpool;
   late int _soundId;
   late int _streamId;
   late Timer Repite;
-  double _sliderValue=50.0;
-  double _volume = 0.5; // Agrega _volume como una propiedad y establece el valor inicial
+  double _sliderValue = 50.0;
+  double _volume =
+      0.5; // Agrega _volume como una propiedad y establece el valor inicial
   int _selectedSwitch = 0;
+  saludoController con = Get.put(saludoController());
 
   void initState() {
     super.initState();
     _initializeSound();
     startTimer();
   }
+
   @override
   Widget build(BuildContext context) {
-
-
-    
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -44,10 +48,12 @@ class _saludoState extends State<saludo> {
               onPressed: () {
                 showDialog(
                     context: context,
-                    builder: (BuildContext context){
+                    builder: (BuildContext context) {
                       return AlertDialog(
-                        title: Text('Cambiamos la voz',
-                          textAlign: TextAlign.center,),
+                        title: Text(
+                          'Cambiamos la voz',
+                          textAlign: TextAlign.center,
+                        ),
                         content: Column(
                           mainAxisSize: MainAxisSize.min,
                           children: [
@@ -61,18 +67,21 @@ class _saludoState extends State<saludo> {
                               totalSwitches: 2,
                               labels: ['Hombre', 'Mujer'],
                               icons: [Icons.male, Icons.female],
-                              activeBgColors: [[Colors.blue],[Colors.pink]],
+                              activeBgColors: [
+                                [Colors.blue],
+                                [Colors.pink]
+                              ],
                               onToggle: (index) {
                                 setState(() {
-                                  _selectedSwitch=index!;
+                                  _selectedSwitch = index!;
                                 });
                                 print('switched to: $index');
-                                if(index == 0){
-                                  audioUrl="assets/audios/bienvenida-hombre.mp3";
-                                }
-                                else{
-                                  if(index == 1){
-                                    audioUrl="assets/audiosM/bienvenidaM.mp3";
+                                if (index == 0) {
+                                  audioUrl =
+                                      "assets/audios/bienvenida-hombre.mp3";
+                                } else {
+                                  if (index == 1) {
+                                    audioUrl = "assets/audiosM/bienvenidaM.mp3";
                                   }
                                 }
                               },
@@ -89,14 +98,12 @@ class _saludoState extends State<saludo> {
                               style: TextStyle(
                                   fontSize: 18,
                                   color: utils.Colors.azulitoArriba,
-                                  decoration: TextDecoration.underline
-                              ),
+                                  decoration: TextDecoration.underline),
                             ),
                           ),
                         ],
                       );
-                    }
-                );
+                    });
               },
               icon: Image.asset('assets/img/iconobocina.gif'),
               iconSize: 70,
@@ -107,26 +114,21 @@ class _saludoState extends State<saludo> {
               width: 60,
               height: 60,
             ),
-            SizedBox(width: 40,),
-            IconButton(
-              icon: Icon(Icons.arrow_forward),
-              onPressed: () async {
-                await _setVolume(0);
-                Navigator.push(context, MaterialPageRoute(builder: (context) => principal()));
-              },
+            SizedBox(
+              width: 40,
             ),
-
+            IconButton(
+                icon: Icon(Icons.arrow_forward),
+                onPressed: () => con.goToMenuPage()),
           ],
         ),
       ),
       body: Container(
         width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height ,
+        height: MediaQuery.of(context).size.height,
         decoration: BoxDecoration(
           image: DecorationImage(
-              image: AssetImage('assets/img/fondoNM.png'),
-              fit: BoxFit.cover
-          ),
+              image: AssetImage('assets/img/fondoNM.png'), fit: BoxFit.cover),
         ),
         child: Column(
           children: [
@@ -158,23 +160,22 @@ class _saludoState extends State<saludo> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    SizedBox(height: 20,),
+                    SizedBox(
+                      height: 20,
+                    ),
                     StrokeText(
                       text: Texto_Saludo,
                       strokeWidth: 6,
                       strokeColor: Colors.indigo,
-                      textStyle: TextStyle(
-                          fontSize: 38,
-                          fontFamily: 'lazydog'
-                      ),
+                      textStyle: TextStyle(fontSize: 38, fontFamily: 'lazydog'),
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Image.asset('assets/img/botargapony.png', width: 200,height: 200),
+                        Image.asset('assets/img/botargapony.png',
+                            width: 200, height: 200),
                       ],
                     ),
-
                   ],
                 ),
               ],
@@ -189,20 +190,19 @@ class _saludoState extends State<saludo> {
     await _soundpool.setVolume(soundId: _soundId, volume: newVolume);
     setState(() {
       _volume = newVolume;
-      _sliderValue=newVolume *100;
+      _sliderValue = newVolume * 100;
     });
   }
 
-
   void startTimer() {
-    Repite =Timer.periodic(Duration(seconds: 10), (timer) {
+    Repite = Timer.periodic(Duration(seconds: 10), (timer) {
       _initializeSound();
     });
   }
 
   @override
   void dispose() {
-    Repite.cancel();  // Cancelar el temporizador antes de liberar el widget
+    Repite.cancel(); // Cancelar el temporizador antes de liberar el widget
     _soundpool.release();
     super.dispose();
   }
@@ -215,6 +215,4 @@ class _saludoState extends State<saludo> {
     await _setVolume(_volume);
     _streamId = await _soundpool.play(_soundId);
   }
-
-
 }

@@ -1,7 +1,9 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:untitled/pages/home/saludo_inicio.dart';
+import 'package:get/instance_manager.dart';
+import 'package:untitled/pages/Login/login_controller.dart';
+import 'package:untitled/pages/home/saludo/saludo_inicio.dart';
 import 'pantalla_de_carga.dart';
 import 'package:untitled/utils/colors.dart' as utils;
 
@@ -15,7 +17,7 @@ class MyHomePage extends StatefulWidget {
 class MyHomePageState extends State<MyHomePage> {
   bool isLoading = true;
   bool _isPasswordVisible = true;
-
+  loginController con = Get.put(loginController());
   final passwordController = TextEditingController();
   @override
   void initState() {
@@ -137,8 +139,10 @@ class MyHomePageState extends State<MyHomePage> {
                                                                 .height *
                                                             0.2,
                                                         child: TextField(
+                                                          controller: con
+                                                              .userController,
                                                           decoration:
-                                                              InputDecoration(
+                                                              const InputDecoration(
                                                                   border:
                                                                       OutlineInputBorder(),
                                                                   label: Text(
@@ -153,6 +157,9 @@ class MyHomePageState extends State<MyHomePage> {
                                                                   ),
                                                                   hintText:
                                                                       "Ingresa el usuario"),
+                                                          keyboardType:
+                                                              TextInputType
+                                                                  .text,
                                                         ),
                                                       ),
                                                       SizedBox(
@@ -167,15 +174,17 @@ class MyHomePageState extends State<MyHomePage> {
                                                                 .height *
                                                             0.2,
                                                         child: TextField(
+                                                          controller: con
+                                                              .passwordController,
                                                           obscureText:
                                                               _isPasswordVisible,
                                                           decoration:
                                                               InputDecoration(
                                                             border:
-                                                                OutlineInputBorder(),
+                                                                const OutlineInputBorder(),
                                                             labelText:
                                                                 "Ingresa la contraseña",
-                                                            icon: Icon(
+                                                            icon: const Icon(
                                                               Icons
                                                                   .lock_rounded,
                                                               color: utils
@@ -185,7 +194,7 @@ class MyHomePageState extends State<MyHomePage> {
                                                             errorText:
                                                                 "Debe contener letras, números y un símbolo",
                                                             errorStyle:
-                                                                TextStyle(
+                                                                const TextStyle(
                                                               color: Colors.red,
                                                             ),
                                                             hintText:
@@ -199,18 +208,21 @@ class MyHomePageState extends State<MyHomePage> {
                                                                 });
                                                               },
                                                               icon: _isPasswordVisible
-                                                                  ? Icon(Icons
+                                                                  ? const Icon(Icons
                                                                       .visibility)
-                                                                  : Icon(Icons
+                                                                  : const Icon(Icons
                                                                       .visibility_off),
                                                               color: utils
                                                                   .Colors
                                                                   .azulitoArriba,
                                                             ),
                                                           ),
+                                                          keyboardType:
+                                                              TextInputType
+                                                                  .text,
                                                         ),
                                                       ),
-                                                      SizedBox(
+                                                      const SizedBox(
                                                         height: 10,
                                                       ),
                                                       MaterialButton(
@@ -254,13 +266,8 @@ class MyHomePageState extends State<MyHomePage> {
                                                                   desc:
                                                                       "Inicio de sesion correcto",
                                                                   btnOkOnPress:
-                                                                      () {
-                                                                    Navigator.push(
-                                                                        context,
-                                                                        MaterialPageRoute(
-                                                                            builder: (context) =>
-                                                                                saludo()));
-                                                                  }).show();
+                                                                      () => con
+                                                                          .login()).show();
                                                             },
                                                           ).show();
                                                         },

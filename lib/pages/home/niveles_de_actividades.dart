@@ -10,8 +10,8 @@ import 'package:untitled/pages/Actividades/Higiene/n1_rd_salud_pt2.dart';
 import 'package:untitled/pages/Actividades/Acciones/act_movimiento1.dart';
 import 'package:untitled/pages/Actividades/Higiene/aprende_poy_real.dart';
 import 'package:untitled/pages/Widgets/tareas_completadas.dart';
-import 'package:untitled/pages/home/principal.dart';
-import 'package:untitled/pages/home/saludo_inicio.dart';
+import 'package:untitled/pages/home/Menu/principal.dart';
+import 'package:untitled/pages/home/saludo/saludo_inicio.dart';
 import 'package:untitled/utils/colors.dart' as utils;
 
 import '../Widgets/ActividadEstado.dart';
