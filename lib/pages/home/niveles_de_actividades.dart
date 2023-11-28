@@ -13,7 +13,6 @@ import 'package:untitled/pages/Widgets/tareas_completadas.dart';
 import 'package:untitled/pages/home/principal.dart';
 import 'package:untitled/pages/home/saludo_inicio.dart';
 import 'package:untitled/utils/colors.dart' as utils;
-
 import '../Widgets/ActividadEstado.dart';
 import 'actividades_rutina_diaria.dart';
 
