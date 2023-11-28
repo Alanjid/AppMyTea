@@ -124,7 +124,6 @@ class _saludoState extends State<saludo> {
                 con.goToMenuPage();
               },
             )
-            
           ],
         ),
       ),
