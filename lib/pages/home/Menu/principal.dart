@@ -2,9 +2,11 @@ import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
 import 'package:soundpool/soundpool.dart';
 import 'package:stroke_text/stroke_text.dart';
 import 'package:toggle_switch/toggle_switch.dart';
+import 'package:untitled/pages/home/Menu/principal_controller.dart';
 import 'package:untitled/pages/home/actividades_rutina_diaria.dart';
 import 'package:flutter/widgets.dart';
 import 'package:untitled/pages/Widgets/info_actividades.dart';
@@ -27,6 +29,7 @@ class _principalState extends State<principal> {
   double _volume =
       0.5; // Agrega _volume como una propiedad y establece el valor inicial
   int _selectedSwitch = 0;
+  principalController con = Get.put(principalController());
 
   @override
   void initState() {
@@ -167,14 +170,8 @@ class _principalState extends State<principal> {
                             children: [
                               IconButton(
                                 onPressed: () async {
-                                  await _setVolume(0);
-                                  await Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) =>
-                                          niveles_actividades(),
-                                    ),
-                                  );
+                                  await _setVolume(_volume);
+                                  con.goToActividades();
                                 },
                                 icon: Image.asset('assets/img/aprendizaje.png'),
                                 iconSize: 210,
@@ -201,11 +198,7 @@ class _principalState extends State<principal> {
                               IconButton(
                                 onPressed: () async {
                                   await _setVolume(0);
-                                  Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                        builder: (context) => rutina_diaria(),
-                                      ));
+                                  con.goToRutinaDiaria();
                                 },
                                 icon:
                                     Image.asset('assets/img/rutinadiaria.png'),
