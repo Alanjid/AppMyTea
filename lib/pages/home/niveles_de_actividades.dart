@@ -221,31 +221,61 @@ class _niveles_actividades extends State<niveles_actividades>
                                 height: 120,
                               ),
                               onPressed: () {
-                                  String actSelec= ActividadesList[index].toString();
-                                  switch (actSelec){
-                                    case 'assets/img/alimento.png':
-                                      Navigator.push(context, MaterialPageRoute(builder: (context) => principal()));
-                                      break;
-                                    case 'assets/img/bebidas.png':
-                                      Navigator.push(context, MaterialPageRoute(builder: (context) => saludo()));
-                                      break;
-                                    case 'assets/img/acciones.png':
-                                      Navigator.push(context, MaterialPageRoute(builder: (context)=> apren_pony_lenguaje_real()));
-                                      break;
-                                    case 'assets/img/partes del cuerpo.png':
-                                      Navigator.push(context, MaterialPageRoute(builder: (context)=> n1_rd_salud_pt2()));
-                                      break;
-                                    case 'assets/img/prendas.png':
-                                      Navigator.push(context, MaterialPageRoute(builder: (context)=>principal()));
-                                      break;
-                                    case 'assets/img/matemáticas.png':
-                                      Navigator.push(context, MaterialPageRoute(builder: (context)=>principal()));
-                                      break;
-                                  }
+                                String actSelec =
+                                    ActividadesList[index].toString();
+                                switch (actSelec) {
+                                  case 'assets/img/alimento.png':
+                                    _setVolume(0);
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => principal()));
+                                    break;
+                                  case 'assets/img/bebidas.png':
+                                    _setVolume(0);
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => saludo()));
+                                    break;
+                                  case 'assets/img/acciones.png':
+                                    _setVolume(0);
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                apren_pony_lenguaje_real()));
+                                    break;
+                                  case 'assets/img/partes del cuerpo.png':
+                                    _setVolume(0);
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                n1_rd_salud_pt2()));
+                                    break;
+                                  case 'assets/img/prendas.png':
+                                    _setVolume(0);
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => principal()));
+                                    break;
+                                  case 'assets/img/matemáticas.png':
+                                    _setVolume(0);
+                                    Navigator.push(
+                                        context,
+                                        MaterialPageRoute(
+                                            builder: (context) => principal()));
+                                    break;
+                                }
                               },
-                              iconSize: 120, // Ajusta el tamaño del icono según tus necesidades
-                              padding: EdgeInsets.all(8), // Ajusta el relleno según tus necesidades
-                              color: Colors.blue, // Ajusta el color del icono según tus necesidades
+                              iconSize:
+                                  120, // Ajusta el tamaño del icono según tus necesidades
+                              padding: EdgeInsets.all(
+                                  8), // Ajusta el relleno según tus necesidades
+                              color: Colors
+                                  .blue, // Ajusta el color del icono según tus necesidades
                             ),
                           );
                         },
