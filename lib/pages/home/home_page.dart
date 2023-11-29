@@ -17,7 +17,9 @@ class MyHomePage extends StatefulWidget {
 class MyHomePageState extends State<MyHomePage> {
   bool isLoading = true;
   bool _isPasswordVisible = true;
+
   loginController con = Get.put(loginController());
+
   final passwordController = TextEditingController();
   @override
   void initState() {
