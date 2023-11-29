@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:stroke_text/stroke_text.dart';
+import 'package:untitled/pages/home/Menu/principal.dart';
 class tareas_comp_diarias extends StatelessWidget {
 
   String Texto_TC="HAS COMPLETADO TUS ACTIVIDADES DEL DIA, VUELVE MAÑANA PARA SEGUIR TRABAJANDO.";
@@ -69,7 +70,7 @@ class tareas_comp_diarias extends StatelessWidget {
                   ),
                 ),
                 StrokeText(
-                  text: 'MAÑANA PARA SEGUIR',
+                  text: 'AL MENU PARA CONTINUAR',
                   strokeWidth: 6,
                   strokeColor: Colors.black,
                   textStyle: TextStyle(
@@ -85,6 +86,16 @@ class tareas_comp_diarias extends StatelessWidget {
                       fontSize: 28,
                       fontFamily: 'lazydog'
                   ),
+                ),
+                ElevatedButton(
+                  child: const Text("CERRAR"),
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStatePropertyAll<Color>(Colors.red)
+                  ),
+                  onPressed: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=>principal()));
+                  },
+
                 ),
               ],
             ),
