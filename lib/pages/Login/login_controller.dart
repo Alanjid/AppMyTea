@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:untitled/enviroment/response_api.dart';
 import 'package:untitled/providers/users_provider.dart';
 
@@ -37,6 +38,7 @@ class loginController extends GetxController {
       print('Response Api: ${responseApi.toJson()}');
 
       if (responseApi.success == true) {
+        GetStorage().write('user', responseApi.data);
         goToHelloPage();
       } else {
         Get.snackbar('Inicio de sesión fallido', responseApi.message ?? '');
@@ -46,5 +48,4 @@ class loginController extends GetxController {
       Get.snackbar('Error', 'Hubo un problema al realizar la solicitud');
     }
   }
-
 }

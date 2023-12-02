@@ -4,7 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:get/instance_manager.dart';
 import 'package:untitled/pages/Login/login_controller.dart';
 import 'package:untitled/pages/home/saludo/saludo_inicio.dart';
-import 'pantalla_de_carga.dart';
+import '../home/pantalla_de_carga.dart';
 import 'package:untitled/utils/colors.dart' as utils;
 
 class MyHomePage extends StatefulWidget {
