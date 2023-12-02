@@ -1,25 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:untitled/enviroment/response_api.dart';
+import 'package:untitled/providers/users_provider.dart';
 
 // ignore: camel_case_types
 class loginController extends GetxController {
   TextEditingController userController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
+  UsersProvider usersProvider = UsersProvider();
+
   void goToHelloPage() {
     Get.toNamed('/saludo');
-  }
-
-  void login() {
-    String user = userController.text.trim();
-    String password = passwordController.text.trim();
-
-    print('Email ${user}');
-    print('Password ${password}');
-
-    if (isValidForm(user, password)) {
-      goToHelloPage();
-    }
   }
 
   bool isValidForm(String user, String password) {
@@ -32,5 +25,27 @@ class loginController extends GetxController {
       return false;
     }
     return true;
+  }
+
+  void login() async {
+    try {
+      String username = userController.text.trim();
+      String password = passwordController.text.trim();
+      print('Username: $username');
+      print('Password: $password');
+
+      ResponseApi responseApi = await usersProvider.login(username, password);
+      print('Response Api: ${responseApi.toJson()}');
+
+      if (responseApi.success == true) {
+        GetStorage().write('user', responseApi.data);
+        goToHelloPage();
+      } else {
+        Get.snackbar('Inicio de sesión fallido', responseApi.message ?? '');
+      }
+    } catch (e) {
+      print('Error en la solicitud: $e');
+      Get.snackbar('Error', 'Hubo un problema al realizar la solicitud');
+    }
   }
 }

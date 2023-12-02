@@ -29,6 +29,7 @@ class _principalState extends State<principal> {
   double _volume =
       0.5; // Agrega _volume como una propiedad y establece el valor inicial
   int _selectedSwitch = 0;
+  
   principalController con = Get.put(principalController());
 
   @override
