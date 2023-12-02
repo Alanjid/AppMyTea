@@ -1,12 +1,10 @@
-import 'dart:io';
-
 import 'package:get/get.dart';
 import 'package:untitled/enviroment/response_api.dart';
 import '../enviroment/enviroment.dart';
 import '../moldes/user.dart';
-import 'package:http/http.dart' as http;
+
 class UsersProvider extends GetConnect {
-  String get url => Enviroment.API_URL+"/paciente";
+  String get url => Enviroment.API_URL + "/paciente";
 
   //MOTODO DE CREAR USUARIO MEDIANTE APP, NO SE USA PERO DEJO IMPLEMENTADO PARA FUTURO
   Future<Response> create(User user) async {
@@ -17,10 +15,13 @@ class UsersProvider extends GetConnect {
 
   //METODO DE INICIO DE SESION/LOGIN
   Future<ResponseApi> login(String username, String password) async {
-    Response response = await post(
-        '$url/login', {'username': username, 'password': password},
-        headers: {'content-length': 'application/json',
-        'HttpHeaders': 'authorizationHeader'});
+    Response response = await post('$url/login', {
+      'username': username,
+      'password': password
+    }, headers: {
+      'content-length': 'application/json',
+      'HttpHeaders': 'authorizationHeader'
+    });
 
     if (response.body == null) {
       print('Error: No se pudo ejecutar la peticion');
@@ -29,6 +30,5 @@ class UsersProvider extends GetConnect {
     ResponseApi responseApi = ResponseApi.fromJson(response.body);
     print(responseApi.data);
     return responseApi;
-
-}
+  }
 }
