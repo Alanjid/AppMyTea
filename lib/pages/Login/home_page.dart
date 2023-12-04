@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/instance_manager.dart';
 import 'package:untitled/pages/Login/login_controller.dart';
-import 'package:untitled/pages/home/saludo/saludo_inicio.dart';
 import '../home/pantalla_de_carga.dart';
 import 'package:untitled/utils/colors.dart' as utils;
 
@@ -20,7 +19,6 @@ class MyHomePageState extends State<MyHomePage> {
 
   loginController con = Get.put(loginController());
 
-  final passwordController = TextEditingController();
   @override
   void initState() {
     super.initState();
