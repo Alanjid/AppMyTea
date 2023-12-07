@@ -19,6 +19,7 @@ class User {
   String? diagnostico;
   String? idinstitucion;
   String? isactive;
+  String? sessionToken;
 
   User({
     this.karnet,
@@ -31,6 +32,7 @@ class User {
     this.diagnostico,
     this.idinstitucion,
     this.isactive,
+    this.sessionToken,
   });
 
   factory User.fromJson(Map<String, dynamic> json) => User(
@@ -44,6 +46,7 @@ class User {
         diagnostico: json["diagnostico"],
         idinstitucion: json["idinstitucion"],
         isactive: json["isactive"],
+        sessionToken: json["session_token"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -57,5 +60,6 @@ class User {
         "diagnostico": diagnostico,
         "idinstitucion": idinstitucion,
         "isactive": isactive,
+        "session_token": sessionToken,
       };
 }
