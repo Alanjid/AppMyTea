@@ -240,38 +240,19 @@ class MyHomePageState extends State<MyHomePage> {
                                                         ),
                                                         onPressed: () {
                                                           AwesomeDialog(
-                                                            context: context,
-                                                            dialogType:
-                                                                DialogType.info,
-                                                            animType:
-                                                                AnimType.scale,
-                                                            showCloseIcon: true,
-                                                            title:
-                                                                "Inicio Sesion",
-                                                            desc:
-                                                                "¿Quiere mantener la sesion iniciada?",
-                                                            btnCancelOnPress:
-                                                                () {},
-                                                            btnOkOnPress: () {
-                                                              AwesomeDialog(
-                                                                  context:
-                                                                      context,
-                                                                  dialogType:
-                                                                      DialogType
-                                                                          .success,
-                                                                  animType:
-                                                                      AnimType
-                                                                          .scale,
-                                                                  showCloseIcon:
-                                                                      true,
-                                                                  title: "",
-                                                                  desc:
-                                                                      "Inicio de sesion correcto",
-                                                                  btnOkOnPress:
-                                                                      () => con
-                                                                          .login()).show();
-                                                            },
-                                                          ).show();
+                                                              context: context,
+                                                              dialogType:
+                                                                  DialogType
+                                                                      .success,
+                                                              animType: AnimType
+                                                                  .scale,
+                                                              showCloseIcon:
+                                                                  true,
+                                                              title: "",
+                                                              desc:
+                                                                  "Inicio de sesion correcto",
+                                                              btnOkOnPress: () =>
+                                                                  con.login()).show();
                                                         },
                                                       ),
                                                     ],
