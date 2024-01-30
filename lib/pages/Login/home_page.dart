@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/instance_manager.dart';
 import 'package:untitled/pages/Login/login_controller.dart';
-import 'package:untitled/pages/home/saludo/saludo_inicio.dart';
 import '../home/pantalla_de_carga.dart';
 import 'package:untitled/utils/colors.dart' as utils;
 
@@ -23,6 +22,7 @@ class MyHomePageState extends State<MyHomePage> {
   final passwordController = TextEditingController();
   @override
   void initState() {
+    _isPasswordVisible;
     super.initState();
     Future.delayed(const Duration(seconds: 1), () {
       setState(() {
@@ -239,20 +239,7 @@ class MyHomePageState extends State<MyHomePage> {
                                                                   Colors.white),
                                                         ),
                                                         onPressed: () {
-                                                          AwesomeDialog(
-                                                              context: context,
-                                                              dialogType:
-                                                                  DialogType
-                                                                      .success,
-                                                              animType: AnimType
-                                                                  .scale,
-                                                              showCloseIcon:
-                                                                  true,
-                                                              title: "",
-                                                              desc:
-                                                                  "Inicio de sesion correcto",
-                                                              btnOkOnPress: () =>
-                                                                  con.login()).show();
+                                                          con.login();
                                                         },
                                                       ),
                                                     ],
