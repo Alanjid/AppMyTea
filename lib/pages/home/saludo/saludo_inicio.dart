@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:soundpool/soundpool.dart';
 import 'package:stroke_text/stroke_text.dart';
 import 'package:toggle_switch/toggle_switch.dart';
@@ -10,13 +11,17 @@ import 'package:untitled/pages/home/Menu/principal.dart';
 import 'package:untitled/pages/home/saludo/saludo_controller.dart';
 import 'package:untitled/utils/colors.dart' as utils;
 
+import '../../../moldes/user.dart';
+
+User user = User.fromJson(GetStorage().read('user') ?? {});
+
 class saludo extends StatefulWidget {
   @override
   _saludoState createState() => _saludoState();
 }
 
 class _saludoState extends State<saludo> {
-  String Texto_Saludo = "HOLA BIENVENIDO";
+  String Texto_Saludo = "HOLA BIENVENIDO ${user.nombre.toString()}";
   String audioUrl = "assets/audios/bienvenida-hombre.mp3";
   late Soundpool _soundpool;
   late int _soundId;
