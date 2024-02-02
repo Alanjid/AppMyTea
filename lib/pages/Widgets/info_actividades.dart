@@ -42,15 +42,15 @@ class info_pictogramas extends StatelessWidget {
                                                 width:
                                                     2.0), // Configura el borde negro
                                           ),
-                                          child: Image(
+                                          child:const Image(
                                             image: AssetImage(
                                                 "assets/img/alimento.png"),
                                           ),
                                         ),
-                                        SizedBox(
+                                        const SizedBox(
                                           width: 20,
                                         ),
-                                        Text("ALIMENTOS"),
+                                       const Text("ALIMENTOS"),
                                       ],
                                     ),
                                   ],

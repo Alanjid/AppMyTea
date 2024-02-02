@@ -206,7 +206,7 @@ class MyHomePageState extends State<MyHomePage> {
                                                               onPressed: () {
                                                                 setState(() {
                                                                   _isPasswordVisible =
-                                                                      !_isPasswordVisible;
+                                                                      false;
                                                                 });
                                                               },
                                                               icon: _isPasswordVisible
