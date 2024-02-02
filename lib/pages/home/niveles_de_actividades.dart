@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:soundpool/soundpool.dart';
 import 'package:stroke_text/stroke_text.dart';
 import 'package:toggle_switch/toggle_switch.dart';
+import 'package:untitled/pages/Actividades/Afectividad/act_afectividad.dart';
 import 'package:untitled/pages/Actividades/Higiene/n1_rd_salud_pt2.dart';
 import 'package:untitled/pages/Actividades/Acciones/act_movimiento1.dart';
 import 'package:untitled/pages/Actividades/Higiene/h1_ba%C3%B1o/aprende_poy_real.dart';
@@ -49,7 +50,6 @@ class _niveles_actividades extends State<niveles_actividades>
       Nombre: 'Matemàticas');
   late Soundpool _soundpool;
   late int _soundId;
-  late int _streamId;
   late Timer Repite;
   double _sliderValue = 50.0;
   double _volume = 0.5;
@@ -105,9 +105,9 @@ class _niveles_actividades extends State<niveles_actividades>
                               inactiveBgColor: Colors.grey,
                               inactiveFgColor: Colors.white,
                               totalSwitches: 2,
-                              labels: ['Hombre', 'Mujer'],
-                              icons: [Icons.male, Icons.female],
-                              activeBgColors: [
+                              labels: const ['Hombre', 'Mujer'],
+                              icons: const [Icons.male, Icons.female],
+                              activeBgColors: const [
                                 [Colors.blue],
                                 [Colors.pink]
                               ],
@@ -234,7 +234,7 @@ class _niveles_actividades extends State<niveles_actividades>
                                                 context,
                                                 MaterialPageRoute(
                                                     builder: (context) =>
-                                                        tareas_comp_diarias()));
+                                                        afectividad_realista()));
                                             break;
                                           case 'assets/img/bebidas.png':
                                             _setVolume(0);
