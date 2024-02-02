@@ -90,6 +90,7 @@ class _niveles_actividades extends State<niveles_actividades>
                 showDialog(
                     context: context,
                     builder: (BuildContext context) {
+                      //Alert dialog
                       return AlertDialog(
                         title: Text(
                           'Cambiamos la voz',
