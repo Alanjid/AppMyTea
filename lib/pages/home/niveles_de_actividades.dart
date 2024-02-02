@@ -24,6 +24,7 @@ class _niveles_actividades extends State<niveles_actividades>
     with SingleTickerProviderStateMixin {
   String texto_dictar = "Realizamos las siguientes actividades";
   String audioUrl = "assets/audios/actividadesH.mp3";
+  late int _streamId;
   ValueNotifier<bool> isAudioPlaying = ValueNotifier<bool>(false);
   late List<Actividad> ActividadesList;
   Actividad alimento = Actividad(
@@ -89,6 +90,7 @@ class _niveles_actividades extends State<niveles_actividades>
                 showDialog(
                     context: context,
                     builder: (BuildContext context) {
+                      //Alert dialog
                       return AlertDialog(
                         title: Text(
                           'Cambiamos la voz',
