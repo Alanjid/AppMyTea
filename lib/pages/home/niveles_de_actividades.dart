@@ -27,6 +27,7 @@ class _niveles_actividades extends State<niveles_actividades>
   late int _streamId;
   ValueNotifier<bool> isAudioPlaying = ValueNotifier<bool>(false);
   late List<Actividad> ActividadesList;
+  late int _streamId;
   Actividad alimento = Actividad(
       imagePath: 'assets/img/alimento.png',
       isEnabled: true,
