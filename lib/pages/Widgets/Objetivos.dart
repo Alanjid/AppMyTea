@@ -3,12 +3,12 @@ import 'package:untitled/utils/colors.dart' as utils;
 
 class Objetivos extends StatelessWidget {
   final GlobalKey<State> _key = GlobalKey<State>();
-   Objetivos({
+   Objetivos({super.key, 
     required this.Objetivo,
     required this.Instrucciones,
     required this.Materiales,
     required this.imagenes, // Lista de rutas de imágenes
-  }) : super();
+  });
 
   final String Objetivo;
   final String Instrucciones;
@@ -47,7 +47,7 @@ class Objetivos extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.start,
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                Text(
+                                const Text(
                                   "Objetivo:",
                                   style: TextStyle(
                                       color: utils.Colors.azulitoArriba,
@@ -55,13 +55,13 @@ class Objetivos extends StatelessWidget {
                                       fontFamily: 'lazydog'
                                   ),
                                 ),
-                                Container(
+                                SizedBox(
                                     width: 150,
                                     child: Expanded(
                                       child: Text(
                                         Objetivo,
                                         textAlign: TextAlign.center,
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                             fontSize: 20,
                                             fontFamily: 'lazydog',
                                             color: Colors.black
@@ -69,8 +69,8 @@ class Objetivos extends StatelessWidget {
                                       ),
                                     )
                                 ),
-                                SizedBox(height: 30,),
-                                Text(
+                                const SizedBox(height: 30,),
+                                const Text(
                                   "Instrucciones:",
                                   style: TextStyle(
                                       fontSize: 20,
@@ -78,13 +78,13 @@ class Objetivos extends StatelessWidget {
                                       color: utils.Colors.azulitoArriba
                                   ),
                                 ),
-                                Container(
+                                SizedBox(
                                     width: 150,
                                     child: Expanded(
                                       child: Text(
                                         Instrucciones,
                                         textAlign: TextAlign.center,
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                             fontSize: 20,
                                             fontFamily: 'lazydog',
                                             color: Colors.black
@@ -98,7 +98,7 @@ class Objetivos extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
-                              Text(
+                              const Text(
                                 "Materiales:",
                                 style: TextStyle(
                                     fontSize: 20,
@@ -106,13 +106,13 @@ class Objetivos extends StatelessWidget {
                                     color: utils.Colors.azulitoArriba
                                 ),
                               ),
-                              Container(
+                              SizedBox(
                                   width: 150,
                                   child: Expanded(
                                     child: Text(
                                       Materiales,
                                       textAlign: TextAlign.center,
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                           fontSize: 20,
                                           fontFamily: 'lazydog',
                                           color: Colors.black
@@ -155,7 +155,7 @@ class Objetivos extends StatelessWidget {
             }
         );
       },
-      icon: Icon(
+      icon: const Icon(
       Icons.info,
       color: Colors.white,
       size: 30,

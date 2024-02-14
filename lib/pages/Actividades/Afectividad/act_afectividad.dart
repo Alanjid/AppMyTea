@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:stroke_text/stroke_text.dart';
@@ -11,6 +10,8 @@ import '../../Widgets/Objetivos.dart';
 import 'package:untitled/utils/colors.dart' as utils;
 
 class afectividad_realista extends StatefulWidget {
+  const afectividad_realista({super.key});
+
   @override
   afre createState()=> afre();
 }
@@ -33,18 +34,20 @@ class afre extends State {
   double _volume = 0.5; // Agrega _volume como una propiedad y establece el valor inicial
   int _selectedSwitch = 0;
 
+  @override
   void initState() {
     super.initState();
     _initializeSound();
     startTimer();
   }
 
+  @override
   Widget build(BuildContext context) {
     if(visible==true && visible2==true) {
-      Future.delayed(Duration(seconds:2), () async {
+      Future.delayed(const Duration(seconds:2), () async {
         await _setVolume(0);
         Navigator.push(context, MaterialPageRoute(builder: (context) =>
-            felicitacion(
+            const felicitacion(
                 photo: 'assets/img/felicitar.png', width: 400, heigth: 400)));
       });
     }
@@ -63,7 +66,7 @@ class afre extends State {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
 
-            StrokeText(
+            const StrokeText(
               text: "¿Les gusta hacer amigos?",
               strokeWidth: 6,
               strokeColor: Colors.orange,
@@ -79,7 +82,7 @@ class afre extends State {
                     context: context,
                     builder: (BuildContext context){
                       return AlertDialog(
-                        title: Text('Cambiamos la voz',
+                        title: const Text('Cambiamos la voz',
                           textAlign: TextAlign.center,),
                         content: Column(
                           mainAxisSize: MainAxisSize.min,
@@ -92,9 +95,9 @@ class afre extends State {
                               inactiveBgColor: Colors.grey,
                               inactiveFgColor: Colors.white,
                               totalSwitches: 2,
-                              labels: ['Hombre', 'Mujer'],
-                              icons: [Icons.male, Icons.female],
-                              activeBgColors: [[Colors.blue],[Colors.pink]],
+                              labels: const ['Hombre', 'Mujer'],
+                              icons: const [Icons.male, Icons.female],
+                              activeBgColors: const [[Colors.blue],[Colors.pink]],
                               onToggle: (index) {
                                 setState(() {
                                   _selectedSwitch=index!;
@@ -118,7 +121,7 @@ class afre extends State {
                             onPressed: () {
                               Navigator.of(context).pop();
                             },
-                            child: Text(
+                            child: const Text(
                               "Cerrar",
                               style: TextStyle(
                                   fontSize: 18,
@@ -135,14 +138,14 @@ class afre extends State {
               icon: Image.asset('assets/img/iconobocina.gif'),
               iconSize: 70,
             ),
-            SizedBox(width: 20),
+            const SizedBox(width: 20),
             Objetivos(
                 Objetivo: "Trabajar la afectividad del niño",
                 Instrucciones: "Selecciona los niños que pueden ser amigos de el",
                 Materiales: "sin material requerido",
-                imagenes: ["assets/img/tijeras_real.png","assets/img/niñas.png","assets/img/platanos.png"]
+                imagenes: const ["assets/img/tijeras_real.png","assets/img/niñas.png","assets/img/platanos.png"]
             ),
-            SizedBox(width: 20,),
+            const SizedBox(width: 20,),
             Image.asset(
               'assets/img/logo.png',
               width: 60,
@@ -170,7 +173,7 @@ class afre extends State {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Container(
+                  SizedBox(
                     width: 300,
                     child: Column(
                       children: [
@@ -197,21 +200,21 @@ class afre extends State {
                     children: [
                       Column(
                         children: [
-                          Image(
+                          const Image(
                             image: AssetImage(
                                 'assets/img/saludo_realista.png'
                             ),
                             width: 340,
                             height: 200,
                           ),
-                          Container(
+                          SizedBox(
                             width: 348,
                             height: 78,
                             child: StrokeText(
                               text: Texto_act,
                               strokeWidth: 4.5,
                               strokeColor: Colors.black,
-                              textStyle: TextStyle(
+                              textStyle: const TextStyle(
                                 fontSize: 22,
                                 fontFamily: 'lazydog',
                               ),
@@ -252,7 +255,7 @@ class afre extends State {
                                   Visibility(
                                     visible: visible,
                                     child: Container(
-                                      padding: EdgeInsets.symmetric(vertical: 62, horizontal: 62),
+                                      padding: const EdgeInsets.symmetric(vertical: 62, horizontal: 62),
                                       decoration: BoxDecoration(
                                           color: Colors.orange.withOpacity(0.4)
                                       ),
@@ -260,7 +263,7 @@ class afre extends State {
                                   ),
                                 ],
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 86.5,
                               ),
                               //Boton Matemáticas
@@ -283,7 +286,7 @@ class afre extends State {
                               ),
                             ],
                           ),//primeras dos imagenes
-                          SizedBox(
+                          const SizedBox(
                             height: 30.0,
                           ),
                           Row(
@@ -308,7 +311,7 @@ class afre extends State {
                                   icon: Image.asset('assets/img/pelotar.png',height: 200,width: 200.0,),
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 width: 90,
                               ),
                               //Boton Matemáticas
@@ -339,7 +342,7 @@ class afre extends State {
                                   Visibility(
                                     visible: visible2,
                                     child: Container(
-                                      padding: EdgeInsets.symmetric(vertical: 62, horizontal: 62),
+                                      padding: const EdgeInsets.symmetric(vertical: 62, horizontal: 62),
                                       decoration: BoxDecoration(
                                           color: Colors.orange.withOpacity(0.4)
                                       ),
@@ -373,7 +376,7 @@ class afre extends State {
 
 
   void startTimer() {
-    Repite =Timer.periodic(Duration(seconds: 10), (timer) {
+    Repite =Timer.periodic(const Duration(seconds: 10), (timer) {
       _initializeSound();
     });
   }

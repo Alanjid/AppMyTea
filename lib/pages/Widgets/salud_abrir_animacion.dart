@@ -1,14 +1,14 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class salud_abrir_animacion extends StatelessWidget {
-  const salud_abrir_animacion(  { required this.photo, required this.onTap, required this.width, required this.heigth}) : super();
+  const salud_abrir_animacion(  {super.key,  required this.photo, required this.onTap, required this.width, required this.heigth});
 
   final String photo;
   final VoidCallback onTap;
   final double width;
   final double heigth;
 
+  @override
   Widget build(BuildContext context) {
     return SizedBox(
       width: width ,

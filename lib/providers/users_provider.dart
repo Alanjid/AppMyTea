@@ -4,7 +4,7 @@ import '../enviroment/enviroment.dart';
 import '../moldes/user.dart';
 
 class UsersProvider extends GetConnect {
-  String get url => Enviroment.API_URL + "/paciente";
+  String get url => "${Enviroment.API_URL}/paciente";
 
   //MOTODO DE CREAR USUARIO MEDIANTE APP, NO SE USA PERO DEJO IMPLEMENTADO PARA FUTURO
   Future<Response> create(User user) async {

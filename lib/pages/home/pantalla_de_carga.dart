@@ -2,10 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:untitled/utils/colors.dart' as utils;
 
 class Pantalla_de_Carga extends StatelessWidget{
+  const Pantalla_de_Carga({super.key});
+
+  @override
   Widget build(BuildContext context){
     return Scaffold(
       body: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage(
                 'assets/img/fondoNM.png',
@@ -14,7 +17,7 @@ class Pantalla_de_Carga extends StatelessWidget{
             fit: BoxFit.cover,
           ),
         ),
-        child: Column(
+        child: const Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             SizedBox(

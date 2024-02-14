@@ -6,8 +6,6 @@ import 'package:get_storage/get_storage.dart';
 import 'package:soundpool/soundpool.dart';
 import 'package:stroke_text/stroke_text.dart';
 import 'package:toggle_switch/toggle_switch.dart';
-import 'package:untitled/pages/Login/login_controller.dart';
-import 'package:untitled/pages/home/Menu/principal.dart';
 import 'package:untitled/pages/home/saludo/saludo_controller.dart';
 import 'package:untitled/utils/colors.dart' as utils;
 
@@ -16,6 +14,8 @@ import '../../../moldes/user.dart';
 User user = User.fromJson(GetStorage().read('user') ?? {});
 
 class saludo extends StatefulWidget {
+  const saludo({super.key});
+
   @override
   _saludoState createState() => _saludoState();
 }
@@ -33,6 +33,7 @@ class _saludoState extends State<saludo> {
   int _selectedSwitch = 0;
   saludoController con = Get.put(saludoController());
 
+  @override
   void initState() {
     super.initState();
     _initializeSound();
@@ -55,7 +56,7 @@ class _saludoState extends State<saludo> {
                     context: context,
                     builder: (BuildContext context) {
                       return AlertDialog(
-                        title: Text(
+                        title: const Text(
                           'Cambiamos la voz',
                           textAlign: TextAlign.center,
                         ),
@@ -70,9 +71,9 @@ class _saludoState extends State<saludo> {
                               inactiveBgColor: Colors.grey,
                               inactiveFgColor: Colors.white,
                               totalSwitches: 2,
-                              labels: ['Hombre', 'Mujer'],
-                              icons: [Icons.male, Icons.female],
-                              activeBgColors: [
+                              labels: const ['Hombre', 'Mujer'],
+                              icons: const [Icons.male, Icons.female],
+                              activeBgColors: const [
                                 [Colors.blue],
                                 [Colors.pink]
                               ],
@@ -98,7 +99,7 @@ class _saludoState extends State<saludo> {
                             onPressed: () {
                               Navigator.of(context).pop();
                             },
-                            child: Text(
+                            child: const Text(
                               "Cerrar",
                               style: TextStyle(
                                   fontSize: 18,
@@ -113,17 +114,17 @@ class _saludoState extends State<saludo> {
               icon: Image.asset('assets/img/iconobocina.gif'),
               iconSize: 70,
             ),
-            SizedBox(width: 300),
+            const SizedBox(width: 300),
             Image.asset(
               'assets/img/logo.png',
               width: 60,
               height: 60,
             ),
-            SizedBox(
+            const SizedBox(
               width: 40,
             ),
             IconButton(
-              icon: Icon(Icons.arrow_forward),
+              icon: const Icon(Icons.arrow_forward),
               onPressed: () async {
                 await _setVolume(0);
                 con.goToMenuPage();
@@ -135,13 +136,13 @@ class _saludoState extends State<saludo> {
       body: Container(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           image: DecorationImage(
               image: AssetImage('assets/img/fondoNM.png'), fit: BoxFit.cover),
         ),
         child: Column(
           children: [
-            Container(
+            SizedBox(
               width: 300,
               child: Column(
                 children: [
@@ -169,14 +170,14 @@ class _saludoState extends State<saludo> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     StrokeText(
                       text: Texto_Saludo,
                       strokeWidth: 6,
                       strokeColor: Colors.indigo,
-                      textStyle: TextStyle(fontSize: 38, fontFamily: 'lazydog'),
+                      textStyle: const TextStyle(fontSize: 38, fontFamily: 'lazydog'),
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -204,7 +205,7 @@ class _saludoState extends State<saludo> {
   }
 
   void startTimer() {
-    Repite = Timer.periodic(Duration(seconds: 10), (timer) {
+    Repite = Timer.periodic(const Duration(seconds: 10), (timer) {
       _initializeSound();
     });
   }

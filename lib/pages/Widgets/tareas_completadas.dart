@@ -7,6 +7,8 @@ class tareas_comp_diarias extends StatelessWidget {
   String audioUrl="";
   ValueNotifier<bool> isAudioPlaying = ValueNotifier<bool>(false);
 
+  tareas_comp_diarias({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,7 +18,7 @@ class tareas_comp_diarias extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
 
-            SizedBox(width: 300),
+            const SizedBox(width: 300),
             Image.asset(
               'assets/img/logo.png',
               width: 60,
@@ -30,7 +32,7 @@ class tareas_comp_diarias extends StatelessWidget {
       body: Container(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           image: DecorationImage(
               image: AssetImage('assets/img/fondoNM.png'),
               fit: BoxFit.cover
@@ -40,7 +42,7 @@ class tareas_comp_diarias extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            Image(
+            const Image(
                 image: AssetImage(
                   'assets/img/alerta.png'
                 ),
@@ -51,7 +53,7 @@ class tareas_comp_diarias extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                StrokeText(
+                const StrokeText(
                     text: 'HAS COMPLETADO TUS',
                   strokeWidth: 6,
                   strokeColor: Colors.black,
@@ -60,7 +62,7 @@ class tareas_comp_diarias extends StatelessWidget {
                     fontFamily: 'lazydog'
                   ),
                 ),
-                StrokeText(
+                const StrokeText(
                   text: 'ACTIVIDADES DEL DIA, VUELVE ',
                   strokeWidth: 6,
                   strokeColor: Colors.black,
@@ -69,7 +71,7 @@ class tareas_comp_diarias extends StatelessWidget {
                       fontFamily: 'lazydog'
                   ),
                 ),
-                StrokeText(
+                const StrokeText(
                   text: 'AL MENU PARA CONTINUAR',
                   strokeWidth: 6,
                   strokeColor: Colors.black,
@@ -78,7 +80,7 @@ class tareas_comp_diarias extends StatelessWidget {
                       fontFamily: 'lazydog'
                   ),
                 ),
-                StrokeText(
+                const StrokeText(
                   text: 'TRABAJANDO',
                   strokeWidth: 6,
                   strokeColor: Colors.black,
@@ -88,13 +90,13 @@ class tareas_comp_diarias extends StatelessWidget {
                   ),
                 ),
                 ElevatedButton(
-                  child: const Text("CERRAR"),
-                  style: ButtonStyle(
+                  style: const ButtonStyle(
                     backgroundColor: MaterialStatePropertyAll<Color>(Colors.red)
                   ),
                   onPressed: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=>principal()));
+                    Navigator.push(context, MaterialPageRoute(builder: (context)=>const principal()));
                   },
+                  child: const Text("CERRAR"),
 
                 ),
               ],

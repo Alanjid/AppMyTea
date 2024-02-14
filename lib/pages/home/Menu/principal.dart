@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -7,13 +6,12 @@ import 'package:soundpool/soundpool.dart';
 import 'package:stroke_text/stroke_text.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 import 'package:untitled/pages/home/Menu/principal_controller.dart';
-import 'package:untitled/pages/home/actividades_rutina_diaria.dart';
-import 'package:flutter/widgets.dart';
 import 'package:untitled/pages/Widgets/info_actividades.dart';
-import 'package:untitled/pages/home/niveles_de_actividades.dart';
 import 'package:untitled/utils/colors.dart' as utils;
 
 class principal extends StatefulWidget {
+  const principal({super.key});
+
   @override
   _principalState createState() => _principalState();
 }
@@ -55,7 +53,7 @@ class _principalState extends State<principal> {
                     context: context,
                     builder: (BuildContext context) {
                       return AlertDialog(
-                        title: Text(
+                        title: const Text(
                           'Cambiamos la voz',
                           textAlign: TextAlign.center,
                         ),
@@ -70,9 +68,9 @@ class _principalState extends State<principal> {
                               inactiveBgColor: Colors.grey,
                               inactiveFgColor: Colors.white,
                               totalSwitches: 2,
-                              labels: ['Hombre', 'Mujer'],
-                              icons: [Icons.male, Icons.female],
-                              activeBgColors: [
+                              labels: const ['Hombre', 'Mujer'],
+                              icons: const [Icons.male, Icons.female],
+                              activeBgColors: const [
                                 [Colors.blue],
                                 [Colors.pink]
                               ],
@@ -97,7 +95,7 @@ class _principalState extends State<principal> {
                             onPressed: () {
                               Navigator.of(context).pop();
                             },
-                            child: Text(
+                            child: const Text(
                               "Cerrar",
                               style: TextStyle(
                                   fontSize: 18,
@@ -112,8 +110,8 @@ class _principalState extends State<principal> {
               icon: Image.asset('assets/img/iconobocina.gif'),
               iconSize: 70,
             ),
-            SizedBox(width: 300),
-            info_pictogramas(),
+            const SizedBox(width: 300),
+            const info_pictogramas(),
             Image.asset(
               'assets/img/logo.png',
               width: 60,
@@ -125,7 +123,7 @@ class _principalState extends State<principal> {
       body: Container(
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             image: DecorationImage(
               image: AssetImage('assets/img/fondoNM.png'),
               fit: BoxFit.cover,
@@ -133,7 +131,7 @@ class _principalState extends State<principal> {
           ),
           child: Column(
             children: [
-              Container(
+              SizedBox(
                 width: 300,
                 child: Column(
                   children: [
@@ -154,7 +152,7 @@ class _principalState extends State<principal> {
                   ],
                 ),
               ),
-              Container(
+              SizedBox(
                 height: MediaQuery.of(context).size.height * 0.6,
                 width: 600,
                 child: ListWheelScrollView(
@@ -177,7 +175,7 @@ class _principalState extends State<principal> {
                                 icon: Image.asset('assets/img/aprendizaje.png'),
                                 iconSize: 210,
                               ),
-                              StrokeText(
+                              const StrokeText(
                                 text: 'ACTIVIDADES',
                                 strokeWidth: 4,
                                 textStyle: TextStyle(
@@ -205,7 +203,7 @@ class _principalState extends State<principal> {
                                     Image.asset('assets/img/rutinadiaria.png'),
                                 iconSize: 210,
                               ),
-                              StrokeText(
+                              const StrokeText(
                                 text: 'MI RUTINA DIARIA',
                                 strokeWidth: 4,
                                 textStyle: TextStyle(
@@ -229,7 +227,7 @@ class _principalState extends State<principal> {
                                 icon: Image.asset('assets/img/avances.png'),
                                 iconSize: 220,
                               ),
-                              StrokeText(
+                              const StrokeText(
                                 text: 'AVANCES',
                                 strokeWidth: 4,
                                 textStyle: TextStyle(
@@ -259,7 +257,7 @@ class _principalState extends State<principal> {
   }
 
   void startTimer() {
-    Repite = Timer.periodic(Duration(seconds: 10), (timer) {
+    Repite = Timer.periodic(const Duration(seconds: 10), (timer) {
       _initializeSound();
     });
   }

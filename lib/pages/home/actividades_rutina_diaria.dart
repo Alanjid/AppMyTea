@@ -12,6 +12,8 @@ import '../Actividades/Higiene/n1_rd_salud_pt2.dart';
 import '../Widgets/ActividadEstado.dart';
 
 class rutina_diaria extends StatefulWidget {
+  const rutina_diaria({super.key});
+
   @override
   _actR_diariaState createState() => _actR_diariaState();
 }
@@ -53,13 +55,14 @@ class _actR_diariaState extends State<rutina_diaria>
   int _selectedSwitch = 0;
   late AnimationController _animationController;
 
+  @override
   void initState() {
     super.initState();
     _initializeSound();
     startTimer();
     _animationController = AnimationController(
       vsync: this,
-      duration: Duration(seconds: 2),
+      duration: const Duration(seconds: 2),
     );
     _animationController.repeat(reverse: true);
     ActividadesList = [
@@ -87,7 +90,7 @@ class _actR_diariaState extends State<rutina_diaria>
                     context: context,
                     builder: (BuildContext context) {
                       return AlertDialog(
-                        title: Text(
+                        title: const Text(
                           'Cambiamos la voz',
                           textAlign: TextAlign.center,
                         ),
@@ -102,9 +105,9 @@ class _actR_diariaState extends State<rutina_diaria>
                               inactiveBgColor: Colors.grey,
                               inactiveFgColor: Colors.white,
                               totalSwitches: 2,
-                              labels: ['Hombre', 'Mujer'],
-                              icons: [Icons.male, Icons.female],
-                              activeBgColors: [
+                              labels: const ['Hombre', 'Mujer'],
+                              icons: const [Icons.male, Icons.female],
+                              activeBgColors: const [
                                 [Colors.blue],
                                 [Colors.pink]
                               ],
@@ -131,7 +134,7 @@ class _actR_diariaState extends State<rutina_diaria>
                             onPressed: () {
                               Navigator.of(context).pop();
                             },
-                            child: Text(
+                            child: const Text(
                               "Cerrar",
                               style: TextStyle(
                                   fontSize: 18,
@@ -146,7 +149,7 @@ class _actR_diariaState extends State<rutina_diaria>
               icon: Image.asset('assets/img/iconobocina.gif'),
               iconSize: 70,
             ),
-            SizedBox(width: 8),
+            const SizedBox(width: 8),
             Image.asset(
               'assets/img/logo.png',
               width: 60,
@@ -158,13 +161,13 @@ class _actR_diariaState extends State<rutina_diaria>
       body: Container(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           image: DecorationImage(
               image: AssetImage('assets/img/fondoNM.png'), fit: BoxFit.cover),
         ),
         child: Column(
           children: [
-            Container(
+            SizedBox(
               width: 300,
               child: Column(
                 children: [
@@ -189,7 +192,7 @@ class _actR_diariaState extends State<rutina_diaria>
               text: texto_dictar,
               strokeWidth: 6,
               strokeColor: Colors.green,
-              textStyle: TextStyle(
+              textStyle: const TextStyle(
                 fontSize: 38,
                 fontFamily: 'lazydog',
               ),
@@ -241,7 +244,7 @@ class _actR_diariaState extends State<rutina_diaria>
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) =>
-                                                movi_conejo()));
+                                                const movi_conejo()));
                                     break;
                                   case 'assets/img/partes del cuerpo.png':
                                     _setVolume(0);
@@ -249,7 +252,7 @@ class _actR_diariaState extends State<rutina_diaria>
                                         context,
                                         MaterialPageRoute(
                                             builder: (context) =>
-                                                n1_rd_salud_pt2()));
+                                                const n1_rd_salud_pt2()));
                                     break;
                                   case 'assets/img/prendas.png':
                                     _setVolume(0);
@@ -271,7 +274,7 @@ class _actR_diariaState extends State<rutina_diaria>
                               },
                               iconSize:
                                   120, // Ajusta el tamaño del icono según tus necesidades
-                              padding: EdgeInsets.all(
+                              padding: const EdgeInsets.all(
                                   8), // Ajusta el relleno según tus necesidades
                               color: Colors
                                   .blue, // Ajusta el color del icono según tus necesidades
@@ -291,10 +294,10 @@ class _actR_diariaState extends State<rutina_diaria>
                     for (int i = 0; i < 4; i++)
                       SlideTransition(
                         position: Tween<Offset>(
-                          begin: Offset(0, 0),
-                          end: Offset(1, 0),
+                          begin: const Offset(0, 0),
+                          end: const Offset(1, 0),
                         ).animate(_animationController),
-                        child: Icon(
+                        child: const Icon(
                           Icons.arrow_forward,
                           size: 30,
                           color: Colors.white,
@@ -319,7 +322,7 @@ class _actR_diariaState extends State<rutina_diaria>
   }
 
   void startTimer() {
-    Repite = Timer.periodic(Duration(seconds: 10), (timer) {
+    Repite = Timer.periodic(const Duration(seconds: 10), (timer) {
       _initializeSound();
     });
   }

@@ -1,17 +1,15 @@
 import 'package:flutter/services.dart';
 import 'package:soundpool/soundpool.dart';
 import 'package:confetti/confetti.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:stroke_text/stroke_text.dart';
 import 'package:untitled/pages/home/actividades_rutina_diaria.dart';
-import 'package:untitled/pages/home/niveles_de_actividades.dart';
 class felicitacion extends StatefulWidget {
 
   final String photo;
   final double width;
   final double heigth;
-  felicitacion(  { required this.photo, required this.width, required this.heigth}) : super();
+  const felicitacion(  {super.key,  required this.photo, required this.width, required this.heigth});
   @override
   felicitacion2 createState()=> felicitacion2(photo: photo, width: width, heigth: heigth);
 }
@@ -25,9 +23,10 @@ class felicitacion2 extends State {
   final controller= ConfettiController();
   bool play=true;
 
+  @override
   Widget build(BuildContext context) {
-    Future.delayed(Duration(seconds:6), () {
-      Navigator.push(context, MaterialPageRoute(builder: (context) => rutina_diaria()));
+    Future.delayed(const Duration(seconds:6), () {
+      Navigator.push(context, MaterialPageRoute(builder: (context) => const rutina_diaria()));
     });
     controller.addListener(() {
       play=controller.state==ConfettiControllerState.playing;
@@ -41,7 +40,7 @@ class felicitacion2 extends State {
         toolbarHeight: 50,
         automaticallyImplyLeading: false,
         backgroundColor: Colors.transparent,
-        title: Row(
+        title: const Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
@@ -58,7 +57,7 @@ class felicitacion2 extends State {
         ),
       ),
       body:
-      Container(
+      SizedBox(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
         child:Container(

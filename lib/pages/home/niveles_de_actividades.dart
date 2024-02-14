@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:collection';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -8,14 +7,14 @@ import 'package:stroke_text/stroke_text.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 import 'package:untitled/pages/Actividades/Afectividad/act_afectividad.dart';
 import 'package:untitled/pages/Actividades/Higiene/n1_rd_salud_pt2.dart';
-import 'package:untitled/pages/Actividades/Acciones/act_movimiento1.dart';
 import 'package:untitled/pages/Actividades/Higiene/h1_ba%C3%B1o/aprende_poy_real.dart';
 import 'package:untitled/pages/Widgets/tareas_completadas.dart';
 import 'package:untitled/utils/colors.dart' as utils;
 import '../Widgets/ActividadEstado.dart';
-import 'actividades_rutina_diaria.dart';
 
 class niveles_actividades extends StatefulWidget {
+  const niveles_actividades({super.key});
+
   @override
   _niveles_actividades createState() => _niveles_actividades();
 }
@@ -57,13 +56,14 @@ class _niveles_actividades extends State<niveles_actividades>
   int _selectedSwitch = 0;
   late AnimationController _animationController;
 
+  @override
   void initState() {
     super.initState();
     _initializeSound();
     startTimer();
     _animationController = AnimationController(
       vsync: this,
-      duration: Duration(seconds: 2),
+      duration: const Duration(seconds: 2),
     );
     _animationController.repeat(reverse: true);
     ActividadesList = [
@@ -91,7 +91,7 @@ class _niveles_actividades extends State<niveles_actividades>
                     context: context,
                     builder: (BuildContext context) {
                       return AlertDialog(
-                        title: Text(
+                        title: const Text(
                           'Cambiamos la voz',
                           textAlign: TextAlign.center,
                         ),
@@ -134,7 +134,7 @@ class _niveles_actividades extends State<niveles_actividades>
                             onPressed: () {
                               Navigator.of(context).pop();
                             },
-                            child: Text(
+                            child: const Text(
                               "Cerrar",
                               style: TextStyle(
                                   fontSize: 18,
@@ -149,7 +149,7 @@ class _niveles_actividades extends State<niveles_actividades>
               icon: Image.asset('assets/img/iconobocina.gif'),
               iconSize: 70,
             ),
-            SizedBox(width: 8),
+            const SizedBox(width: 8),
             Image.asset(
               'assets/img/logo.png',
               width: 60,
@@ -161,13 +161,13 @@ class _niveles_actividades extends State<niveles_actividades>
       body: Container(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           image: DecorationImage(
               image: AssetImage('assets/img/fondoNM.png'), fit: BoxFit.cover),
         ),
         child: Column(
           children: [
-            Container(
+            SizedBox(
               width: 300,
               child: Column(
                 children: [
@@ -192,7 +192,7 @@ class _niveles_actividades extends State<niveles_actividades>
               text: texto_dictar,
               strokeWidth: 6,
               strokeColor: Colors.green,
-              textStyle: TextStyle(
+              textStyle: const TextStyle(
                 fontSize: 38,
                 fontFamily: 'lazydog',
               ),
@@ -235,7 +235,7 @@ class _niveles_actividades extends State<niveles_actividades>
                                                 context,
                                                 MaterialPageRoute(
                                                     builder: (context) =>
-                                                        afectividad_realista()));
+                                                        const afectividad_realista()));
                                             break;
                                           case 'assets/img/bebidas.png':
                                             _setVolume(0);
@@ -251,7 +251,7 @@ class _niveles_actividades extends State<niveles_actividades>
                                                 context,
                                                 MaterialPageRoute(
                                                     builder: (context) =>
-                                                        apren_pony_lenguaje_real()));
+                                                        const apren_pony_lenguaje_real()));
                                             break;
                                           case 'assets/img/partes del cuerpo.png':
                                             _setVolume(0);
@@ -259,7 +259,7 @@ class _niveles_actividades extends State<niveles_actividades>
                                                 context,
                                                 MaterialPageRoute(
                                                     builder: (context) =>
-                                                        n1_rd_salud_pt2()));
+                                                        const n1_rd_salud_pt2()));
                                             break;
                                           case 'assets/img/prendas.png':
                                             _setVolume(0);
@@ -281,7 +281,7 @@ class _niveles_actividades extends State<niveles_actividades>
                                       },
                                       iconSize:
                                           120, // Ajusta el tamaño del icono según tus necesidades
-                                      padding: EdgeInsets.all(
+                                      padding: const EdgeInsets.all(
                                           8), // Ajusta el relleno según tus necesidades
                                       color: Colors
                                           .blue, // Ajusta el color del icono según tus necesidades
@@ -305,10 +305,10 @@ class _niveles_actividades extends State<niveles_actividades>
                     for (int i = 0; i < 4; i++)
                       SlideTransition(
                         position: Tween<Offset>(
-                          begin: Offset(0, 0),
-                          end: Offset(1, 0),
+                          begin: const Offset(0, 0),
+                          end: const Offset(1, 0),
                         ).animate(_animationController),
-                        child: Icon(
+                        child: const Icon(
                           Icons.arrow_forward,
                           size: 30,
                           color: Colors.white,
@@ -333,7 +333,7 @@ class _niveles_actividades extends State<niveles_actividades>
   }
 
   void startTimer() {
-    Repite = Timer.periodic(Duration(seconds: 10), (timer) {
+    Repite = Timer.periodic(const Duration(seconds: 10), (timer) {
       _initializeSound();
     });
   }

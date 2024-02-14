@@ -33,6 +33,7 @@ class _act1_prendas extends State {
       0.5; // Agrega _volume como una propiedad y establece el valor inicial
   int _selectedSwitch = 0;
 
+  @override
   void initState() {
     super.initState();
     _initializeSound();
@@ -54,7 +55,7 @@ class _act1_prendas extends State {
               text: Texto_act,
               strokeWidth: 6,
               strokeColor: Colors.green,
-              textStyle: TextStyle(
+              textStyle: const TextStyle(
                 fontSize: 28,
                 fontFamily: 'lazydog',
               ),
