@@ -10,8 +10,6 @@ import '../../Widgets/salud_abrir_animacion.dart';
 import 'package:untitled/utils/colors.dart' as utils;
 
 class n1_rd_salud_pt2 extends StatefulWidget {
-  const n1_rd_salud_pt2({super.key});
-
   @override
   n1_rd_salu createState()=> n1_rd_salu();
 }
@@ -27,7 +25,6 @@ class n1_rd_salu extends State {
   double _volume = 0.5; // Agrega _volume como una propiedad y establece el valor inicial
   int _selectedSwitch = 0;
 
-  @override
   void initState() {
     super.initState();
     _initializeSound();
@@ -49,7 +46,7 @@ class n1_rd_salu extends State {
               text: Instruccion,
               strokeWidth: 6,
               strokeColor: Colors.green,
-              textStyle: const TextStyle(
+              textStyle: TextStyle(
                 fontSize: 28,
                 fontFamily: 'lazydog',
               ),
@@ -61,7 +58,7 @@ class n1_rd_salu extends State {
                     context: context,
                     builder: (BuildContext context){
                       return AlertDialog(
-                        title: const Text('Cambiamos la voz',
+                        title: Text('Cambiamos la voz',
                           textAlign: TextAlign.center,),
                         content: Column(
                           mainAxisSize: MainAxisSize.min,
@@ -74,9 +71,9 @@ class n1_rd_salu extends State {
                               inactiveBgColor: Colors.grey,
                               inactiveFgColor: Colors.white,
                               totalSwitches: 2,
-                              labels: const ['Hombre', 'Mujer'],
-                              icons: const [Icons.male, Icons.female],
-                              activeBgColors: const [[Colors.blue],[Colors.pink]],
+                              labels: ['Hombre', 'Mujer'],
+                              icons: [Icons.male, Icons.female],
+                              activeBgColors: [[Colors.blue],[Colors.pink]],
                               onToggle: (index) {
                                 setState(() {
                                   _selectedSwitch=index!;
@@ -100,7 +97,7 @@ class n1_rd_salu extends State {
                             onPressed: () {
                               Navigator.of(context).pop();
                             },
-                            child: const Text(
+                            child: Text(
                               "Cerrar",
                               style: TextStyle(
                                   fontSize: 18,
@@ -124,7 +121,7 @@ class n1_rd_salu extends State {
 
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
           image: DecorationImage(
               image: AssetImage('assets/img/fondoNM.png'),
               fit: BoxFit.cover
@@ -134,7 +131,7 @@ class n1_rd_salu extends State {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            SizedBox(
+            Container(
               width: 300,
               child: Column(
                 children: [
@@ -155,17 +152,17 @@ class n1_rd_salu extends State {
                 ],
               ),
             ),
-            const Row(
+            Row(
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                SizedBox(
+                Container(
                   width:35.0,
                   height: 35.0,
                 ),
               ],
             ),
-            const Row(
+            Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
@@ -435,8 +432,8 @@ class n1_rd_salu extends State {
                 ),
               ],
             ),
-            const SizedBox(height: 50,),
-            const Row(
+            SizedBox(height: 50,),
+            Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -792,7 +789,7 @@ class n1_rd_salu extends State {
 
 
   void startTimer() {
-    Repite =Timer.periodic(const Duration(seconds: 10), (timer) {
+    Repite =Timer.periodic(Duration(seconds: 10), (timer) {
       _initializeSound();
     });
   }

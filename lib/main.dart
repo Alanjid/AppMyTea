@@ -7,11 +7,12 @@ import 'package:untitled/pages/Actividades/Afectividad/act_afectividad.dart';
 import 'package:untitled/pages/Actividades/Higiene/h1_ba%C3%B1o/aprende_poy_real.dart';
 import 'package:untitled/pages/Actividades/Higiene/n1_rd_salud_pt2.dart';
 import 'package:untitled/pages/Actividades/Prendas/act1_prendas.dart';
-import 'package:untitled/pages/home/actividades_rutina_diaria.dart';
+
 import 'package:untitled/pages/Login/home_page.dart';
 import 'package:untitled/pages/home/niveles_de_actividades.dart';
 import 'package:untitled/pages/home/Menu/principal.dart';
 import 'package:untitled/pages/home/saludo/saludo_inicio.dart';
+import 'package:untitled/utils/colors.dart' as utils;
 
 User userSession = User.fromJson(GetStorage().read('user') ?? {});
 void main() async {
@@ -42,19 +43,13 @@ class _MyAppState extends State<MyApp> {
           : '/', //VALIDACION DE SI EL USUARIO ES DIFERENTE DE NULL ENVIAR A PRINCIPAL, SI ES NULL ENVIA A LA PRINCIPAL (LOGIN)
       getPages: [
         GetPage(name: '/', page: () => MyHomePage()),
-        GetPage(name: '/principal', page: () => const principal()),
-        GetPage(name: '/saludo', page: () => const saludo()),
-        GetPage(
-            name: '/nivelesActividades',
-            page: () => const niveles_actividades()),
-        GetPage(
-            name: '/nivelesRutinaDiaria', page: () => const rutina_diaria()),
-        GetPage(name: '/act1Acciones', page: () => const movi_conejo()),
-        GetPage(
-            name: '/act1Afectividad', page: () => const afectividad_realista()),
-        GetPage(
-            name: '/act1Higiene', page: () => const apren_pony_lenguaje_real()),
-        GetPage(name: '/act2Higiene', page: () => const n1_rd_salud_pt2()),
+        GetPage(name: '/principal', page: () => principal()),
+        GetPage(name: '/saludo', page: () => saludo()),
+        GetPage(name: '/nivelesActividades', page: () => niveles_actividades()),
+        GetPage(name: '/act1Acciones', page: () => movi_conejo()),
+        GetPage(name: '/act1Afectividad', page: () => afectividad_realista()),
+        GetPage(name: '/act1Higiene', page: () => apren_pony_lenguaje_real()),
+        GetPage(name: '/act2Higiene', page: () => n1_rd_salud_pt2()),
         GetPage(name: '/act1PrendasDeVestir', page: () => const act1_prendas()),
       ],
       navigatorKey: Get.key,

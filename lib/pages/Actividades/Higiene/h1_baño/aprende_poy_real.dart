@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/instance_manager.dart';
@@ -7,11 +8,10 @@ import 'package:stroke_text/stroke_text.dart';
 import 'package:soundpool/soundpool.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 import 'package:untitled/pages/Actividades/Higiene/h1_ba%C3%B1o/aprende_pony_real_controller.dart';
+import 'package:untitled/pages/home/felicitacion.dart';
 import 'package:untitled/utils/colors.dart' as utils;
 
 class apren_pony_lenguaje_real extends StatefulWidget {
-  const apren_pony_lenguaje_real({super.key});
-
   @override
   afre createState() => afre();
 }
@@ -30,20 +30,18 @@ class afre extends State {
   int _selectedSwitch = 0;
   aprende_pony_controller con = Get.put(aprende_pony_controller());
 
-  @override
   void initState() {
     super.initState();
     _initializeSound();
     startTimer();
   }
 
-  @override
   Widget build(BuildContext context) {
     if (visible == true &&
         visible2 == true &&
         visible3 == true &&
         visible4 == true) {
-      Future.delayed(const Duration(seconds: 1), () {
+      Future.delayed(Duration(seconds: 1), () {
         AwesomeDialog(
           context: context,
           dialogType: DialogType.info,
@@ -77,19 +75,19 @@ class afre extends State {
               text: Texto,
               strokeWidth: 6,
               strokeColor: Colors.orange,
-              textStyle: const TextStyle(
+              textStyle: TextStyle(
                 fontSize: 28,
                 fontFamily: 'lazydog',
               ),
             ),
-            const SizedBox(width: 20),
+            SizedBox(width: 20),
             IconButton(
               onPressed: () {
                 showDialog(
                     context: context,
                     builder: (BuildContext context) {
                       return AlertDialog(
-                        title: const Text(
+                        title: Text(
                           'Cambiamos la voz',
                           textAlign: TextAlign.center,
                         ),
@@ -104,9 +102,9 @@ class afre extends State {
                               inactiveBgColor: Colors.grey,
                               inactiveFgColor: Colors.white,
                               totalSwitches: 2,
-                              labels: const ['Hombre', 'Mujer'],
-                              icons: const [Icons.male, Icons.female],
-                              activeBgColors: const [
+                              labels: ['Hombre', 'Mujer'],
+                              icons: [Icons.male, Icons.female],
+                              activeBgColors: [
                                 [Colors.blue],
                                 [Colors.pink]
                               ],
@@ -131,7 +129,7 @@ class afre extends State {
                             onPressed: () {
                               Navigator.of(context).pop();
                             },
-                            child: const Text(
+                            child: Text(
                               "Cerrar",
                               style: TextStyle(
                                   fontSize: 18,
@@ -158,14 +156,14 @@ class afre extends State {
       body: Container(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
           image: DecorationImage(
               image: AssetImage('assets/img/fondoNM.png'), fit: BoxFit.cover),
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            SizedBox(
+            Container(
               width: 300,
               child: Column(
                 children: [
@@ -220,14 +218,14 @@ class afre extends State {
                       visible: visible,
                       child: Container(
                         padding:
-                            const EdgeInsets.symmetric(vertical: 62, horizontal: 62),
+                            EdgeInsets.symmetric(vertical: 62, horizontal: 62),
                         decoration:
                             BoxDecoration(color: Colors.blue.withOpacity(0.4)),
                       ),
                     ),
                   ],
                 ),
-                const SizedBox(
+                SizedBox(
                   width: 86.5,
                 ),
                 //Boton Matemáticas
@@ -251,7 +249,7 @@ class afre extends State {
                     ),
                   ),
                 ),
-                const SizedBox(
+                SizedBox(
                   width: 86.5,
                 ),
                 Stack(
@@ -284,14 +282,14 @@ class afre extends State {
                       visible: visible2,
                       child: Container(
                         padding:
-                            const EdgeInsets.symmetric(vertical: 62, horizontal: 62),
+                            EdgeInsets.symmetric(vertical: 62, horizontal: 62),
                         decoration:
                             BoxDecoration(color: Colors.blue.withOpacity(0.4)),
                       ),
                     ),
                   ],
                 ),
-                const SizedBox(
+                SizedBox(
                   width: 86.5,
                 ),
                 Container(
@@ -341,7 +339,7 @@ class afre extends State {
                     ),
                   ),
                 ),
-                const SizedBox(
+                SizedBox(
                   width: 86.5,
                 ),
                 Stack(
@@ -374,14 +372,14 @@ class afre extends State {
                       visible: visible4,
                       child: Container(
                         padding:
-                            const EdgeInsets.symmetric(vertical: 62, horizontal: 62),
+                            EdgeInsets.symmetric(vertical: 62, horizontal: 62),
                         decoration:
                             BoxDecoration(color: Colors.blue.withOpacity(0.4)),
                       ),
                     ),
                   ],
                 ),
-                const SizedBox(
+                SizedBox(
                   width: 86.5,
                 ),
                 Stack(
@@ -414,14 +412,14 @@ class afre extends State {
                       visible: visible3,
                       child: Container(
                         padding:
-                            const EdgeInsets.symmetric(vertical: 62, horizontal: 62),
+                            EdgeInsets.symmetric(vertical: 62, horizontal: 62),
                         decoration:
                             BoxDecoration(color: Colors.blue.withOpacity(0.4)),
                       ),
                     ),
                   ],
                 ),
-                const SizedBox(
+                SizedBox(
                   width: 86.5,
                 ),
                 Container(
@@ -490,7 +488,7 @@ class afre extends State {
   }
 
   void startTimer() {
-    Repite = Timer.periodic(const Duration(seconds: 10), (timer) {
+    Repite = Timer.periodic(Duration(seconds: 10), (timer) {
       _initializeSound();
     });
   }

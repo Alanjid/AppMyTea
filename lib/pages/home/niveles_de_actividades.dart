@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:collection';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -7,78 +8,51 @@ import 'package:stroke_text/stroke_text.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 import 'package:untitled/pages/Actividades/Afectividad/act_afectividad.dart';
 import 'package:untitled/pages/Actividades/Higiene/n1_rd_salud_pt2.dart';
+import 'package:untitled/pages/Actividades/Acciones/act_movimiento1.dart';
 import 'package:untitled/pages/Actividades/Higiene/h1_ba%C3%B1o/aprende_poy_real.dart';
+import 'package:untitled/pages/Widgets/fabrica_actividades.dart';
 import 'package:untitled/pages/Widgets/tareas_completadas.dart';
 import 'package:untitled/utils/colors.dart' as utils;
-import '../Widgets/ActividadEstado.dart';
-import 'package:get/get.dart';
 
-// ignore: camel_case_types
 class niveles_actividades extends StatefulWidget {
-  const niveles_actividades({super.key});
-
   @override
-  // ignore: library_private_types_in_public_api
   _niveles_actividades createState() => _niveles_actividades();
 }
 
-// ignore: camel_case_types
 class _niveles_actividades extends State<niveles_actividades>
     with SingleTickerProviderStateMixin {
-  // ignore: non_constant_identifier_names
   String texto_dictar = "Realizamos las siguientes actividades";
   String audioUrl = "assets/audios/actividadesH.mp3";
   ValueNotifier<bool> isAudioPlaying = ValueNotifier<bool>(false);
-  // ignore: non_constant_identifier_names
-  late List<Actividad> ActividadesList;
-  Actividad alimento = Actividad(
-      imagePath: 'assets/img/alimento.png',
-      isEnabled: true,
-      Nombre: 'Alimentos');
-  Actividad bebidas = Actividad(
-      imagePath: 'assets/img/bebidas.png', isEnabled: true, Nombre: 'Bebidas');
-  Actividad acciones = Actividad(
-      imagePath: 'assets/img/acciones.png',
-      isEnabled: true,
-      Nombre: 'Acciones');
-  Actividad partesCuerpo = Actividad(
-      imagePath: 'assets/img/partes del cuerpo.png',
-      isEnabled: true,
-      Nombre: 'Partes del cuerpo');
-  Actividad prendas = Actividad(
-      imagePath: 'assets/img/prendas.png',
-      isEnabled: true,
-      Nombre: 'Prendas de vestir');
-  Actividad matematicas = Actividad(
-      imagePath: 'assets/img/matemáticas.png',
-      isEnabled: true,
-      Nombre: 'Matemàticas');
+
+  late int _streamId;
+  late ActividadFactory _actividadFactory;
+  late List<Actividad> actividades;
   late Soundpool _soundpool;
   late int _soundId;
-  // ignore: non_constant_identifier_names
   late Timer Repite;
   double _sliderValue = 50.0;
   double _volume = 0.5;
   int _selectedSwitch = 0;
   late AnimationController _animationController;
 
-  @override
   void initState() {
     super.initState();
     _initializeSound();
     startTimer();
     _animationController = AnimationController(
       vsync: this,
-      duration: const Duration(seconds: 2),
+      duration: Duration(seconds: 2),
     );
     _animationController.repeat(reverse: true);
-    ActividadesList = [
-      alimento,
-      bebidas,
-      acciones,
-      partesCuerpo,
-      prendas,
-      matematicas
+    _actividadFactory = ActividadFactory();
+    actividades = [
+      _actividadFactory.crearActividad('Alimento'),
+      _actividadFactory.crearActividad('Bebidas'),
+      _actividadFactory.crearActividad('Acciones'),
+      _actividadFactory.crearActividad('PartesDelCuerpo'),
+      _actividadFactory.crearActividad('Prendas'),
+      _actividadFactory.crearActividad('Matematicas'),
     ];
   }
 
@@ -86,6 +60,7 @@ class _niveles_actividades extends State<niveles_actividades>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: utils.Colors.azulitoArriba,
         elevation: 0,
         toolbarHeight: 50,
         title: Row(
@@ -97,7 +72,7 @@ class _niveles_actividades extends State<niveles_actividades>
                     context: context,
                     builder: (BuildContext context) {
                       return AlertDialog(
-                        title: const Text(
+                        title: Text(
                           'Cambiamos la voz',
                           textAlign: TextAlign.center,
                         ),
@@ -122,6 +97,7 @@ class _niveles_actividades extends State<niveles_actividades>
                                 setState(() {
                                   _selectedSwitch = index!;
                                 });
+                                print('switched to: $index');
                                 if (index == 0) {
                                   audioUrl = "assets/audios/actividadesH.mp3";
                                 } else {
@@ -139,7 +115,7 @@ class _niveles_actividades extends State<niveles_actividades>
                             onPressed: () {
                               Navigator.of(context).pop();
                             },
-                            child: const Text(
+                            child: Text(
                               "Cerrar",
                               style: TextStyle(
                                   fontSize: 18,
@@ -151,10 +127,11 @@ class _niveles_actividades extends State<niveles_actividades>
                       );
                     });
               },
-              icon: Image.asset('assets/img/iconobocina.gif'),
-              iconSize: 70,
+              icon: Icon(Icons.volume_up_sharp),
+              iconSize: 40,
+              color: Colors.white,
             ),
-            const SizedBox(width: 8),
+            SizedBox(width: 8),
             Image.asset(
               'assets/img/logo.png',
               width: 60,
@@ -166,13 +143,13 @@ class _niveles_actividades extends State<niveles_actividades>
       body: Container(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
           image: DecorationImage(
               image: AssetImage('assets/img/fondoNM.png'), fit: BoxFit.cover),
         ),
         child: Column(
           children: [
-            SizedBox(
+            Container(
               width: 300,
               child: Column(
                 children: [
@@ -197,7 +174,7 @@ class _niveles_actividades extends State<niveles_actividades>
               text: texto_dictar,
               strokeWidth: 6,
               strokeColor: Colors.green,
-              textStyle: const TextStyle(
+              textStyle: TextStyle(
                 fontSize: 38,
                 fontFamily: 'lazydog',
               ),
@@ -213,63 +190,13 @@ class _niveles_actividades extends State<niveles_actividades>
                       width: MediaQuery.sizeOf(context).width,
                       child: ListView.builder(
                         scrollDirection: Axis.horizontal,
-                        itemCount: ActividadesList.length,
+                        itemCount: actividades.length,
                         itemBuilder: (context, index) {
-                          Actividad actividad = ActividadesList[index];
+                          Actividad actividad = actividades[index];
                           return Row(
                             children: [
-                              Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Visibility(
-                                    visible: actividad.isEnabled,
-                                    child: IconButton(
-                                      icon: Image.asset(
-                                        actividad.imagePath,
-                                        width:
-                                            MediaQuery.of(context).size.width *
-                                                0.3,
-                                        height:
-                                            MediaQuery.of(context).size.height *
-                                                0.3,
-                                      ),
-                                      onPressed: () {
-                                        switch (actividad.imagePath) {
-                                          case 'assets/img/alimento.png':
-                                            _setVolume(0);
-                                            Get.to(
-                                                const afectividad_realista());
-                                            break;
-                                          case 'assets/img/bebidas.png':
-                                            _setVolume(0);
-                                            Get.to(tareas_comp_diarias());
-                                            break;
-                                          case 'assets/img/acciones.png':
-                                            _setVolume(0);
-                                            Get.to(
-                                                const apren_pony_lenguaje_real());
-                                            break;
-                                          case 'assets/img/partes del cuerpo.png':
-                                            _setVolume(0);
-                                            Get.to(n1_rd_salu());
-                                            break;
-                                          case 'assets/img/prendas.png':
-                                            _setVolume(0);
-                                            Get.to(tareas_comp_diarias());
-                                            break;
-                                          case 'assets/img/matemáticas.png':
-                                            _setVolume(0);
-                                            Get.to(tareas_comp_diarias());
-                                            break;
-                                        }
-                                      },
-                                      iconSize:
-                                          120, // Ajusta el tamaño del icono según tus necesidades
-                                      padding: const EdgeInsets.all(
-                                          8), // Ajusta el relleno según tus necesidades
-                                      color: Colors
-                                          .blue, // Ajusta el color del icono según tus necesidades
-                                    ),
-                                  )),
+                              _actividadFactory.crearBotonActividad(
+                                  context, actividad, _setVolume)
                             ],
                           );
                         },
@@ -288,10 +215,10 @@ class _niveles_actividades extends State<niveles_actividades>
                     for (int i = 0; i < 4; i++)
                       SlideTransition(
                         position: Tween<Offset>(
-                          begin: const Offset(0, 0),
-                          end: const Offset(1, 0),
+                          begin: Offset(0, 0),
+                          end: Offset(1, 0),
                         ).animate(_animationController),
-                        child: const Icon(
+                        child: Icon(
                           Icons.arrow_forward,
                           size: 30,
                           color: Colors.white,
@@ -316,7 +243,7 @@ class _niveles_actividades extends State<niveles_actividades>
   }
 
   void startTimer() {
-    Repite = Timer.periodic(const Duration(seconds: 10), (timer) {
+    Repite = Timer.periodic(Duration(seconds: 10), (timer) {
       _initializeSound();
     });
   }
@@ -330,11 +257,11 @@ class _niveles_actividades extends State<niveles_actividades>
   }
 
   void _initializeSound() async {
-    // ignore: deprecated_member_use
     _soundpool = Soundpool();
     _soundId = await rootBundle.load(audioUrl).then((ByteData soundData) {
       return _soundpool.load(soundData);
     });
     await _setVolume(_volume);
+    _streamId = await _soundpool.play(_soundId);
   }
 }

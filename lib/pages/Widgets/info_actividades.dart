@@ -1,9 +1,9 @@
+import 'package:untitled/utils/colors.dart' as utils;
 import 'package:flutter/material.dart';
 
 class info_pictogramas extends StatelessWidget {
-  const info_pictogramas({super.key});
+  const info_pictogramas();
 
-  @override
   Widget build(BuildContext context) {
     return IconButton(
         onPressed: () {
@@ -11,14 +11,14 @@ class info_pictogramas extends StatelessWidget {
               context: context,
               builder: (BuildContext context) {
                 return AlertDialog(
-                  title: const Text("Guia de Pictogramas"),
+                  title: Text("Guia de Pictogramas"),
                   content: SingleChildScrollView(
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisSize: MainAxisSize.max,
                       children: [
-                        SizedBox(
+                        Container(
                           width: MediaQuery.of(context).size.width * 0.4,
                           height: MediaQuery.of(context).size.height * 0.7,
                           //Contenedor de Primera columna de pictogramas
@@ -27,7 +27,7 @@ class info_pictogramas extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               //Primer pictograma
-                              SizedBox(
+                              Container(
                                 width: 300,
                                 child: Column(
                                   children: [
@@ -42,7 +42,7 @@ class info_pictogramas extends StatelessWidget {
                                                 width:
                                                     2.0), // Configura el borde negro
                                           ),
-                                          child:const Image(
+                                          child: const Image(
                                             image: AssetImage(
                                                 "assets/img/alimento.png"),
                                           ),
@@ -50,13 +50,13 @@ class info_pictogramas extends StatelessWidget {
                                         const SizedBox(
                                           width: 20,
                                         ),
-                                       const Text("ALIMENTOS"),
+                                        const Text("ALIMENTOS"),
                                       ],
                                     ),
                                   ],
                                 ),
                               ),
-                              SizedBox(
+                              Container(
                                 width: 300,
                                 child: Column(
                                   children: [
@@ -71,21 +71,21 @@ class info_pictogramas extends StatelessWidget {
                                                 width:
                                                     2.0), // Configura el borde negro
                                           ),
-                                          child: const Image(
+                                          child: Image(
                                             image: AssetImage(
                                                 "assets/img/bebidas.png"),
                                           ),
                                         ),
-                                        const SizedBox(
+                                        SizedBox(
                                           width: 20,
                                         ),
-                                        const Text("BEBIDAS"),
+                                        Text("BEBIDAS"),
                                       ],
                                     ),
                                   ],
                                 ),
                               ),
-                              SizedBox(
+                              Container(
                                 width: 300,
                                 child: Column(
                                   children: [
@@ -100,21 +100,21 @@ class info_pictogramas extends StatelessWidget {
                                                 width:
                                                     2.0), // Configura el borde negro
                                           ),
-                                          child: const Image(
+                                          child: Image(
                                             image: AssetImage(
                                                 "assets/img/acciones.png"),
                                           ),
                                         ),
-                                        const SizedBox(
+                                        SizedBox(
                                           width: 20,
                                         ),
-                                        const Text("ACCIONES"),
+                                        Text("ACCIONES"),
                                       ],
                                     ),
                                   ],
                                 ),
                               ),
-                              SizedBox(
+                              Container(
                                 width: 300,
                                 child: Column(
                                   children: [
@@ -129,15 +129,15 @@ class info_pictogramas extends StatelessWidget {
                                                 width:
                                                     2.0), // Configura el borde negro
                                           ),
-                                          child: const Image(
+                                          child: Image(
                                             image: AssetImage(
                                                 "assets/img/partes del cuerpo.png"),
                                           ),
                                         ),
-                                        const SizedBox(
+                                        SizedBox(
                                           width: 20,
                                         ),
-                                        const Text("PARTES DEL CUERPO"),
+                                        Text("PARTES DEL CUERPO"),
                                       ],
                                     ),
                                   ],
@@ -151,12 +151,12 @@ class info_pictogramas extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              SizedBox(
+                              Container(
                                 width: 300,
                                 height: 245,
                                 child: Column(
                                   children: [
-                                    const SizedBox(
+                                    SizedBox(
                                       height: 9,
                                     ),
                                     Row(
@@ -170,18 +170,18 @@ class info_pictogramas extends StatelessWidget {
                                                 width:
                                                     2.0), // Configura el borde negro
                                           ),
-                                          child: const Image(
+                                          child: Image(
                                             image: AssetImage(
                                                 "assets/img/prendas.png"),
                                           ),
                                         ),
-                                        const SizedBox(
+                                        SizedBox(
                                           width: 20,
                                         ),
-                                        const Text("PRENDAS DE VESTIR"),
+                                        Text("PRENDAS DE VESTIR"),
                                       ],
                                     ),
-                                    const SizedBox(
+                                    SizedBox(
                                       height: 20,
                                     ),
                                     Row(
@@ -195,33 +195,37 @@ class info_pictogramas extends StatelessWidget {
                                                 width:
                                                     2.0), // Configura el borde negro
                                           ),
-                                          child: const Image(
+                                          child: Image(
                                             image: AssetImage(
                                                 "assets/img/matemáticas.png"),
                                           ),
                                         ),
-                                        const SizedBox(
+                                        SizedBox(
                                           width: 20,
                                         ),
-                                        const Text("MATEMÁTICAS"),
+                                        Text("MATEMÁTICAS"),
                                       ],
                                     ),
-                                    const SizedBox(
+                                    SizedBox(
                                       height: 20,
                                     ),
-                                    Row(
-                                      children: [
-                                        const SizedBox(
-                                          width: 200,
-                                        ),
-                                        ElevatedButton(
-                                          child: const Text("CERRAR"),
+                                    Container(
+                                        padding:
+                                            EdgeInsets.symmetric(vertical: 20),
+                                        child: ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                            backgroundColor:
+                                                utils.Colors.azulitoArriba,
+                                          ),
+                                          child: const Text(
+                                            "CERRAR",
+                                            style:
+                                                TextStyle(color: Colors.white),
+                                          ),
                                           onPressed: () {
                                             Navigator.pop(context);
                                           },
-                                        ),
-                                      ],
-                                    ),
+                                        ))
                                   ],
                                 ),
                               ),
@@ -234,7 +238,7 @@ class info_pictogramas extends StatelessWidget {
                 );
               });
         },
-        icon: const Icon(
+        icon: Icon(
           Icons.info,
           color: Colors.white,
           size: 30,

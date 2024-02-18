@@ -14,8 +14,6 @@ import '../../../moldes/user.dart';
 User user = User.fromJson(GetStorage().read('user') ?? {});
 
 class saludo extends StatefulWidget {
-  const saludo({super.key});
-
   @override
   _saludoState createState() => _saludoState();
 }
@@ -33,7 +31,6 @@ class _saludoState extends State<saludo> {
   int _selectedSwitch = 0;
   saludoController con = Get.put(saludoController());
 
-  @override
   void initState() {
     super.initState();
     _initializeSound();
@@ -44,6 +41,7 @@ class _saludoState extends State<saludo> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: utils.Colors.azulitoArriba,
         elevation: 0,
         toolbarHeight: 40,
         title: Row(
@@ -56,7 +54,7 @@ class _saludoState extends State<saludo> {
                     context: context,
                     builder: (BuildContext context) {
                       return AlertDialog(
-                        title: const Text(
+                        title: Text(
                           'Cambiamos la voz',
                           textAlign: TextAlign.center,
                         ),
@@ -81,7 +79,7 @@ class _saludoState extends State<saludo> {
                                 setState(() {
                                   _selectedSwitch = index!;
                                 });
-                                print('switched to: $index');
+
                                 if (index == 0) {
                                   audioUrl =
                                       "assets/audios/bienvenida-hombre.mp3";
@@ -111,20 +109,21 @@ class _saludoState extends State<saludo> {
                       );
                     });
               },
-              icon: Image.asset('assets/img/iconobocina.gif'),
-              iconSize: 70,
+              icon: Icon(Icons.volume_up_sharp),
+              iconSize: 40,
+              color: Colors.white,
             ),
-            const SizedBox(width: 300),
+            SizedBox(width: 300),
             Image.asset(
               'assets/img/logo.png',
               width: 60,
               height: 60,
             ),
-            const SizedBox(
+            SizedBox(
               width: 40,
             ),
             IconButton(
-              icon: const Icon(Icons.arrow_forward),
+              icon: Icon(Icons.arrow_forward),
               onPressed: () async {
                 await _setVolume(0);
                 con.goToMenuPage();
@@ -136,13 +135,13 @@ class _saludoState extends State<saludo> {
       body: Container(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
           image: DecorationImage(
               image: AssetImage('assets/img/fondoNM.png'), fit: BoxFit.cover),
         ),
         child: Column(
           children: [
-            SizedBox(
+            Container(
               width: 300,
               child: Column(
                 children: [
@@ -170,14 +169,14 @@ class _saludoState extends State<saludo> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    const SizedBox(
+                    SizedBox(
                       height: 20,
                     ),
                     StrokeText(
                       text: Texto_Saludo,
                       strokeWidth: 6,
                       strokeColor: Colors.indigo,
-                      textStyle: const TextStyle(fontSize: 38, fontFamily: 'lazydog'),
+                      textStyle: TextStyle(fontSize: 38, fontFamily: 'lazydog'),
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -205,7 +204,7 @@ class _saludoState extends State<saludo> {
   }
 
   void startTimer() {
-    Repite = Timer.periodic(const Duration(seconds: 10), (timer) {
+    Repite = Timer.periodic(Duration(seconds: 10), (timer) {
       _initializeSound();
     });
   }

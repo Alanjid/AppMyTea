@@ -1,3 +1,4 @@
+import 'dart:js';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -46,7 +47,7 @@ class loginController extends GetxController {
         Get.snackbar(
             'Inicio de sesion correcto', "Bienvenido ${user.nombre.toString()}",
             snackPosition: SnackPosition.TOP,
-            icon: const Icon(
+            icon: Icon(
               Icons.done_outline,
               color: Colors.greenAccent,
               size: 50,
@@ -55,7 +56,7 @@ class loginController extends GetxController {
       } else {
         Get.snackbar('Error', responseApi.message ?? 'Inicio de sesión fallido',
             snackPosition: SnackPosition.TOP,
-            icon: const Icon(
+            icon: Icon(
               Icons.not_interested_sharp,
               color: Colors.red,
               size: 50,
@@ -65,7 +66,7 @@ class loginController extends GetxController {
       print('Error en la solicitud: $e');
       Get.snackbar('Error', 'Hubo un problema al realizar la solicitud',
           snackPosition: SnackPosition.TOP,
-          icon: const Icon(
+          icon: Icon(
             Icons.signal_wifi_connected_no_internet_4_outlined,
             color: Colors.red,
           ));

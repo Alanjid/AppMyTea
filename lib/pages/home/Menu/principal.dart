@@ -6,12 +6,11 @@ import 'package:soundpool/soundpool.dart';
 import 'package:stroke_text/stroke_text.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 import 'package:untitled/pages/home/Menu/principal_controller.dart';
+
 import 'package:untitled/pages/Widgets/info_actividades.dart';
 import 'package:untitled/utils/colors.dart' as utils;
 
 class principal extends StatefulWidget {
-  const principal({super.key});
-
   @override
   _principalState createState() => _principalState();
 }
@@ -27,7 +26,7 @@ class _principalState extends State<principal> {
   double _volume =
       0.5; // Agrega _volume como una propiedad y establece el valor inicial
   int _selectedSwitch = 0;
-  
+
   principalController con = Get.put(principalController());
 
   @override
@@ -41,6 +40,7 @@ class _principalState extends State<principal> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: utils.Colors.azulitoArriba,
         elevation: 0,
         toolbarHeight: 40,
         title: Row(
@@ -53,7 +53,7 @@ class _principalState extends State<principal> {
                     context: context,
                     builder: (BuildContext context) {
                       return AlertDialog(
-                        title: const Text(
+                        title: Text(
                           'Cambiamos la voz',
                           textAlign: TextAlign.center,
                         ),
@@ -68,9 +68,9 @@ class _principalState extends State<principal> {
                               inactiveBgColor: Colors.grey,
                               inactiveFgColor: Colors.white,
                               totalSwitches: 2,
-                              labels: const ['Hombre', 'Mujer'],
-                              icons: const [Icons.male, Icons.female],
-                              activeBgColors: const [
+                              labels: ['Hombre', 'Mujer'],
+                              icons: [Icons.male, Icons.female],
+                              activeBgColors: [
                                 [Colors.blue],
                                 [Colors.pink]
                               ],
@@ -95,7 +95,7 @@ class _principalState extends State<principal> {
                             onPressed: () {
                               Navigator.of(context).pop();
                             },
-                            child: const Text(
+                            child: Text(
                               "Cerrar",
                               style: TextStyle(
                                   fontSize: 18,
@@ -107,11 +107,12 @@ class _principalState extends State<principal> {
                       );
                     });
               },
-              icon: Image.asset('assets/img/iconobocina.gif'),
-              iconSize: 70,
+              icon: Icon(Icons.volume_up_sharp),
+              iconSize: 40,
+              color: Colors.white,
             ),
-            const SizedBox(width: 300),
-            const info_pictogramas(),
+            SizedBox(width: 300),
+            info_pictogramas(),
             Image.asset(
               'assets/img/logo.png',
               width: 60,
@@ -123,7 +124,7 @@ class _principalState extends State<principal> {
       body: Container(
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height,
-          decoration: const BoxDecoration(
+          decoration: BoxDecoration(
             image: DecorationImage(
               image: AssetImage('assets/img/fondoNM.png'),
               fit: BoxFit.cover,
@@ -131,7 +132,7 @@ class _principalState extends State<principal> {
           ),
           child: Column(
             children: [
-              SizedBox(
+              Container(
                 width: 300,
                 child: Column(
                   children: [
@@ -152,11 +153,11 @@ class _principalState extends State<principal> {
                   ],
                 ),
               ),
-              SizedBox(
+              Container(
                 height: MediaQuery.of(context).size.height * 0.6,
                 width: 600,
                 child: ListWheelScrollView(
-                  itemExtent: 300,
+                  itemExtent: 250,
                   diameterRatio: 2.5,
                   offAxisFraction: 0.5,
                   perspective: 0.003,
@@ -169,13 +170,13 @@ class _principalState extends State<principal> {
                             children: [
                               IconButton(
                                 onPressed: () async {
-                                  await _setVolume(_volume);
+                                  await _setVolume(0);
                                   con.goToActividades();
                                 },
                                 icon: Image.asset('assets/img/aprendizaje.png'),
                                 iconSize: 210,
                               ),
-                              const StrokeText(
+                              StrokeText(
                                 text: 'ACTIVIDADES',
                                 strokeWidth: 4,
                                 textStyle: TextStyle(
@@ -203,7 +204,7 @@ class _principalState extends State<principal> {
                                     Image.asset('assets/img/rutinadiaria.png'),
                                 iconSize: 210,
                               ),
-                              const StrokeText(
+                              StrokeText(
                                 text: 'MI RUTINA DIARIA',
                                 strokeWidth: 4,
                                 textStyle: TextStyle(
@@ -227,7 +228,7 @@ class _principalState extends State<principal> {
                                 icon: Image.asset('assets/img/avances.png'),
                                 iconSize: 220,
                               ),
-                              const StrokeText(
+                              StrokeText(
                                 text: 'AVANCES',
                                 strokeWidth: 4,
                                 textStyle: TextStyle(
@@ -257,7 +258,7 @@ class _principalState extends State<principal> {
   }
 
   void startTimer() {
-    Repite = Timer.periodic(const Duration(seconds: 10), (timer) {
+    Repite = Timer.periodic(Duration(seconds: 10), (timer) {
       _initializeSound();
     });
   }

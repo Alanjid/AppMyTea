@@ -1,14 +1,14 @@
 import 'dart:async';
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:stroke_text/stroke_text.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:soundpool/soundpool.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 import 'package:untitled/utils/colors.dart' as utils;
 
 class movi_conejo extends StatefulWidget {
-  const movi_conejo({super.key});
-
   //_HomePageState createState()=> _HomePageState();
   // const movi_conejo(  { required this.photo, required this.onTap, required this.width}) : super();
   // _HomePageState createState()=> _HomePageState();
@@ -37,7 +37,6 @@ class _HomePageState extends State {
   int _selectedSwitch = 0;
   int menos =15;
 
-  @override
   void initState() {
     super.initState();
     _initializeSound();
@@ -45,7 +44,7 @@ class _HomePageState extends State {
   }
 
   void _startCountDown() {
-    Timer.periodic(const Duration(seconds: 1), (timer)   {
+    Timer.periodic(Duration(seconds: 1), (timer)   {
       if (menos > 0) {
         // musicamovimiento();
         setState(()  {
@@ -76,7 +75,7 @@ class _HomePageState extends State {
               text: Instruccion,
               strokeWidth: 6,
               strokeColor: Colors.deepPurpleAccent,
-              textStyle: const TextStyle(
+              textStyle: TextStyle(
                 fontSize: 30,
                 fontFamily: 'lazydog',
               ),
@@ -88,7 +87,7 @@ class _HomePageState extends State {
                     context: context,
                     builder: (BuildContext context){
                       return AlertDialog(
-                        title: const Text('Cambiamos la voz',
+                        title: Text('Cambiamos la voz',
                           textAlign: TextAlign.center,),
                         content: Column(
                           mainAxisSize: MainAxisSize.min,
@@ -101,9 +100,9 @@ class _HomePageState extends State {
                               inactiveBgColor: Colors.grey,
                               inactiveFgColor: Colors.white,
                               totalSwitches: 2,
-                              labels: const ['Hombre', 'Mujer'],
-                              icons: const [Icons.male, Icons.female],
-                              activeBgColors: const [[Colors.blue],[Colors.pink]],
+                              labels: ['Hombre', 'Mujer'],
+                              icons: [Icons.male, Icons.female],
+                              activeBgColors: [[Colors.blue],[Colors.pink]],
                               onToggle: (index) {
                                 setState(() {
                                   _selectedSwitch=index!;
@@ -127,7 +126,7 @@ class _HomePageState extends State {
                             onPressed: () {
                               Navigator.of(context).pop();
                             },
-                            child: const Text(
+                            child: Text(
                               "Cerrar",
                               style: TextStyle(
                                   fontSize: 18,
@@ -150,7 +149,7 @@ class _HomePageState extends State {
       body: Container(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
           image: DecorationImage(
               image: AssetImage('assets/img/fondoNM.png'),
               fit: BoxFit.cover
@@ -158,7 +157,7 @@ class _HomePageState extends State {
         ),
         child:Column(
           children: [
-            SizedBox(
+            Container(
               width: 300,
               child: Column(
                 children: [
@@ -187,15 +186,15 @@ class _HomePageState extends State {
                   children: [
                     Text(
                       menos==0?'  ¡BIEN ''\n''HECHO!':menos.toString(),
-                      style: const TextStyle(fontSize: 50),
+                      style: TextStyle(fontSize: 50),
                     ),
                     MaterialButton(onPressed: () {
                       _startCountDown();
                     },
-                      color: Colors.deepPurpleAccent,
                       child: const Text('COMENZAR',style: TextStyle(fontSize: 27,color:Colors.white),
                         // color: Colors.deepPurpleAccent,
                       ),
+                      color: Colors.deepPurpleAccent,
                     ),
                   ],
                 ),
@@ -237,7 +236,7 @@ class _HomePageState extends State {
 
 
   void startTimer() {
-    Repite =Timer.periodic(const Duration(seconds: 10), (timer) {
+    Repite =Timer.periodic(Duration(seconds: 10), (timer) {
       _initializeSound();
     });
   }
