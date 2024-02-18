@@ -41,14 +41,19 @@ class _MyAppState extends State<MyApp> {
           ? '/saludo'
           : '/', //VALIDACION DE SI EL USUARIO ES DIFERENTE DE NULL ENVIAR A PRINCIPAL, SI ES NULL ENVIA A LA PRINCIPAL (LOGIN)
       getPages: [
-        GetPage(name: '/', page: () => const MyHomePage()),
+        GetPage(name: '/', page: () => MyHomePage()),
         GetPage(name: '/principal', page: () => const principal()),
         GetPage(name: '/saludo', page: () => const saludo()),
-        GetPage(name: '/nivelesActividades', page: () => const niveles_actividades()),
-        GetPage(name: '/nivelesRutinaDiaria', page: () => const rutina_diaria()),
+        GetPage(
+            name: '/nivelesActividades',
+            page: () => const niveles_actividades()),
+        GetPage(
+            name: '/nivelesRutinaDiaria', page: () => const rutina_diaria()),
         GetPage(name: '/act1Acciones', page: () => const movi_conejo()),
-        GetPage(name: '/act1Afectividad', page: () => const afectividad_realista()),
-        GetPage(name: '/act1Higiene', page: () => const apren_pony_lenguaje_real()),
+        GetPage(
+            name: '/act1Afectividad', page: () => const afectividad_realista()),
+        GetPage(
+            name: '/act1Higiene', page: () => const apren_pony_lenguaje_real()),
         GetPage(name: '/act2Higiene', page: () => const n1_rd_salud_pt2()),
         GetPage(name: '/act1PrendasDeVestir', page: () => const act1_prendas()),
       ],
