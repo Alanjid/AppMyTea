@@ -42,7 +42,7 @@ class info_pictogramas extends StatelessWidget {
                                                 width:
                                                     2.0), // Configura el borde negro
                                           ),
-                                          child:const Image(
+                                          child: const Image(
                                             image: AssetImage(
                                                 "assets/img/alimento.png"),
                                           ),
@@ -50,7 +50,7 @@ class info_pictogramas extends StatelessWidget {
                                         const SizedBox(
                                           width: 20,
                                         ),
-                                       const Text("ALIMENTOS"),
+                                        const Text("ALIMENTOS"),
                                       ],
                                     ),
                                   ],
@@ -209,19 +209,23 @@ class info_pictogramas extends StatelessWidget {
                                     SizedBox(
                                       height: 20,
                                     ),
-                                    Row(
-                                      children: [
-                                        SizedBox(
-                                          width: 200,
-                                        ),
-                                        ElevatedButton(
-                                          child: const Text("CERRAR"),
+                                    Container(
+                                        padding:
+                                            EdgeInsets.symmetric(vertical: 20),
+                                        child: ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                            backgroundColor:
+                                                utils.Colors.azulitoArriba,
+                                          ),
+                                          child: const Text(
+                                            "CERRAR",
+                                            style:
+                                                TextStyle(color: Colors.white),
+                                          ),
                                           onPressed: () {
                                             Navigator.pop(context);
                                           },
-                                        ),
-                                      ],
-                                    ),
+                                        ))
                                   ],
                                 ),
                               ),

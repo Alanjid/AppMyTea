@@ -10,10 +10,9 @@ import 'package:untitled/pages/Actividades/Afectividad/act_afectividad.dart';
 import 'package:untitled/pages/Actividades/Higiene/n1_rd_salud_pt2.dart';
 import 'package:untitled/pages/Actividades/Acciones/act_movimiento1.dart';
 import 'package:untitled/pages/Actividades/Higiene/h1_ba%C3%B1o/aprende_poy_real.dart';
+import 'package:untitled/pages/Widgets/fabrica_actividades.dart';
 import 'package:untitled/pages/Widgets/tareas_completadas.dart';
 import 'package:untitled/utils/colors.dart' as utils;
-import '../Widgets/ActividadEstado.dart';
-import 'actividades_rutina_diaria.dart';
 
 class niveles_actividades extends StatefulWidget {
   @override
@@ -26,30 +25,10 @@ class _niveles_actividades extends State<niveles_actividades>
   String audioUrl = "assets/audios/actividadesH.mp3";
   late int _streamId;
   ValueNotifier<bool> isAudioPlaying = ValueNotifier<bool>(false);
-  late List<Actividad> ActividadesList;
+
   late int _streamId;
-  Actividad alimento = Actividad(
-      imagePath: 'assets/img/alimento.png',
-      isEnabled: true,
-      Nombre: 'Alimentos');
-  Actividad bebidas = Actividad(
-      imagePath: 'assets/img/bebidas.png', isEnabled: true, Nombre: 'Bebidas');
-  Actividad acciones = Actividad(
-      imagePath: 'assets/img/acciones.png',
-      isEnabled: true,
-      Nombre: 'Acciones');
-  Actividad partesCuerpo = Actividad(
-      imagePath: 'assets/img/partes del cuerpo.png',
-      isEnabled: true,
-      Nombre: 'Partes del cuerpo');
-  Actividad prendas = Actividad(
-      imagePath: 'assets/img/prendas.png',
-      isEnabled: true,
-      Nombre: 'Prendas de vestir');
-  Actividad matematicas = Actividad(
-      imagePath: 'assets/img/matemáticas.png',
-      isEnabled: true,
-      Nombre: 'Matemàticas');
+  late ActividadFactory _actividadFactory;
+  late List<Actividad> actividades;
   late Soundpool _soundpool;
   late int _soundId;
   late Timer Repite;
@@ -67,13 +46,14 @@ class _niveles_actividades extends State<niveles_actividades>
       duration: Duration(seconds: 2),
     );
     _animationController.repeat(reverse: true);
-    ActividadesList = [
-      alimento,
-      bebidas,
-      acciones,
-      partesCuerpo,
-      prendas,
-      matematicas
+    _actividadFactory = ActividadFactory();
+    actividades = [
+      _actividadFactory.crearActividad('Alimento'),
+      _actividadFactory.crearActividad('Bebidas'),
+      _actividadFactory.crearActividad('Acciones'),
+      _actividadFactory.crearActividad('PartesDelCuerpo'),
+      _actividadFactory.crearActividad('Prendas'),
+      _actividadFactory.crearActividad('Matematicas'),
     ];
   }
 
@@ -81,6 +61,7 @@ class _niveles_actividades extends State<niveles_actividades>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: utils.Colors.azulitoArriba,
         elevation: 0,
         toolbarHeight: 50,
         title: Row(
@@ -148,8 +129,9 @@ class _niveles_actividades extends State<niveles_actividades>
                       );
                     });
               },
-              icon: Image.asset('assets/img/iconobocina.gif'),
-              iconSize: 70,
+              icon: Icon(Icons.volume_up_sharp),
+              iconSize: 40,
+              color: Colors.white,
             ),
             SizedBox(width: 8),
             Image.asset(
@@ -210,85 +192,13 @@ class _niveles_actividades extends State<niveles_actividades>
                       width: MediaQuery.sizeOf(context).width,
                       child: ListView.builder(
                         scrollDirection: Axis.horizontal,
-                        itemCount: ActividadesList.length,
+                        itemCount: actividades.length,
                         itemBuilder: (context, index) {
-                          Actividad actividad = ActividadesList[index];
+                          Actividad actividad = actividades[index];
                           return Row(
                             children: [
-                              Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Visibility(
-                                    visible: actividad.isEnabled,
-                                    child: IconButton(
-                                      icon: Image.asset(
-                                        actividad.imagePath,
-                                        width:
-                                            MediaQuery.of(context).size.width *
-                                                0.3,
-                                        height:
-                                            MediaQuery.of(context).size.height *
-                                                0.3,
-                                      ),
-                                      onPressed: () {
-                                        switch (actividad.imagePath) {
-                                          case 'assets/img/alimento.png':
-                                            _setVolume(0);
-                                            Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        afectividad_realista()));
-                                            break;
-                                          case 'assets/img/bebidas.png':
-                                            _setVolume(0);
-                                            Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        tareas_comp_diarias()));
-                                            break;
-                                          case 'assets/img/acciones.png':
-                                            _setVolume(0);
-                                            Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        apren_pony_lenguaje_real()));
-                                            break;
-                                          case 'assets/img/partes del cuerpo.png':
-                                            _setVolume(0);
-                                            Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        n1_rd_salud_pt2()));
-                                            break;
-                                          case 'assets/img/prendas.png':
-                                            _setVolume(0);
-                                            Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        tareas_comp_diarias()));
-                                            break;
-                                          case 'assets/img/matemáticas.png':
-                                            _setVolume(0);
-                                            Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        tareas_comp_diarias()));
-                                            break;
-                                        }
-                                      },
-                                      iconSize:
-                                          120, // Ajusta el tamaño del icono según tus necesidades
-                                      padding: EdgeInsets.all(
-                                          8), // Ajusta el relleno según tus necesidades
-                                      color: Colors
-                                          .blue, // Ajusta el color del icono según tus necesidades
-                                    ),
-                                  )),
+                              _actividadFactory.crearBotonActividad(
+                                  context, actividad, _setVolume)
                             ],
                           );
                         },
