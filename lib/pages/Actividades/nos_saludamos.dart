@@ -3,7 +3,9 @@ import 'package:flutter/services.dart';
 import 'package:stroke_text/stroke_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:soundpool/soundpool.dart';
-import 'package:untitled/pages/home/salud_abrir_animacion.dart';
+
+
+import '../Widgets/salud_abrir_animacion.dart';
 class nos_saludamos extends StatelessWidget {
 
   @override

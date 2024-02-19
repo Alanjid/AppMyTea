@@ -22,7 +22,6 @@ class _niveles_actividades extends State<niveles_actividades>
   late int _streamId;
   ValueNotifier<bool> isAudioPlaying = ValueNotifier<bool>(false);
 
-  late int _streamId;
   late ActividadFactory _actividadFactory;
   late List<Actividad> actividades;
   late Soundpool _soundpool;
@@ -262,6 +261,5 @@ class _niveles_actividades extends State<niveles_actividades>
       return _soundpool.load(soundData);
     });
     await _setVolume(_volume);
-    _streamId = await _soundpool.play(_soundId);
   }
 }
