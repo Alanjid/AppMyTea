@@ -1,17 +1,13 @@
 import 'dart:async';
-import 'dart:collection';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:soundpool/soundpool.dart';
 import 'package:stroke_text/stroke_text.dart';
 import 'package:toggle_switch/toggle_switch.dart';
-import 'package:untitled/pages/Actividades/Afectividad/act_afectividad.dart';
-import 'package:untitled/pages/Actividades/Higiene/n1_rd_salud_pt2.dart';
-import 'package:untitled/pages/Actividades/Acciones/act_movimiento1.dart';
-import 'package:untitled/pages/Actividades/Higiene/h1_ba%C3%B1o/aprende_poy_real.dart';
+
 import 'package:untitled/pages/Widgets/fabrica_actividades.dart';
-import 'package:untitled/pages/Widgets/tareas_completadas.dart';
+
 import 'package:untitled/utils/colors.dart' as utils;
 
 class niveles_actividades extends StatefulWidget {
@@ -31,19 +27,21 @@ class _niveles_actividades extends State<niveles_actividades>
   late List<Actividad> actividades;
   late Soundpool _soundpool;
   late int _soundId;
+  // ignore: non_constant_identifier_names
   late Timer Repite;
   double _sliderValue = 50.0;
   double _volume = 0.5;
   int _selectedSwitch = 0;
   late AnimationController _animationController;
 
+  @override
   void initState() {
     super.initState();
     _initializeSound();
     startTimer();
     _animationController = AnimationController(
       vsync: this,
-      duration: Duration(seconds: 2),
+      duration: const Duration(seconds: 2),
     );
     _animationController.repeat(reverse: true);
     _actividadFactory = ActividadFactory();
