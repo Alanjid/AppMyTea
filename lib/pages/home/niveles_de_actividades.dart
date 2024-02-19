@@ -10,13 +10,19 @@ import 'package:untitled/pages/Widgets/fabrica_actividades.dart';
 
 import 'package:untitled/utils/colors.dart' as utils;
 
+// ignore: camel_case_types
 class niveles_actividades extends StatefulWidget {
+  const niveles_actividades({super.key});
+
   @override
+  // ignore: library_private_types_in_public_api
   _niveles_actividades createState() => _niveles_actividades();
 }
 
+// ignore: camel_case_types
 class _niveles_actividades extends State<niveles_actividades>
     with SingleTickerProviderStateMixin {
+  // ignore: non_constant_identifier_names
   String texto_dictar = "Realizamos las siguientes actividades";
   String audioUrl = "assets/audios/actividadesH.mp3";
   ValueNotifier<bool> isAudioPlaying = ValueNotifier<bool>(false);
