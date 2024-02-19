@@ -93,7 +93,6 @@ class Matematicas extends Actividad {
     Get.to(tareas_comp_diarias());
   }
 }
-
 class ActividadFactory {
   Actividad crearActividad(String tipo) {
     switch (tipo) {
