@@ -156,9 +156,3 @@ class ActividadFactory {
     );
   }
 }
-
-
-/*Instancias para crear las actividades
-ActividadFactory actividadFactory = ActividadFactory();
-FActividad actividadAlimento = actividadFactory.crearActividad('Alimento');
-FActividad actividadBebidas = actividadFactory.crearActividad('Bebidas'); */
