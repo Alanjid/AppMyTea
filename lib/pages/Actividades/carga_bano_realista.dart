@@ -1,8 +1,7 @@
 import 'dart:async';
-import 'dart:developer'as developer;
+import 'dart:developer' as developer;
 import 'package:flutter/material.dart';
 import 'package:stroke_text/stroke_text.dart';
-import 'package:untitled/pages/home/apren_pony_lenguaje_real.dart';
 
 /// Flutter code sample for [LinearProgressIndicator].
 
@@ -10,37 +9,36 @@ class carga_bano_realista extends StatefulWidget {
   const carga_bano_realista({super.key});
 
   @override
-  State<carga_bano_realista> createState() =>
-      _ProgressIndicatorExampleState();
+  State<carga_bano_realista> createState() => _ProgressIndicatorExampleState();
 }
 
 class _ProgressIndicatorExampleState extends State<carga_bano_realista>
     with TickerProviderStateMixin {
   late AnimationController controller;
   bool determinate = false;
-  int dura=3;
-  double progreso= 0;
-  int menos =10;
+  int dura = 3;
+  double progreso = 0;
+  int menos = 10;
 
   void _startCountDown() {
-    Timer.periodic(Duration(seconds: 1), (timer)   {
+    Timer.periodic(Duration(seconds: 1), (timer) {
       if (menos > 0) {
         // musicamovimiento();
-        setState(()  {
+        setState(() {
           //if(menos==15||menos==10){musicamovimiento();}
           menos = menos - 1;
         });
-      }
-      else {
+      } else {
         timer.cancel();
         //menos=15;
       }
     });
   }
+
   @override
   Widget build(BuildContext context) {
     //_startCountDown();
-   /* Future.delayed(Duration(seconds:6), () {
+    /* Future.delayed(Duration(seconds:6), () {
       Navigator.push(context, MaterialPageRoute(builder: (context) => apren_pony_lenguaje_real()));
     });
     //startTimer();*/
@@ -65,26 +63,29 @@ class _ProgressIndicatorExampleState extends State<carga_bano_realista>
         ),
       ),
       body:
-      //LinearProgressIndicator(),
-      Padding(
+          //LinearProgressIndicator(),
+          Padding(
         padding: const EdgeInsets.all(20.0),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-             Row(
+            Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      menos==0?' Tiempo''\n''Agotado':menos.toString(),
+                      menos == 0 ? ' Tiempo' '\n' 'Agotado' : menos.toString(),
                       style: TextStyle(fontSize: 55),
                     ),
-                    MaterialButton(onPressed: () {
-                      _startCountDown();
-                    },
-                      child: const Text('COMENZAR',style: TextStyle(fontSize: 27,color:Colors.white),
+                    MaterialButton(
+                      onPressed: () {
+                        _startCountDown();
+                      },
+                      child: const Text(
+                        'COMENZAR',
+                        style: TextStyle(fontSize: 27, color: Colors.white),
                         // color: Colors.deepPurpleAccent,
                       ),
                       color: Colors.deepPurpleAccent,
@@ -92,16 +93,16 @@ class _ProgressIndicatorExampleState extends State<carga_bano_realista>
                   ],
                 ),
                 SizedBox(
-                  width: 50 ,
+                  width: 50,
                   height: 20,
                 ),
                 Container(
                   decoration: BoxDecoration(
                       shape: BoxShape.rectangle,
                       borderRadius: BorderRadius.circular(8),
-                      border: Border.all(width: 4,color: Colors.deepPurpleAccent),
-                      color: Colors.white
-                  ),
+                      border:
+                          Border.all(width: 4, color: Colors.deepPurpleAccent),
+                      color: Colors.white),
                   child: Image.asset(
                     'assets/img/baño_realista.png',
                     fit: BoxFit.cover,
