@@ -25,7 +25,7 @@ class Alimento extends Actividad {
 
   @override
   void realizarActividad() {
-    Get.to(afectividad_realista());
+    Get.toNamed('/act1Afectividad');
   }
 }
 
@@ -38,7 +38,7 @@ class Bebidas extends Actividad {
 
   @override
   void realizarActividad() {
-    Get.to(tareas_comp_diarias());
+    Get.toNamed('/Completadas');
   }
 }
 
@@ -51,7 +51,7 @@ class Acciones extends Actividad {
 
   @override
   void realizarActividad() {
-    Get.to(apren_pony_lenguaje_real());
+    Get.toNamed('/act1Higiene');
   }
 }
 
@@ -64,7 +64,7 @@ class PartesDelCuerpo extends Actividad {
 
   @override
   void realizarActividad() {
-    Get.to(n1_rd_salu());
+    Get.toNamed('/actLavarManos');
   }
 }
 
@@ -77,7 +77,7 @@ class Prendas extends Actividad {
 
   @override
   void realizarActividad() {
-    Get.to(tareas_comp_diarias());
+    Get.toNamed('/Completadas');
   }
 }
 
@@ -90,9 +90,10 @@ class Matematicas extends Actividad {
 
   @override
   void realizarActividad() {
-    Get.to(tareas_comp_diarias());
+    Get.toNamed('/Completadas');
   }
 }
+
 class ActividadFactory {
   Actividad crearActividad(String tipo) {
     switch (tipo) {
