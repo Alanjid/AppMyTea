@@ -9,6 +9,7 @@ import 'package:untitled/pages/Actividades/Higiene/n1_rd_salud_pt2.dart';
 import 'package:untitled/pages/Actividades/Prendas/act1_prendas.dart';
 
 import 'package:untitled/pages/Login/home_page.dart';
+import 'package:untitled/pages/Widgets/tareas_completadas.dart';
 import 'package:untitled/pages/home/niveles_de_actividades.dart';
 import 'package:untitled/pages/home/Menu/principal.dart';
 import 'package:untitled/pages/home/saludo/saludo_inicio.dart';
@@ -51,6 +52,8 @@ class _MyAppState extends State<MyApp> {
         GetPage(name: '/act1Higiene', page: () => apren_pony_lenguaje_real()),
         GetPage(name: '/act2Higiene', page: () => n1_rd_salud_pt2()),
         GetPage(name: '/act1PrendasDeVestir', page: () => const act1_prendas()),
+        GetPage(name: '/actLavarManos', page: () => n1_rd_salud_pt2()),
+        GetPage(name: '/Completadas', page: () => tareas_comp_diarias())
       ],
       navigatorKey: Get.key,
       debugShowCheckedModeBanner: false,
