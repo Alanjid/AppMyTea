@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:untitled/moldes/user.dart';
+import 'package:untitled/models/user.dart';
 import 'package:untitled/pages/Actividades/Acciones/act_movimiento1.dart';
 import 'package:untitled/pages/Actividades/Afectividad/act_afectividad.dart';
 import 'package:untitled/pages/Actividades/Higiene/h1_ba%C3%B1o/aprende_poy_real.dart';
@@ -10,6 +10,7 @@ import 'package:untitled/pages/Actividades/Prendas/act1_prendas.dart';
 
 import 'package:untitled/pages/Login/home_page.dart';
 import 'package:untitled/pages/Login/login.dart';
+import 'package:untitled/pages/Widgets/observaciones/enviar_observaciones.dart';
 import 'package:untitled/pages/Widgets/tareas_completadas.dart';
 import 'package:untitled/pages/home/niveles_de_actividades.dart';
 import 'package:untitled/pages/home/Menu/principal.dart';
@@ -47,7 +48,9 @@ class _MyAppState extends State<MyApp> {
         GetPage(name: '/', page: () => MyHomePage()),
         GetPage(name: '/principal', page: () => principal()),
         GetPage(name: '/saludo', page: () => saludo()),
-        GetPage(name: '/nivelesActividades', page: () => niveles_actividades()),
+        GetPage(
+            name: '/nivelesActividades',
+            page: () => const niveles_actividades()),
         GetPage(name: '/act1Acciones', page: () => movi_conejo()),
         GetPage(name: '/act1Afectividad', page: () => afectividad_realista()),
         GetPage(name: '/act1Higiene', page: () => apren_pony_lenguaje_real()),
@@ -55,7 +58,8 @@ class _MyAppState extends State<MyApp> {
         GetPage(name: '/act1PrendasDeVestir', page: () => const act1_prendas()),
         GetPage(name: '/actLavarManos', page: () => n1_rd_salud_pt2()),
         GetPage(name: '/Completadas', page: () => tareas_comp_diarias()),
-        GetPage(name: '/Login', page: () => Login())
+        GetPage(name: '/Login', page: () => const Login()),
+        GetPage(name: '/observaciones', page: () => const observaciones())
       ],
       navigatorKey: Get.key,
       debugShowCheckedModeBanner: false,
