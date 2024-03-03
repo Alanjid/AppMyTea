@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
-import 'package:untitled/enviroment/response_api.dart';
+import 'package:untitled/models/response_api.dart';
 import '../enviroment/enviroment.dart';
-import '../moldes/user.dart';
+import '../models/user.dart';
 
 class UsersProvider extends GetConnect {
   String get url => Enviroment.API_URL + "/paciente";

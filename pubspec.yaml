@@ -146,6 +146,13 @@ flutter:
     - assets/img/enjuagar_real.png
     - assets/audios/nos_lavamos_las_manosH.mp3
     - assets/img/ropero.png
+    - assets/img/Time.png
+    - assets/img/observacion_icon.png
+    - assets/img/logo_casa.png
+    - assets/img/intentos_icon.png
+    - assets/img/errores_icon.png
+    - assets/img/enviar_icon.png
+    - assets/img/aciertos_icon.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

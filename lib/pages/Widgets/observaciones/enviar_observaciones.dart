@@ -1,36 +1,44 @@
 import 'dart:async';
+
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'package:soundpool/soundpool.dart';
 import 'package:stroke_text/stroke_text.dart';
 import 'package:toggle_switch/toggle_switch.dart';
-import 'package:untitled/pages/home/saludo/saludo_controller.dart';
+import 'package:untitled/pages/Widgets/observaciones/enviar_observaciones_controller.dart';
+import 'package:untitled/pages/home/Menu/principal_controller.dart';
 import 'package:untitled/utils/colors.dart' as utils;
 
-import '../../../models/user.dart';
+// ignore: camel_case_types
+class observaciones extends StatefulWidget {
+  const observaciones({super.key});
 
-User user = User.fromJson(GetStorage().read('user') ?? {});
-
-class saludo extends StatefulWidget {
   @override
-  _saludoState createState() => _saludoState();
+  State<observaciones> createState() => _observacionesState();
 }
 
-class _saludoState extends State<saludo> {
-  String Texto_Saludo = "HOLA BIENVENIDO ${user.nombre.toString()}";
-  String audioUrl = "assets/audios/bienvenida-hombre.mp3";
+// ignore: camel_case_types
+class _observacionesState extends State<observaciones> {
+  // ignore: non_constant_identifier_names
+  String Texto_Menu = "Enviar observaciones";
+  String audioUrl = 'assets/audios/';
   late Soundpool _soundpool;
   late int _soundId;
   late int _streamId;
+  // ignore: non_constant_identifier_names
   late Timer Repite;
   double _sliderValue = 50.0;
   double _volume =
       0.5; // Agrega _volume como una propiedad y establece el valor inicial
   int _selectedSwitch = 0;
-  saludoController con = Get.put(saludoController());
 
+  observaciones_controller con = Get.put(observaciones_controller());
+
+  @override
   void initState() {
     super.initState();
     _initializeSound();
@@ -45,7 +53,7 @@ class _saludoState extends State<saludo> {
         elevation: 0,
         toolbarHeight: 40,
         title: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             IconButton(
@@ -54,7 +62,7 @@ class _saludoState extends State<saludo> {
                     context: context,
                     builder: (BuildContext context) {
                       return AlertDialog(
-                        title: Text(
+                        title: const Text(
                           'Cambiamos la voz',
                           textAlign: TextAlign.center,
                         ),
@@ -81,11 +89,10 @@ class _saludoState extends State<saludo> {
                                 });
 
                                 if (index == 0) {
-                                  audioUrl =
-                                      "assets/audios/bienvenida-hombre.mp3";
+                                  audioUrl = "assets/audios/menuH.mp3";
                                 } else {
                                   if (index == 1) {
-                                    audioUrl = "assets/audiosM/bienvenidaM.mp3";
+                                    audioUrl = "assets/audiosM/menuM.mp3";
                                   }
                                 }
                               },
@@ -109,86 +116,95 @@ class _saludoState extends State<saludo> {
                       );
                     });
               },
-              icon: Icon(Icons.volume_up_sharp),
+              icon: const Icon(Icons.volume_up_sharp),
               iconSize: 40,
               color: Colors.white,
             ),
-            SizedBox(width: 300),
+            const SizedBox(width: 300),
             Image.asset(
               'assets/img/logo.png',
               width: 60,
               height: 60,
             ),
-            SizedBox(
-              width: 40,
-            ),
-            IconButton(
-              icon: Icon(Icons.arrow_forward),
-              onPressed: () async {
-                await _setVolume(0);
-                con.goToMenuPage();
-              },
-            )
           ],
         ),
       ),
       body: Container(
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height,
-        decoration: BoxDecoration(
+        padding: const EdgeInsets.all(30),
+        decoration: const BoxDecoration(
           image: DecorationImage(
-              image: AssetImage('assets/img/fondoNM.png'), fit: BoxFit.cover),
+            image: AssetImage('assets/img/fondoNM.png'),
+            fit: BoxFit.cover,
+          ),
         ),
-        child: Column(
+        child: Row(
           children: [
-            Container(
-              width: 300,
-              child: Column(
-                children: [
-                  Slider(
-                    value: _sliderValue,
-                    activeColor: Colors.redAccent,
-                    inactiveColor: Colors.redAccent,
-                    min: 0,
-                    max: 100,
-                    divisions: 100,
-                    label: _sliderValue.round().toString(),
-                    onChanged: (double newVolume) {
-                      setState(() {
-                        _setVolume(newVolume / 100);
-                      });
-                    },
-                  ),
-                ],
-              ),
-            ),
-            ButtonBar(
-              alignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    SizedBox(
-                      height: 20,
-                    ),
-                    StrokeText(
-                      text: Texto_Saludo,
-                      strokeWidth: 6,
-                      strokeColor: Colors.indigo,
-                      textStyle: TextStyle(fontSize: 38, fontFamily: 'lazydog'),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Image.asset('assets/img/botargapony.png',
-                            width: 200, height: 200),
-                      ],
-                    ),
-                  ],
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                const StrokeText(
+                  text: 'RESUMEN DE ACTIVIDAD:',
+                  strokeWidth: 3,
+                  textColor: Colors.white,
+                  strokeColor: Colors.black,
+                  textStyle: TextStyle(fontSize: 25),
                 ),
+                Row(
+                  children: [
+                    Container(
+                      decoration: const BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.all(Radius.circular(15))),
+                      width: MediaQuery.sizeOf(context).width * 0.20,
+                      height: MediaQuery.sizeOf(context).height * 0.30,
+                      child: Column(
+                        children: [
+                          IconButton(
+                            onPressed: () {},
+                            icon: const ImageIcon(
+                              AssetImage(
+                                'assets/img/logo_casa.png',
+                              ),
+                              size: 100,
+                            ),
+                          ),
+                          const Text(
+                            'MENU',
+                            style: TextStyle(color: Colors.black),
+                          )
+                        ],
+                      ),
+                    ),
+                    SizedBox(width: MediaQuery.sizeOf(context).width * 0.05),
+                    Container(
+                      decoration: const BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.all(Radius.circular(15))),
+                      width: MediaQuery.sizeOf(context).width * 0.20,
+                      height: MediaQuery.sizeOf(context).height * 0.30,
+                      child: Column(
+                        children: [
+                          IconButton(
+                            onPressed: () {},
+                            icon: const ImageIcon(
+                              AssetImage(
+                                'assets/img/observacion_icon.png',
+                              ),
+                              size: 100,
+                            ),
+                          ),
+                          const Text(
+                            'OBSERVACIONES',
+                            style: TextStyle(color: Colors.black),
+                          )
+                        ],
+                      ),
+                    )
+                  ],
+                )
               ],
-            ),
+            )
           ],
         ),
       ),
@@ -204,7 +220,7 @@ class _saludoState extends State<saludo> {
   }
 
   void startTimer() {
-    Repite = Timer.periodic(Duration(seconds: 10), (timer) {
+    Repite = Timer.periodic(const Duration(seconds: 10), (timer) {
       _initializeSound();
     });
   }
@@ -217,6 +233,7 @@ class _saludoState extends State<saludo> {
   }
 
   void _initializeSound() async {
+    // ignore: deprecated_member_use
     _soundpool = Soundpool();
     _soundId = await rootBundle.load(audioUrl).then((ByteData soundData) {
       return _soundpool.load(soundData);
