@@ -43,7 +43,7 @@ class loginController extends GetxController {
       if (responseApi.success == true) {
         GetStorage().write('user', responseApi.data);
         Get.snackbar(
-            'Inicio de sesion correcto', "Bienvenido ${user.nombre.toString()}",
+            'Inicio de sesion correcto', "Bienvenido ${user.first_name.toString()}",
             snackPosition: SnackPosition.TOP,
             icon: Icon(
               Icons.done_outline,

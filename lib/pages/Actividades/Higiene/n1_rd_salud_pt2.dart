@@ -173,7 +173,7 @@ class n1_rd_salu extends State {
                         ),
                       ),
                       SizedBox(
-                        width: 10,
+                        width: 30,
                       ),
                       StrokeText(
                         text: 'AGUA',
