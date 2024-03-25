@@ -193,6 +193,7 @@ class afre extends State {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
+                    SizedBox(width: 30,),
                     Stack(
                       children: [
                         Container(
@@ -324,6 +325,7 @@ class afre extends State {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: <Widget>[
+                    SizedBox(width: 30,),
                     Container(
                       width: 125.0,
                       height: 125.0,

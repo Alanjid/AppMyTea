@@ -10,7 +10,8 @@ import 'package:untitled/pages/Actividades/Prendas/act1_prendas.dart';
 
 import 'package:untitled/pages/Login/home_page.dart';
 import 'package:untitled/pages/Login/login.dart';
-import 'package:untitled/pages/Widgets/observaciones/enviar_observaciones.dart';
+import 'package:untitled/pages/Widgets/observaciones/observaciones.dart';
+import 'package:untitled/pages/Widgets/observaciones/resumen_actividad.dart';
 import 'package:untitled/pages/Widgets/tareas_completadas.dart';
 import 'package:untitled/pages/home/niveles_de_actividades.dart';
 import 'package:untitled/pages/home/Menu/principal.dart';
@@ -41,9 +42,8 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: 'MyTEAPony',
-      initialRoute: userSession.karnet != null
-          ? '/saludo'
-          : '/', //VALIDACION DE SI EL USUARIO ES DIFERENTE DE NULL ENVIAR A PRINCIPAL, SI ES NULL ENVIA A LA PRINCIPAL (LOGIN)
+      //initialRoute: userSession.karnet != null ? '/observaciones': '/', //VALIDACION DE SI EL USUARIO ES DIFERENTE DE NULL ENVIAR A PRINCIPAL, SI ES NULL ENVIA A LA PRINCIPAL (LOGIN)
+      initialRoute: '/resumen_actividad',
       getPages: [
         GetPage(name: '/', page: () => MyHomePage()),
         GetPage(name: '/principal', page: () => principal()),
@@ -59,7 +59,8 @@ class _MyAppState extends State<MyApp> {
         GetPage(name: '/actLavarManos', page: () => n1_rd_salud_pt2()),
         GetPage(name: '/Completadas', page: () => tareas_comp_diarias()),
         GetPage(name: '/Login', page: () => const Login()),
-        GetPage(name: '/observaciones', page: () => const observaciones())
+        GetPage(name: '/resumen_actividad', page: () => const resumen_actividad()),
+        GetPage(name: '/observaciones', page: ()=> observaciones())
       ],
       navigatorKey: Get.key,
       debugShowCheckedModeBanner: false,

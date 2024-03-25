@@ -1,19 +1,16 @@
 import 'dart:async';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
-import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:soundpool/soundpool.dart';
 import 'package:stroke_text/stroke_text.dart';
 import 'package:toggle_switch/toggle_switch.dart';
-import 'package:untitled/pages/Widgets/observaciones/enviar_observaciones_controller.dart';
-import 'package:untitled/pages/home/Menu/principal_controller.dart';
+import 'package:untitled/pages/Widgets/observaciones/observaciones_controller.dart';
 import 'package:untitled/utils/colors.dart' as utils;
 
-// ignore: camel_case_types
 class observaciones extends StatefulWidget {
   const observaciones({super.key});
 
@@ -21,10 +18,9 @@ class observaciones extends StatefulWidget {
   State<observaciones> createState() => _observacionesState();
 }
 
-// ignore: camel_case_types
 class _observacionesState extends State<observaciones> {
-  // ignore: non_constant_identifier_names
-  String Texto_Menu = "Enviar observaciones";
+
+  String Texto_Escuchar = "Enviar observaciones";
   String audioUrl = 'assets/audios/';
   late Soundpool _soundpool;
   late int _soundId;
@@ -35,20 +31,12 @@ class _observacionesState extends State<observaciones> {
   double _volume =
       0.5; // Agrega _volume como una propiedad y establece el valor inicial
   int _selectedSwitch = 0;
-
-  observaciones_controller con = Get.put(observaciones_controller());
-
-  @override
-  void initState() {
-    super.initState();
-    _initializeSound();
-    startTimer();
-  }
-
+  
+  observaciones_controller con= observaciones_controller();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
+     appBar: AppBar(
         backgroundColor: utils.Colors.azulitoArriba,
         elevation: 0,
         toolbarHeight: 40,
@@ -137,81 +125,113 @@ class _observacionesState extends State<observaciones> {
             fit: BoxFit.cover,
           ),
         ),
-        child: Row(
-          children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                const StrokeText(
-                  text: 'RESUMEN DE ACTIVIDAD:',
-                  strokeWidth: 3,
-                  textColor: Colors.white,
-                  strokeColor: Colors.black,
-                  textStyle: TextStyle(fontSize: 25),
+        child:  SingleChildScrollView(
+          child: Column(
+            children: [
+              Container(
+                  width: 300,
+                  child: Column(
+                    children: [
+                      Slider(
+                        value: _sliderValue,
+                        activeColor: Colors.redAccent,
+                        inactiveColor: Colors.redAccent,
+                        min: 0,
+                        max: 100,
+                        divisions: 100,
+                        label: _sliderValue.round().toString(),
+                        onChanged: (double newVolume) {
+                          setState(() {
+                            _setVolume(newVolume / 100);
+                          });
+                        },
+                      ),
+                    ],
+                  ),
                 ),
-                Row(
-                  children: [
-                    Container(
-                      decoration: const BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.all(Radius.circular(15))),
-                      width: MediaQuery.sizeOf(context).width * 0.20,
-                      height: MediaQuery.sizeOf(context).height * 0.30,
-                      child: Column(
-                        children: [
-                          IconButton(
-                            onPressed: () {},
-                            icon: const ImageIcon(
-                              AssetImage(
-                                'assets/img/logo_casa.png',
-                              ),
-                              size: 100,
-                            ),
-                          ),
-                          const Text(
-                            'MENU',
-                            style: TextStyle(color: Colors.black),
-                          )
-                        ],
+             const StrokeText(text: 'Envia las observaciones de la actividad',
+              textStyle: TextStyle(
+                color: Colors.white,
+                fontSize: 35,
+                fontFamily: 'lazydog'
+              ),
+              strokeColor: Colors.black,
+              strokeWidth: 2,
+              ),
+              Row(
+                children: [
+                  Container(
+                    alignment: Alignment.center,
+                    width: MediaQuery.sizeOf(context).width *0.6,
+                    height: MediaQuery.sizeOf(context).height*0.54,
+                    decoration: const BoxDecoration(
+                      color: Colors.white,
+                      borderRadius:  BorderRadius.all(Radius.circular(10)),
+                    ),
+                    child: const SizedBox(
+                      child: TextField(
+                         keyboardType: TextInputType.multiline,
+                          minLines: 1,//Normal textInputField will be displayed
+                          maxLines: 5,// when user presses enter it will adapt to it
+                        decoration:  InputDecoration(
+                          hintText: 'Introduce la observación para enviar a los terapeutas',
+                          border: InputBorder.none,
+                        ),
+                        
                       ),
                     ),
-                    SizedBox(width: MediaQuery.sizeOf(context).width * 0.05),
-                    Container(
-                      decoration: const BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.all(Radius.circular(15))),
-                      width: MediaQuery.sizeOf(context).width * 0.20,
-                      height: MediaQuery.sizeOf(context).height * 0.30,
-                      child: Column(
+                  ),
+                  SizedBox(width: 20,),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      SizedBox(height: MediaQuery.sizeOf(context).height*0.2,),
+                      ElevatedButton(onPressed: (){
+
+                      }, 
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
-                          IconButton(
-                            onPressed: () {},
-                            icon: const ImageIcon(
-                              AssetImage(
-                                'assets/img/observacion_icon.png',
-                              ),
-                              size: 100,
-                            ),
-                          ),
-                          const Text(
-                            'OBSERVACIONES',
-                            style: TextStyle(color: Colors.black),
-                          )
+                          const Text('ENVIAR',
+                          style: TextStyle(
+                            fontSize: 20,
+                            color: utils.Colors.azulitoArriba
+                          ),),
+                          Image.asset('assets/img/enviar_icon.png'),
                         ],
                       ),
-                    )
-                  ],
-                )
-              ],
-            )
-          ],
+                      ),
+                      SizedBox(height: 20,),
+                      ElevatedButton(onPressed: (){
+                        con.goToResumen();
+                      }, 
+                      child: const Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                           Text('REGRESAR',
+                          style: TextStyle(
+                            fontSize: 20,
+                            color: utils.Colors.azulitoArriba
+                          ),),
+                          Icon(Icons.arrow_back_ios_new,color: utils.Colors.azulitoArriba,
+                          size: 20,)
+                        ],
+                      ),
+                      ),
+                    ],
+                  )
+                ],
+              )
+            ],
+          ),
         ),
       ),
     );
   }
-
-  Future<void> _setVolume(double newVolume) async {
+   Future<void> _setVolume(double newVolume) async {
     await _soundpool.setVolume(soundId: _soundId, volume: newVolume);
     setState(() {
       _volume = newVolume;

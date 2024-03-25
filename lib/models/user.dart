@@ -4,62 +4,55 @@
 
 import 'dart:convert';
 
+import 'package:flutter/material.dart';
+import 'package:untitled/pages/home/saludo/saludo_inicio.dart';
+
 User userFromJson(String str) => User.fromJson(json.decode(str));
 
 String userToJson(User data) => json.encode(data.toJson());
 
 class User {
-  String? karnet;
-  String? nombre;
-  String? app;
-  String? apm;
-  String? username;
   String? password;
-  String? fecha;
+  String? fecha_nacimiento;
+  String? username;
+  String? first_name;
+  String? last_name;
+  String? email;
+  String? karnet;
   String? diagnostico;
-  String? idinstitucion;
-  String? isactive;
   String? sessionToken;
 
   User({
-    this.karnet,
-    this.nombre,
-    this.app,
-    this.apm,
-    this.username,
     this.password,
-    this.fecha,
+    this.fecha_nacimiento,
+    this.username,
+    this.first_name,
+    this.last_name,
+    this.email,
+    this.karnet,
     this.diagnostico,
-    this.idinstitucion,
-    this.isactive,
     this.sessionToken,
   });
 
   factory User.fromJson(Map<String, dynamic> json) => User(
-        karnet: json["karnet"],
-        nombre: json["nombre"],
-        app: json["app"],
-        apm: json["apm"],
-        username: json["username"],
         password: json["password"],
-        fecha: json["fecha"],
+        username: json["username"],
+        first_name: json["first_name"],
+        last_name: json["last_name"],
+        email: json["email"],
+        karnet: json["karnet"],
         diagnostico: json["diagnostico"],
-        idinstitucion: json["idinstitucion"],
-        isactive: json["isactive"],
         sessionToken: json["session_token"],
       );
 
   Map<String, dynamic> toJson() => {
+        "password":password,
+        "username":username,
+        "first_name":first_name,
+        "last_name": last_name,
+        "email": email,
         "karnet": karnet,
-        "nombre": nombre,
-        "app": app,
-        "apm": apm,
-        "username": username,
-        "password": password,
-        "fecha": fecha,
         "diagnostico": diagnostico,
-        "idinstitucion": idinstitucion,
-        "isactive": isactive,
         "session_token": sessionToken,
       };
 }

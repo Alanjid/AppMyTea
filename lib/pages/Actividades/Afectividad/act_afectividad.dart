@@ -217,13 +217,13 @@ class afre extends State {
                             ),
                             Container(
                               width: 348,
-                              height: 78,
+                              height: 80,
                               child: StrokeText(
                                 text: Texto_act,
                                 strokeWidth: 4.5,
                                 strokeColor: Colors.black,
                                 textStyle: TextStyle(
-                                  fontSize: 22,
+                                  fontSize: 20,
                                   fontFamily: 'lazydog',
                                 ),
                               ),
