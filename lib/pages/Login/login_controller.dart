@@ -4,7 +4,6 @@ import 'package:get_storage/get_storage.dart';
 import 'package:untitled/models/response_api.dart';
 import 'package:untitled/providers/users_provider.dart';
 
-import '../../models/user.dart';
 
 // ignore: camel_case_types
 class loginController extends GetxController {
@@ -40,7 +39,7 @@ class loginController extends GetxController {
       print('Response Api: ${responseApi.toJson()}');
 
       if (responseApi.access != null) {
-        GetStorage().write('user', responseApi.access);
+        GetStorage().write('access', responseApi.access);
         Get.snackbar(
             'Inicio de sesion correcto', "Bienvenido",
             snackPosition: SnackPosition.TOP,

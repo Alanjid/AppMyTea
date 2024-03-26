@@ -9,9 +9,7 @@ import 'package:toggle_switch/toggle_switch.dart';
 import 'package:untitled/pages/home/saludo/saludo_controller.dart';
 import 'package:untitled/utils/colors.dart' as utils;
 
-import '../../../models/user.dart';
 
-User user = User.fromJson(GetStorage().read('user') ?? {});
 
 class saludo extends StatefulWidget {
   @override

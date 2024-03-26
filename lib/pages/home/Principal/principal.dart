@@ -11,7 +11,7 @@ import 'package:untitled/pages/home/Menu/principal_controller.dart';
 
 import 'package:flutter/widgets.dart';
 import 'package:untitled/pages/Widgets/info_actividades.dart';
-import 'package:untitled/pages/home/niveles_de_actividades.dart';
+import 'package:untitled/pages/Actividades/NivelesActividades/niveles_de_actividades.dart';
 import 'package:untitled/utils/colors.dart' as utils;
 
 class principal extends StatefulWidget {
