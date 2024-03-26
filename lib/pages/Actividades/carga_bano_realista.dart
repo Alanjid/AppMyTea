@@ -2,7 +2,7 @@ import 'dart:async';
 import 'dart:developer'as developer;
 import 'package:flutter/material.dart';
 import 'package:stroke_text/stroke_text.dart';
-import 'package:untitled/pages/home/apren_pony_lenguaje_real.dart';
+
 
 /// Flutter code sample for [LinearProgressIndicator].
 
