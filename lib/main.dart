@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:untitled/models/user.dart';
+import 'package:untitled/models/response_api.dart';
 import 'package:untitled/pages/Actividades/Acciones/act_movimiento1.dart';
 import 'package:untitled/pages/Actividades/Afectividad/act_afectividad.dart';
 import 'package:untitled/pages/Actividades/Higiene/h1_ba%C3%B1o/aprende_poy_real.dart';
@@ -18,7 +18,8 @@ import 'package:untitled/pages/home/Menu/principal.dart';
 import 'package:untitled/pages/home/saludo/saludo_inicio.dart';
 import 'package:untitled/utils/colors.dart' as utils;
 
-User userSession = User.fromJson(GetStorage().read('user') ?? {});
+//User userSession = User.fromJson(GetStorage().read('user') ?? {});
+
 void main() async {
   await GetStorage.init();
   runApp(const MyApp());
@@ -42,7 +43,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: 'MyTEAPony',
-      initialRoute: userSession.karnet != null ? '/login': '/', //VALIDACION DE SI EL USUARIO ES DIFERENTE DE NULL ENVIAR A PRINCIPAL, SI ES NULL ENVIA A LA PRINCIPAL (LOGIN)
+      initialRoute: determineInitialRoute(), //VALIDACION DE SI EL token ES  NULL ENVIAR A PRINCIPAL, SI ES NULL ENVIA A LA PRINCIPAL (LOGIN)
       //initialRoute: '/resumen_actividad',
       getPages: [
         GetPage(name: '/', page: () => MyHomePage()),
@@ -65,5 +66,18 @@ class _MyAppState extends State<MyApp> {
     );
     
   }
+  String determineInitialRoute() {
+  final userSessionJson = GetStorage().read('access');
+  
+  if (userSessionJson != null) {
+    final userSession = ResponseApi.fromJson(userSessionJson);
+    if (userSession.access != null) {
+      return '/principal';
+    }
+  }
+  
+  return '/login';
+}
+
 }
 

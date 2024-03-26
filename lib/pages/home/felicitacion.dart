@@ -5,7 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:stroke_text/stroke_text.dart';
 
-import 'package:untitled/pages/home/niveles_de_actividades.dart';
+import 'package:untitled/pages/Actividades/NivelesActividades/niveles_de_actividades.dart';
 
 class felicitacion extends StatefulWidget {
   final String photo;
@@ -44,7 +44,7 @@ class felicitacion2 extends State {
         toolbarHeight: 50,
         automaticallyImplyLeading: false,
         backgroundColor: Colors.transparent,
-        title: Row(
+        title: const Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
@@ -60,7 +60,7 @@ class felicitacion2 extends State {
           ],
         ),
       ),
-      body: Container(
+      body: SizedBox(
         width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
         child: Container(
