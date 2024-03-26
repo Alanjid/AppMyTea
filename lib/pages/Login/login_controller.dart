@@ -4,7 +4,6 @@ import 'package:get_storage/get_storage.dart';
 import 'package:untitled/models/response_api.dart';
 import 'package:untitled/providers/users_provider.dart';
 
-import '../../models/user.dart';
 
 // ignore: camel_case_types
 class loginController extends GetxController {
@@ -35,15 +34,14 @@ class loginController extends GetxController {
       String password = passwordController.text.trim();
       print('Username: $username');
       print('Password: $password');
-      User user = User.fromJson(GetStorage().read('user') ?? {});
 
-      ResponseApi responseApi = await usersProvider.login(username, password);
+      ResponseApi responseApi = await usersProvider.login1(username, password);
       print('Response Api: ${responseApi.toJson()}');
 
-      if (responseApi.success == true) {
-        GetStorage().write('user', responseApi.data);
+      if (responseApi.access != null) {
+        GetStorage().write('access', responseApi.access);
         Get.snackbar(
-            'Inicio de sesion correcto', "Bienvenido ${user.first_name.toString()}",
+            'Inicio de sesion correcto', "Bienvenido",
             snackPosition: SnackPosition.TOP,
             icon: Icon(
               Icons.done_outline,
@@ -52,7 +50,7 @@ class loginController extends GetxController {
             ));
         goToHelloPage();
       } else {
-        Get.snackbar('Error', responseApi.message ?? 'Inicio de sesión fallido',
+        Get.snackbar('Error' ?? 'Inicio de sesión fallido', "Saludos",
             snackPosition: SnackPosition.TOP,
             icon: Icon(
               Icons.not_interested_sharp,
