@@ -13,7 +13,7 @@ import 'package:untitled/pages/Login/login.dart';
 import 'package:untitled/pages/Widgets/observaciones/observaciones.dart';
 import 'package:untitled/pages/Widgets/observaciones/resumen_actividad.dart';
 import 'package:untitled/pages/Widgets/tareas_completadas.dart';
-import 'package:untitled/pages/home/niveles_de_actividades.dart';
+import 'package:untitled/pages/Actividades/NivelesActividades/niveles_de_actividades.dart';
 import 'package:untitled/pages/home/Menu/principal.dart';
 import 'package:untitled/pages/home/saludo/saludo_inicio.dart';
 import 'package:untitled/utils/colors.dart' as utils;
@@ -42,15 +42,13 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: 'MyTEAPony',
-      //initialRoute: userSession.karnet != null ? '/observaciones': '/', //VALIDACION DE SI EL USUARIO ES DIFERENTE DE NULL ENVIAR A PRINCIPAL, SI ES NULL ENVIA A LA PRINCIPAL (LOGIN)
-      initialRoute: '/resumen_actividad',
+      initialRoute: userSession.karnet != null ? '/login': '/', //VALIDACION DE SI EL USUARIO ES DIFERENTE DE NULL ENVIAR A PRINCIPAL, SI ES NULL ENVIA A LA PRINCIPAL (LOGIN)
+      //initialRoute: '/resumen_actividad',
       getPages: [
         GetPage(name: '/', page: () => MyHomePage()),
         GetPage(name: '/principal', page: () => principal()),
         GetPage(name: '/saludo', page: () => saludo()),
-        GetPage(
-            name: '/nivelesActividades',
-            page: () => const niveles_actividades()),
+        GetPage(name: '/nivelesActividades',page: () => const niveles_actividades()),
         GetPage(name: '/act1Acciones', page: () => movi_conejo()),
         GetPage(name: '/act1Afectividad', page: () => afectividad_realista()),
         GetPage(name: '/act1Higiene', page: () => apren_pony_lenguaje_real()),
