@@ -65,6 +65,7 @@ class afre extends State {
     }
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: utils.Colors.azulitoArriba,
         elevation: 0,
         toolbarHeight: 40,
         title: Row(
@@ -141,8 +142,9 @@ class afre extends State {
                       );
                     });
               },
-              icon: Image.asset('assets/img/iconobocina.gif'),
-              iconSize: 70,
+              icon: Icon(Icons.volume_up_sharp),
+              iconSize: 40,
+              color: Colors.white,
             ),
             Image.asset(
               'assets/img/logo.png',
@@ -154,42 +156,85 @@ class afre extends State {
       ), //aqui termina la barra de arriba de la pagina
 
       body: Container(
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height,
-        decoration: BoxDecoration(
-          image: DecorationImage(
-              image: AssetImage('assets/img/fondoNM.png'), fit: BoxFit.cover),
-        ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            Container(
-              width: 300,
-              child: Column(
-                children: [
-                  Slider(
-                    value: _sliderValue,
-                    activeColor: Colors.redAccent,
-                    inactiveColor: Colors.redAccent,
-                    min: 0,
-                    max: 100,
-                    divisions: 100,
-                    label: _sliderValue.round().toString(),
-                    onChanged: (double newVolume) {
-                      setState(() {
-                        _setVolume(newVolume / 100);
-                      });
-                    },
-                  ),
-                ],
-              ),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
+          width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height,
+          decoration: BoxDecoration(
+            image: DecorationImage(
+                image: AssetImage('assets/img/fondoNM.png'), fit: BoxFit.cover),
+          ),
+          child: SingleChildScrollView(
+            padding: EdgeInsets.all(20),
+            scrollDirection: Axis.horizontal,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                Stack(
+                SizedBox(
+                  width: 300,
+                  child: Column(
+                    children: [
+                      Slider(
+                        value: _sliderValue,
+                        activeColor: Colors.redAccent,
+                        inactiveColor: Colors.redAccent,
+                        min: 0,
+                        max: 100,
+                        divisions: 100,
+                        label: _sliderValue.round().toString(),
+                        onChanged: (double newVolume) {
+                          setState(() {
+                            _setVolume(newVolume / 100);
+                          });
+                        },
+                      ),
+                    ],
+                  ),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
+                    SizedBox(width: 30,),
+                    Stack(
+                      children: [
+                        Container(
+                          width: 125.0,
+                          height: 125.0,
+                          padding: const EdgeInsets.all(0),
+                          decoration: BoxDecoration(
+                              shape: BoxShape.rectangle,
+                              borderRadius: BorderRadius.circular(0),
+                              border: Border.all(width: 2, color: Colors.black),
+                              color: Colors.white),
+                          child: IconButton(
+                            onPressed: () {
+                              //soundpool();
+                              setState(() {
+                                visible = true;
+                              });
+                              soundpool1();
+                            },
+                            icon: Image.asset(
+                              'assets/img/baño_real.png',
+                              height: 200,
+                              width: 200.0,
+                            ),
+                          ),
+                        ),
+                        Visibility(
+                          visible: visible,
+                          child: Container(
+                            padding: EdgeInsets.symmetric(
+                                vertical: 62, horizontal: 62),
+                            decoration: BoxDecoration(
+                                color: Colors.blue.withOpacity(0.4)),
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      width: 86.5,
+                    ),
+                    //Boton Matemáticas
                     Container(
                       width: 125.0,
                       height: 125.0,
@@ -201,59 +246,58 @@ class afre extends State {
                           color: Colors.white),
                       child: IconButton(
                         onPressed: () {
-                          //soundpool();
-                          setState(() {
-                            visible = true;
-                          });
-                          soundpool1();
+                          soundpool2();
                         },
                         icon: Image.asset(
-                          'assets/img/baño_real.png',
+                          'assets/img/platanos.png',
                           height: 200,
                           width: 200.0,
                         ),
                       ),
                     ),
-                    Visibility(
-                      visible: visible,
-                      child: Container(
-                        padding:
-                            EdgeInsets.symmetric(vertical: 62, horizontal: 62),
-                        decoration:
-                            BoxDecoration(color: Colors.blue.withOpacity(0.4)),
-                      ),
+                    SizedBox(
+                      width: 86.5,
                     ),
-                  ],
-                ),
-                SizedBox(
-                  width: 86.5,
-                ),
-                //Boton Matemáticas
-                Container(
-                  width: 125.0,
-                  height: 125.0,
-                  padding: const EdgeInsets.all(0),
-                  decoration: BoxDecoration(
-                      shape: BoxShape.rectangle,
-                      borderRadius: BorderRadius.circular(0),
-                      border: Border.all(width: 2, color: Colors.black),
-                      color: Colors.white),
-                  child: IconButton(
-                    onPressed: () {
-                      soundpool2();
-                    },
-                    icon: Image.asset(
-                      'assets/img/platanos.png',
-                      height: 200,
-                      width: 200.0,
+                    Stack(
+                      children: [
+                        Container(
+                          width: 125.0,
+                          height: 125.0,
+                          padding: const EdgeInsets.all(0),
+                          decoration: BoxDecoration(
+                              shape: BoxShape.rectangle,
+                              borderRadius: BorderRadius.circular(0),
+                              border: Border.all(width: 2, color: Colors.black),
+                              color: Colors.white),
+                          child: IconButton(
+                            onPressed: () {
+                              //soundpool();
+                              setState(() {
+                                visible2 = true;
+                              });
+                              soundpool1();
+                            },
+                            icon: Image.asset(
+                              'assets/img/despa_papel_real.png',
+                              height: 200,
+                              width: 200.0,
+                            ),
+                          ),
+                        ),
+                        Visibility(
+                          visible: visible2,
+                          child: Container(
+                            padding: EdgeInsets.symmetric(
+                                vertical: 62, horizontal: 62),
+                            decoration: BoxDecoration(
+                                color: Colors.blue.withOpacity(0.4)),
+                          ),
+                        ),
+                      ],
                     ),
-                  ),
-                ),
-                SizedBox(
-                  width: 86.5,
-                ),
-                Stack(
-                  children: [
+                    SizedBox(
+                      width: 86.5,
+                    ),
                     Container(
                       width: 125.0,
                       height: 125.0,
@@ -265,188 +309,151 @@ class afre extends State {
                           color: Colors.white),
                       child: IconButton(
                         onPressed: () {
-                          //soundpool();
-                          setState(() {
-                            visible2 = true;
-                          });
-                          soundpool1();
+                          soundpool2();
                         },
                         icon: Image.asset(
-                          'assets/img/despa_papel_real.png',
+                          'assets/img/pelotar.png',
                           height: 200,
                           width: 200.0,
                         ),
                       ),
                     ),
-                    Visibility(
-                      visible: visible2,
-                      child: Container(
-                        padding:
-                            EdgeInsets.symmetric(vertical: 62, horizontal: 62),
-                        decoration:
-                            BoxDecoration(color: Colors.blue.withOpacity(0.4)),
+                  ],
+                ),
+                //row
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: <Widget>[
+                    SizedBox(width: 30,),
+                    Container(
+                      width: 125.0,
+                      height: 125.0,
+                      padding: const EdgeInsets.all(0),
+                      decoration: BoxDecoration(
+                          shape: BoxShape.rectangle,
+                          borderRadius: BorderRadius.circular(0),
+                          border: Border.all(width: 2, color: Colors.black),
+                          color: Colors.white),
+                      child: IconButton(
+                        onPressed: () {
+                          soundpool2();
+                        },
+                        icon: Image.asset(
+                          'assets/img/silla_real.png',
+                          height: 200,
+                          width: 200.0,
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 86.5,
+                    ),
+                    Stack(
+                      children: [
+                        Container(
+                          width: 125.0,
+                          height: 125.0,
+                          padding: const EdgeInsets.all(0),
+                          decoration: BoxDecoration(
+                              shape: BoxShape.rectangle,
+                              borderRadius: BorderRadius.circular(0),
+                              border: Border.all(width: 2, color: Colors.black),
+                              color: Colors.white),
+                          child: IconButton(
+                            onPressed: () {
+                              //soundpool();
+                              setState(() {
+                                visible4 = true;
+                              });
+                              soundpool1();
+                            },
+                            icon: Image.asset(
+                              'assets/img/bote_basuraa_real.png',
+                              height: 200,
+                              width: 200.0,
+                            ),
+                          ),
+                        ),
+                        Visibility(
+                          visible: visible4,
+                          child: Container(
+                            padding: EdgeInsets.symmetric(
+                                vertical: 62, horizontal: 62),
+                            decoration: BoxDecoration(
+                                color: Colors.blue.withOpacity(0.4)),
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      width: 86.5,
+                    ),
+                    Stack(
+                      children: [
+                        Container(
+                          width: 125.0,
+                          height: 125.0,
+                          padding: const EdgeInsets.all(0),
+                          decoration: BoxDecoration(
+                              shape: BoxShape.rectangle,
+                              borderRadius: BorderRadius.circular(0),
+                              border: Border.all(width: 2, color: Colors.black),
+                              color: Colors.white),
+                          child: IconButton(
+                            onPressed: () {
+                              //soundpool();
+                              setState(() {
+                                visible3 = true;
+                              });
+                              soundpool1();
+                            },
+                            icon: Image.asset(
+                              'assets/img/lavabo_real.png',
+                              height: 200,
+                              width: 200.0,
+                            ),
+                          ),
+                        ),
+                        Visibility(
+                          visible: visible3,
+                          child: Container(
+                            padding: EdgeInsets.symmetric(
+                                vertical: 62, horizontal: 62),
+                            decoration: BoxDecoration(
+                                color: Colors.blue.withOpacity(0.4)),
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      width: 86.5,
+                    ),
+                    Container(
+                      width: 125.0,
+                      height: 125.0,
+                      padding: const EdgeInsets.all(0),
+                      decoration: BoxDecoration(
+                          shape: BoxShape.rectangle,
+                          borderRadius: BorderRadius.circular(0),
+                          border: Border.all(width: 2, color: Colors.black),
+                          color: Colors.white),
+                      child: IconButton(
+                        onPressed: () {
+                          soundpool2();
+                        },
+                        icon: Image.asset(
+                          'assets/img/tijeras_real.png',
+                          height: 200,
+                          width: 200.0,
+                        ),
                       ),
                     ),
                   ],
-                ),
-                SizedBox(
-                  width: 86.5,
-                ),
-                Container(
-                  width: 125.0,
-                  height: 125.0,
-                  padding: const EdgeInsets.all(0),
-                  decoration: BoxDecoration(
-                      shape: BoxShape.rectangle,
-                      borderRadius: BorderRadius.circular(0),
-                      border: Border.all(width: 2, color: Colors.black),
-                      color: Colors.white),
-                  child: IconButton(
-                    onPressed: () {
-                      soundpool2();
-                    },
-                    icon: Image.asset(
-                      'assets/img/pelotar.png',
-                      height: 200,
-                      width: 200.0,
-                    ),
-                  ),
-                ),
+                ), //this
               ],
             ),
-            //row
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: <Widget>[
-                Container(
-                  width: 125.0,
-                  height: 125.0,
-                  padding: const EdgeInsets.all(0),
-                  decoration: BoxDecoration(
-                      shape: BoxShape.rectangle,
-                      borderRadius: BorderRadius.circular(0),
-                      border: Border.all(width: 2, color: Colors.black),
-                      color: Colors.white),
-                  child: IconButton(
-                    onPressed: () {
-                      soundpool2();
-                    },
-                    icon: Image.asset(
-                      'assets/img/silla_real.png',
-                      height: 200,
-                      width: 200.0,
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  width: 86.5,
-                ),
-                Stack(
-                  children: [
-                    Container(
-                      width: 125.0,
-                      height: 125.0,
-                      padding: const EdgeInsets.all(0),
-                      decoration: BoxDecoration(
-                          shape: BoxShape.rectangle,
-                          borderRadius: BorderRadius.circular(0),
-                          border: Border.all(width: 2, color: Colors.black),
-                          color: Colors.white),
-                      child: IconButton(
-                        onPressed: () {
-                          //soundpool();
-                          setState(() {
-                            visible4 = true;
-                          });
-                          soundpool1();
-                        },
-                        icon: Image.asset(
-                          'assets/img/bote_basuraa_real.png',
-                          height: 200,
-                          width: 200.0,
-                        ),
-                      ),
-                    ),
-                    Visibility(
-                      visible: visible4,
-                      child: Container(
-                        padding:
-                            EdgeInsets.symmetric(vertical: 62, horizontal: 62),
-                        decoration:
-                            BoxDecoration(color: Colors.blue.withOpacity(0.4)),
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  width: 86.5,
-                ),
-                Stack(
-                  children: [
-                    Container(
-                      width: 125.0,
-                      height: 125.0,
-                      padding: const EdgeInsets.all(0),
-                      decoration: BoxDecoration(
-                          shape: BoxShape.rectangle,
-                          borderRadius: BorderRadius.circular(0),
-                          border: Border.all(width: 2, color: Colors.black),
-                          color: Colors.white),
-                      child: IconButton(
-                        onPressed: () {
-                          //soundpool();
-                          setState(() {
-                            visible3 = true;
-                          });
-                          soundpool1();
-                        },
-                        icon: Image.asset(
-                          'assets/img/lavabo_real.png',
-                          height: 200,
-                          width: 200.0,
-                        ),
-                      ),
-                    ),
-                    Visibility(
-                      visible: visible3,
-                      child: Container(
-                        padding:
-                            EdgeInsets.symmetric(vertical: 62, horizontal: 62),
-                        decoration:
-                            BoxDecoration(color: Colors.blue.withOpacity(0.4)),
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  width: 86.5,
-                ),
-                Container(
-                  width: 125.0,
-                  height: 125.0,
-                  padding: const EdgeInsets.all(0),
-                  decoration: BoxDecoration(
-                      shape: BoxShape.rectangle,
-                      borderRadius: BorderRadius.circular(0),
-                      border: Border.all(width: 2, color: Colors.black),
-                      color: Colors.white),
-                  child: IconButton(
-                    onPressed: () {
-                      soundpool2();
-                    },
-                    icon: Image.asset(
-                      'assets/img/tijeras_real.png',
-                      height: 200,
-                      width: 200.0,
-                    ),
-                  ),
-                ),
-              ],
-            ), //this
-          ],
-        ),
-      ),
+          )),
     );
   } //fin constructor
 
