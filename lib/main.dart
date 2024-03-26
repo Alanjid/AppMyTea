@@ -63,5 +63,7 @@ class _MyAppState extends State<MyApp> {
       navigatorKey: Get.key,
       debugShowCheckedModeBanner: false,
     );
+    
   }
 }
+
