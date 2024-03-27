@@ -59,7 +59,7 @@ class _MyAppState extends State<MyApp> {
         GetPage(name: '/Completadas', page: () => tareas_comp_diarias()),
         GetPage(name: '/Login', page: () => const Login()),
         GetPage(name: '/resumen_actividad', page: () => const resumen_actividad()),
-        GetPage(name: '/observaciones', page: ()=> observaciones())
+        GetPage(name: '/observaciones', page: ()=> const observaciones())
       ],
       navigatorKey: Get.key,
       debugShowCheckedModeBanner: false,
