@@ -5,7 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:soundpool/soundpool.dart';
 
 
-import '../Widgets/salud_abrir_animacion.dart';
+import '../../../Widgets/salud_abrir_animacion.dart';
 class nos_saludamos extends StatelessWidget {
 
   @override

@@ -157,6 +157,13 @@ flutter:
     - assets/img/errores_icon.png
     - assets/img/enviar_icon.png
     - assets/img/aciertos_icon.png
+    - assets/picto_actividades/afectividad_picto.png
+    - assets/picto_actividades/creatividad_picto.png
+    - assets/picto_actividades/higine_picto.png
+    - assets/picto_actividades/lenguaje_picto.png
+    - assets/picto_actividades/mates_picto.png
+    - assets/picto_actividades/movi_picto.png
+
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

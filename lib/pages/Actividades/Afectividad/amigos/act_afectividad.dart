@@ -7,7 +7,7 @@ import 'package:stroke_text/stroke_text.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 import 'package:untitled/pages/home/felicitacion.dart';
 import 'package:soundpool/soundpool.dart';
-import '../../Widgets/Objetivos.dart';
+import '../../../Widgets/Objetivos.dart';
 import 'package:untitled/utils/colors.dart' as utils;
 
 class afectividad_realista extends StatefulWidget {
@@ -253,7 +253,7 @@ class afre extends State {
                                           color: Colors.white),
                                       child: IconButton(
                                         onPressed: () {
-                                          soundpool();
+                                          soundpool1();
                                           setState(() {
                                             visible = true;
                                           });
@@ -353,7 +353,7 @@ class afre extends State {
                                           color: Colors.white),
                                       child: IconButton(
                                         onPressed: () {
-                                          soundpool();
+                                          soundpool1();
                                           setState(() {
                                             visible2 = true;
                                           });
@@ -421,6 +421,17 @@ class afre extends State {
     });
     await _setVolume(_volume);
     _streamId = await _soundpool.play(_soundId);
+  }
+
+Future<void> soundpool1() async {
+    Soundpool pool = Soundpool();
+
+    int soundId = await rootBundle
+        .load('assets/audios/acierto.mp3')
+        .then((ByteData soundData) {
+      return pool.load(soundData);
+    });
+    int streamId = await pool.play(soundId);
   }
 
   Future<void> soundpool2() async {

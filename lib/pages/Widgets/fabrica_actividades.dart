@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:untitled/pages/Actividades/Afectividad/act_afectividad.dart';
-import 'package:untitled/pages/Actividades/Higiene/h1_ba%C3%B1o/aprende_poy_real.dart';
-import 'package:untitled/pages/Actividades/Higiene/n1_rd_salud_pt2.dart';
+import 'package:untitled/pages/Actividades/Afectividad/amigos/act_afectividad.dart';
+import 'package:untitled/pages/Actividades/Lenguaje/aprende_objetosl.dart';
 import 'package:untitled/pages/Widgets/tareas_completadas.dart';
 
 abstract class Actividad {
@@ -16,8 +15,8 @@ abstract class Actividad {
   void realizarActividad();
 }
 
-class Alimento extends Actividad {
-  Alimento({
+class Afectividad extends Actividad {
+  Afectividad({
     required String imagePath,
     required bool isEnabled,
     required String nombre,
@@ -26,58 +25,6 @@ class Alimento extends Actividad {
   @override
   void realizarActividad() {
     Get.toNamed('/act1Afectividad');
-  }
-}
-
-class Bebidas extends Actividad {
-  Bebidas(
-      {required String imagePath,
-      required bool isEnabled,
-      required String nombre})
-      : super(imagePath: imagePath, isEnabled: isEnabled, nombre: nombre);
-
-  @override
-  void realizarActividad() {
-    Get.toNamed('/Completadas');
-  }
-}
-
-class Acciones extends Actividad {
-  Acciones(
-      {required String imagePath,
-      required bool isEnabled,
-      required String nombre})
-      : super(imagePath: imagePath, isEnabled: isEnabled, nombre: nombre);
-
-  @override
-  void realizarActividad() {
-    Get.toNamed('/act1Higiene');
-  }
-}
-
-class PartesDelCuerpo extends Actividad {
-  PartesDelCuerpo(
-      {required String imagePath,
-      required bool isEnabled,
-      required String nombre})
-      : super(imagePath: imagePath, isEnabled: isEnabled, nombre: nombre);
-
-  @override
-  void realizarActividad() {
-    Get.toNamed('/actLavarManos');
-  }
-}
-
-class Prendas extends Actividad {
-  Prendas(
-      {required String imagePath,
-      required bool isEnabled,
-      required String nombre})
-      : super(imagePath: imagePath, isEnabled: isEnabled, nombre: nombre);
-
-  @override
-  void realizarActividad() {
-    Get.toNamed('/Completadas');
   }
 }
 
@@ -94,39 +41,91 @@ class Matematicas extends Actividad {
   }
 }
 
+class Lenguaje extends Actividad {
+  Lenguaje(
+      {required String imagePath,
+      required bool isEnabled,
+      required String nombre})
+      : super(imagePath: imagePath, isEnabled: isEnabled, nombre: nombre);
+
+  @override
+  void realizarActividad() {
+    Get.toNamed('/act1Lenguaje');
+  }
+}
+
+class HigieneySalud extends Actividad {
+  HigieneySalud(
+      {required String imagePath,
+      required bool isEnabled,
+      required String nombre})
+      : super(imagePath: imagePath, isEnabled: isEnabled, nombre: nombre);
+
+  @override
+  void realizarActividad() {
+    Get.toNamed('/actHigiene');
+  }
+}
+
+class Movimiento extends Actividad {
+  Movimiento(
+      {required String imagePath,
+      required bool isEnabled,
+      required String nombre})
+      : super(imagePath: imagePath, isEnabled: isEnabled, nombre: nombre);
+
+  @override
+  void realizarActividad() {
+    Get.toNamed('/Completadas');
+  }
+}
+
+class Creatividad extends Actividad {
+  Creatividad(
+      {required String imagePath,
+      required bool isEnabled,
+      required String nombre})
+      : super(imagePath: imagePath, isEnabled: isEnabled, nombre: nombre);
+
+  @override
+  void realizarActividad() {
+    Get.toNamed('/Completadas');
+  }
+}
+
 class ActividadFactory {
   Actividad crearActividad(String tipo) {
     switch (tipo) {
-      case 'Alimento':
-        return Alimento(
-            imagePath: 'assets/img/alimento.png',
+      case 'Afectividad':
+        return Afectividad(
+            imagePath: 'assets/picto_actividades/afectividad_picto.png',
             isEnabled: true,
-            nombre: 'Alimentos');
-      case 'Bebidas':
-        return Bebidas(
-            imagePath: 'assets/img/bebidas.png',
-            isEnabled: true,
-            nombre: 'Bebidas');
-      case 'Acciones':
-        return Acciones(
-            imagePath: 'assets/img/acciones.png',
-            isEnabled: true,
-            nombre: 'Acciones');
-      case 'PartesDelCuerpo':
-        return PartesDelCuerpo(
-            imagePath: 'assets/img/partes del cuerpo.png',
-            isEnabled: true,
-            nombre: 'Partes del cuerpo');
-      case 'Prendas':
-        return Prendas(
-            imagePath: 'assets/img/prendas.png',
-            isEnabled: true,
-            nombre: 'Prendas de vestir');
+            nombre: 'Afectividad');
       case 'Matematicas':
         return Matematicas(
-            imagePath: 'assets/img/matemáticas.png',
+            imagePath: 'assets/picto_actividades/mates_picto.png',
             isEnabled: true,
-            nombre: 'Matemàticas');
+            nombre: 'Matematicas');
+      case 'Lenguaje':
+        return Lenguaje(
+            imagePath: 'assets/picto_actividades/lenguaje_picto.png',
+            isEnabled: true,
+            nombre: 'Lenguaje');
+      case 'HigieneySalud':
+        return HigieneySalud(
+            imagePath: 'assets/picto_actividades/higine_picto.png',
+            isEnabled: true,
+            nombre: 'HigieneySalud');
+      case 'Movimiento':
+        return Movimiento(
+            imagePath: 'assets/picto_actividades/movi_picto.png',
+            isEnabled: true,
+            nombre: 'Movimiento');
+      case 'Creatividad':
+        return Creatividad(
+            imagePath: 'assets/picto_actividades/creatividad_picto.png',
+            isEnabled: true,
+            nombre: 'Creatividad');
       default:
         throw Exception('Tipo de actividad no soportado: $tipo');
     }
