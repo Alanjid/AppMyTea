@@ -51,12 +51,12 @@ class _niveles_actividades extends State<niveles_actividades>
     _animationController.repeat(reverse: true);
     _actividadFactory = ActividadFactory();
     actividades = [
-      _actividadFactory.crearActividad('Alimento'),
-      _actividadFactory.crearActividad('Bebidas'),
-      _actividadFactory.crearActividad('Acciones'),
-      _actividadFactory.crearActividad('PartesDelCuerpo'),
-      _actividadFactory.crearActividad('Prendas'),
+      _actividadFactory.crearActividad('Afectividad'),
       _actividadFactory.crearActividad('Matematicas'),
+      _actividadFactory.crearActividad('Lenguaje'),
+      _actividadFactory.crearActividad('HigieneySalud'),
+      _actividadFactory.crearActividad('Movimiento'),
+      _actividadFactory.crearActividad('Creatividad'),
     ];
   }
 
@@ -178,7 +178,7 @@ class _niveles_actividades extends State<niveles_actividades>
             StrokeText(
               text: texto_dictar,
               strokeWidth: 6,
-              strokeColor: Colors.green,
+              strokeColor: Color.fromARGB(255, 7, 36, 165),
               textStyle: TextStyle(
                 fontSize: 38,
                 fontFamily: 'lazydog',
@@ -201,7 +201,7 @@ class _niveles_actividades extends State<niveles_actividades>
                           return Row(
                             children: [
                               _actividadFactory.crearBotonActividad(
-                                  context, actividad, _setVolume)
+                                context, actividad, _setVolume)
                             ],
                           );
                         },
