@@ -11,7 +11,7 @@ import 'package:untitled/pages/Actividades/Higiene/h1_ba%C3%B1o/aprende_pony_rea
 import 'package:untitled/pages/home/felicitacion.dart';
 import 'package:untitled/utils/colors.dart' as utils;
 
-class apren_pony_lenguaje_real extends StatefulWidget {
+class apren_objetos extends StatefulWidget {
   @override
   afre createState() => afre();
 }
