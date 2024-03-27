@@ -51,12 +51,12 @@ class _niveles_actividades extends State<niveles_actividades>
     _animationController.repeat(reverse: true);
     _actividadFactory = ActividadFactory();
     actividades = [
-      _actividadFactory.crearActividad('Afectividad'),
-      _actividadFactory.crearActividad('Matematicas'),
-      _actividadFactory.crearActividad('Lenguaje'),
-      _actividadFactory.crearActividad('HigieneySalud'),
-      _actividadFactory.crearActividad('Movimiento'),
-      _actividadFactory.crearActividad('Creatividad'),
+      _actividadFactory.crearActividad('Afectividad','/act1Afectividad'),
+      _actividadFactory.crearActividad('Matematicas','/Completadas'),
+      _actividadFactory.crearActividad('Lenguaje','/Completadas'),
+      _actividadFactory.crearActividad('HigieneySalud','/Completadas'),
+      _actividadFactory.crearActividad('Movimiento','/Completadas'),
+      _actividadFactory.crearActividad('Creatividad','/Completadas'),
     ];
   }
 
@@ -200,8 +200,8 @@ class _niveles_actividades extends State<niveles_actividades>
                           Actividad actividad = actividades[index];
                           return Row(
                             children: [
-                              _actividadFactory.crearBotonActividad(
-                                context, actividad, _setVolume)
+                              _actividadFactory.crearBotonActividad(context, actividad, _setVolume, actividad.Nombre_Actividad)
+                              //_actividadFactory.crearBotonActividad(context, actividad, _setVolume)
                             ],
                           );
                         },
