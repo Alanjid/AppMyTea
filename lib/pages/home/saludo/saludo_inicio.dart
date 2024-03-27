@@ -2,13 +2,14 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:soundpool/soundpool.dart';
 import 'package:stroke_text/stroke_text.dart';
 import 'package:toggle_switch/toggle_switch.dart';
-import 'package:untitled/pages/Login/login_controller.dart';
-import 'package:untitled/pages/home/Menu/principal.dart';
 import 'package:untitled/pages/home/saludo/saludo_controller.dart';
 import 'package:untitled/utils/colors.dart' as utils;
+
+
 
 class saludo extends StatefulWidget {
   @override
@@ -38,6 +39,7 @@ class _saludoState extends State<saludo> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: utils.Colors.azulitoArriba,
         elevation: 0,
         toolbarHeight: 40,
         title: Row(
@@ -65,9 +67,9 @@ class _saludoState extends State<saludo> {
                               inactiveBgColor: Colors.grey,
                               inactiveFgColor: Colors.white,
                               totalSwitches: 2,
-                              labels: ['Hombre', 'Mujer'],
-                              icons: [Icons.male, Icons.female],
-                              activeBgColors: [
+                              labels: const ['Hombre', 'Mujer'],
+                              icons: const [Icons.male, Icons.female],
+                              activeBgColors: const [
                                 [Colors.blue],
                                 [Colors.pink]
                               ],
@@ -75,7 +77,7 @@ class _saludoState extends State<saludo> {
                                 setState(() {
                                   _selectedSwitch = index!;
                                 });
-                                print('switched to: $index');
+
                                 if (index == 0) {
                                   audioUrl =
                                       "assets/audios/bienvenida-hombre.mp3";
@@ -93,7 +95,7 @@ class _saludoState extends State<saludo> {
                             onPressed: () {
                               Navigator.of(context).pop();
                             },
-                            child: Text(
+                            child: const Text(
                               "Cerrar",
                               style: TextStyle(
                                   fontSize: 18,
@@ -105,8 +107,9 @@ class _saludoState extends State<saludo> {
                       );
                     });
               },
-              icon: Image.asset('assets/img/iconobocina.gif'),
-              iconSize: 70,
+              icon: Icon(Icons.volume_up_sharp),
+              iconSize: 40,
+              color: Colors.white,
             ),
             SizedBox(width: 300),
             Image.asset(

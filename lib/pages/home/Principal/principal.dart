@@ -8,10 +8,10 @@ import 'package:soundpool/soundpool.dart';
 import 'package:stroke_text/stroke_text.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 import 'package:untitled/pages/home/Menu/principal_controller.dart';
-import 'package:untitled/pages/home/actividades_rutina_diaria.dart';
+
 import 'package:flutter/widgets.dart';
 import 'package:untitled/pages/Widgets/info_actividades.dart';
-import 'package:untitled/pages/home/niveles_de_actividades.dart';
+import 'package:untitled/pages/Actividades/NivelesActividades/niveles_de_actividades.dart';
 import 'package:untitled/utils/colors.dart' as utils;
 
 class principal extends StatefulWidget {

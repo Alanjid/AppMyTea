@@ -5,70 +5,58 @@ import 'package:flutter/services.dart';
 import 'package:soundpool/soundpool.dart';
 import 'package:stroke_text/stroke_text.dart';
 import 'package:toggle_switch/toggle_switch.dart';
-import 'package:untitled/pages/Actividades/Acciones/act_movimiento1.dart';
-import 'package:untitled/pages/Widgets/tareas_completadas.dart';
-import 'package:untitled/utils/colors.dart' as utils;
-import '../Actividades/Higiene/n1_rd_salud_pt2.dart';
-import '../Widgets/ActividadEstado.dart';
 
-class rutina_diaria extends StatefulWidget {
+import 'package:untitled/pages/Widgets/fabrica_actividades.dart';
+
+import 'package:untitled/utils/colors.dart' as utils;
+
+// ignore: camel_case_types
+class niveles_actividades extends StatefulWidget {
+  const niveles_actividades({super.key});
+
   @override
-  _actR_diariaState createState() => _actR_diariaState();
+  // ignore: library_private_types_in_public_api
+  _niveles_actividades createState() => _niveles_actividades();
 }
 
-class _actR_diariaState extends State<rutina_diaria>
+// ignore: camel_case_types
+class _niveles_actividades extends State<niveles_actividades>
     with SingleTickerProviderStateMixin {
-  String texto_dictar = "Realizamos las actividades de rutina diaria";
-  String audioUrl = "assets/audios/audio_rutina_diariaH.mp3";
+  // ignore: non_constant_identifier_names
+  String texto_dictar = "Realizamos las siguientes actividades";
+  String audioUrl = "assets/audios/actividadesH.mp3";
+  late int _streamId;
   ValueNotifier<bool> isAudioPlaying = ValueNotifier<bool>(false);
-  Actividad alimento = Actividad(
-      imagePath: 'assets/img/alimento.png',
-      isEnabled: false,
-      Nombre: 'Alimentos');
-  Actividad bebidas = Actividad(
-      imagePath: 'assets/img/bebidas.png', isEnabled: false, Nombre: 'Bebidas');
-  Actividad acciones = Actividad(
-      imagePath: 'assets/img/acciones.png',
-      isEnabled: true,
-      Nombre: 'Acciones');
-  Actividad partesCuerpo = Actividad(
-      imagePath: 'assets/img/partes del cuerpo.png',
-      isEnabled: true,
-      Nombre: 'Partes del cuerpo');
-  Actividad prendas = Actividad(
-      imagePath: 'assets/img/prendas.png',
-      isEnabled: false,
-      Nombre: 'Prendas de vestir');
-  Actividad matematicas = Actividad(
-      imagePath: 'assets/img/matemáticas.png',
-      isEnabled: false,
-      Nombre: 'Matemàticas');
-  late List<Actividad> ActividadesList;
+
+  late ActividadFactory _actividadFactory;
+  late List<Actividad> actividades;
   late Soundpool _soundpool;
   late int _soundId;
-  late int _streamId;
+  // ignore: non_constant_identifier_names
   late Timer Repite;
   double _sliderValue = 50.0;
   double _volume = 0.5;
   int _selectedSwitch = 0;
   late AnimationController _animationController;
 
+  @override
   void initState() {
     super.initState();
     _initializeSound();
     startTimer();
     _animationController = AnimationController(
       vsync: this,
-      duration: Duration(seconds: 2),
+      duration: const Duration(seconds: 2),
     );
     _animationController.repeat(reverse: true);
-    ActividadesList = [
-      alimento,
-      bebidas,
-      acciones,
-      partesCuerpo,
-      prendas,
-      matematicas
+    _actividadFactory = ActividadFactory();
+    actividades = [
+      _actividadFactory.crearActividad('Alimento'),
+      _actividadFactory.crearActividad('Bebidas'),
+      _actividadFactory.crearActividad('Acciones'),
+      _actividadFactory.crearActividad('PartesDelCuerpo'),
+      _actividadFactory.crearActividad('Prendas'),
+      _actividadFactory.crearActividad('Matematicas'),
     ];
   }
 
@@ -76,6 +64,7 @@ class _actR_diariaState extends State<rutina_diaria>
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: utils.Colors.azulitoArriba,
         elevation: 0,
         toolbarHeight: 50,
         title: Row(
@@ -86,6 +75,7 @@ class _actR_diariaState extends State<rutina_diaria>
                 showDialog(
                     context: context,
                     builder: (BuildContext context) {
+                      //Alert dialog
                       return AlertDialog(
                         title: Text(
                           'Cambiamos la voz',
@@ -102,9 +92,9 @@ class _actR_diariaState extends State<rutina_diaria>
                               inactiveBgColor: Colors.grey,
                               inactiveFgColor: Colors.white,
                               totalSwitches: 2,
-                              labels: ['Hombre', 'Mujer'],
-                              icons: [Icons.male, Icons.female],
-                              activeBgColors: [
+                              labels: const ['Hombre', 'Mujer'],
+                              icons: const [Icons.male, Icons.female],
+                              activeBgColors: const [
                                 [Colors.blue],
                                 [Colors.pink]
                               ],
@@ -114,12 +104,11 @@ class _actR_diariaState extends State<rutina_diaria>
                                 });
                                 print('switched to: $index');
                                 if (index == 0) {
-                                  audioUrl =
-                                      "assets/audios/audio_rutina_diariaH.mp3";
+                                  audioUrl = "assets/audios/actividadesH.mp3";
                                 } else {
                                   if (index == 1) {
                                     audioUrl =
-                                        "assets/audiosM/audio_rutina_diariaM.mp3";
+                                        "assets/audiosM/actividadesM.mp3";
                                   }
                                 }
                               },
@@ -143,8 +132,9 @@ class _actR_diariaState extends State<rutina_diaria>
                       );
                     });
               },
-              icon: Image.asset('assets/img/iconobocina.gif'),
-              iconSize: 70,
+              icon: Icon(Icons.volume_up_sharp),
+              iconSize: 40,
+              color: Colors.white,
             ),
             SizedBox(width: 8),
             Image.asset(
@@ -198,87 +188,26 @@ class _actR_diariaState extends State<rutina_diaria>
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                SizedBox(
-                  height: 150,
-                  width: MediaQuery.sizeOf(context).width,
-                  child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: ActividadesList.length,
-                    itemBuilder: (context, index) {
-                      Actividad actividad = ActividadesList[index];
-                      return Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Visibility(
-                            visible: actividad.isEnabled,
-                            child: IconButton(
-                              icon: Image.asset(
-                                actividad.imagePath,
-                                width: MediaQuery.of(context).size.width * 0.3,
-                                height:
-                                    MediaQuery.of(context).size.height * 0.3,
-                              ),
-                              onPressed: () {
-                                switch (actividad.imagePath) {
-                                  case 'assets/img/alimento.png':
-                                    _setVolume(0);
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                tareas_comp_diarias()));
-                                    break;
-                                  case 'assets/img/bebidas.png':
-                                    _setVolume(0);
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                tareas_comp_diarias()));
-                                    break;
-                                  case 'assets/img/acciones.png':
-                                    _setVolume(0);
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                movi_conejo()));
-                                    break;
-                                  case 'assets/img/partes del cuerpo.png':
-                                    _setVolume(0);
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                n1_rd_salud_pt2()));
-                                    break;
-                                  case 'assets/img/prendas.png':
-                                    _setVolume(0);
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                tareas_comp_diarias()));
-                                    break;
-                                  case 'assets/img/matemáticas.png':
-                                    _setVolume(0);
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                tareas_comp_diarias()));
-                                    break;
-                                }
-                              },
-                              iconSize:
-                                  120, // Ajusta el tamaño del icono según tus necesidades
-                              padding: EdgeInsets.all(
-                                  8), // Ajusta el relleno según tus necesidades
-                              color: Colors
-                                  .blue, // Ajusta el color del icono según tus necesidades
-                            ),
-                          ));
-                    },
-                  ),
+                Column(
+                  children: [
+                    SizedBox(
+                      height: 150,
+                      width: MediaQuery.sizeOf(context).width,
+                      child: ListView.builder( //AQUI SE REALIZA LA ASIGNACION DE BOTONES DE MANERA
+                        scrollDirection: Axis.horizontal,
+                        itemCount: actividades.length,
+                        itemBuilder: (context, index) {
+                          Actividad actividad = actividades[index];
+                          return Row(
+                            children: [
+                              _actividadFactory.crearBotonActividad(
+                                  context, actividad, _setVolume)
+                            ],
+                          );
+                        },
+                      ),
+                    )
+                  ],
                 ),
               ],
             ),
@@ -329,6 +258,7 @@ class _actR_diariaState extends State<rutina_diaria>
     Repite.cancel(); // Cancelar el temporizador antes de liberar el widget
     _soundpool.release();
     super.dispose();
+    _animationController.dispose();
   }
 
   void _initializeSound() async {
@@ -337,6 +267,5 @@ class _actR_diariaState extends State<rutina_diaria>
       return _soundpool.load(soundData);
     });
     await _setVolume(_volume);
-    _streamId = await _soundpool.play(_soundId);
   }
 }

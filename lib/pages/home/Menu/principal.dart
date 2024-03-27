@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -7,10 +6,8 @@ import 'package:soundpool/soundpool.dart';
 import 'package:stroke_text/stroke_text.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 import 'package:untitled/pages/home/Menu/principal_controller.dart';
-import 'package:untitled/pages/home/actividades_rutina_diaria.dart';
-import 'package:flutter/widgets.dart';
+
 import 'package:untitled/pages/Widgets/info_actividades.dart';
-import 'package:untitled/pages/home/niveles_de_actividades.dart';
 import 'package:untitled/utils/colors.dart' as utils;
 
 class principal extends StatefulWidget {
@@ -29,7 +26,7 @@ class _principalState extends State<principal> {
   double _volume =
       0.5; // Agrega _volume como una propiedad y establece el valor inicial
   int _selectedSwitch = 0;
-  
+
   principalController con = Get.put(principalController());
 
   @override
@@ -43,6 +40,7 @@ class _principalState extends State<principal> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: utils.Colors.azulitoArriba,
         elevation: 0,
         toolbarHeight: 40,
         title: Row(
@@ -109,8 +107,9 @@ class _principalState extends State<principal> {
                       );
                     });
               },
-              icon: Image.asset('assets/img/iconobocina.gif'),
-              iconSize: 70,
+              icon: Icon(Icons.volume_up_sharp),
+              iconSize: 40,
+              color: Colors.white,
             ),
             SizedBox(width: 300),
             info_pictogramas(),
@@ -158,7 +157,7 @@ class _principalState extends State<principal> {
                 height: MediaQuery.of(context).size.height * 0.6,
                 width: 600,
                 child: ListWheelScrollView(
-                  itemExtent: 300,
+                  itemExtent: 250,
                   diameterRatio: 2.5,
                   offAxisFraction: 0.5,
                   perspective: 0.003,
@@ -171,7 +170,7 @@ class _principalState extends State<principal> {
                             children: [
                               IconButton(
                                 onPressed: () async {
-                                  await _setVolume(_volume);
+                                  await _setVolume(0);
                                   con.goToActividades();
                                 },
                                 icon: Image.asset('assets/img/aprendizaje.png'),
