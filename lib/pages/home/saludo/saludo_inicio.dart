@@ -9,9 +9,7 @@ import 'package:toggle_switch/toggle_switch.dart';
 import 'package:untitled/pages/home/saludo/saludo_controller.dart';
 import 'package:untitled/utils/colors.dart' as utils;
 
-import '../../../models/user.dart';
 
-User user = User.fromJson(GetStorage().read('user') ?? {});
 
 class saludo extends StatefulWidget {
   @override
@@ -19,7 +17,7 @@ class saludo extends StatefulWidget {
 }
 
 class _saludoState extends State<saludo> {
-  String Texto_Saludo = "HOLA BIENVENIDO ${user.first_name.toString()}";
+  String Texto_Saludo = "HOLA BIENVENIDO";
   String audioUrl = "assets/audios/bienvenida-hombre.mp3";
   late Soundpool _soundpool;
   late int _soundId;

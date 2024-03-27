@@ -193,7 +193,7 @@ class _niveles_actividades extends State<niveles_actividades>
                     SizedBox(
                       height: 150,
                       width: MediaQuery.sizeOf(context).width,
-                      child: ListView.builder(
+                      child: ListView.builder( //AQUI SE REALIZA LA ASIGNACION DE BOTONES DE MANERA
                         scrollDirection: Axis.horizontal,
                         itemCount: actividades.length,
                         itemBuilder: (context, index) {
