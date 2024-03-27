@@ -1,12 +1,10 @@
-import 'dart:js';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:untitled/enviroment/response_api.dart';
+import 'package:untitled/models/response_api.dart';
 import 'package:untitled/providers/users_provider.dart';
 
-import '../../moldes/user.dart';
+import '../../models/user.dart';
 
 // ignore: camel_case_types
 class loginController extends GetxController {
@@ -45,7 +43,7 @@ class loginController extends GetxController {
       if (responseApi.success == true) {
         GetStorage().write('user', responseApi.data);
         Get.snackbar(
-            'Inicio de sesion correcto', "Bienvenido ${user.nombre.toString()}",
+            'Inicio de sesion correcto', "Bienvenido ${user.first_name.toString()}",
             snackPosition: SnackPosition.TOP,
             icon: Icon(
               Icons.done_outline,
