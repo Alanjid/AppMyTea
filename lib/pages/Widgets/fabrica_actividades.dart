@@ -24,7 +24,7 @@ class Afectividad extends Actividad {
 
   @override
   void realizarActividad() {
-    Get.toNamed('/act1Afectividad');
+    Get.toNamed('/afe_decir_hola');
   }
 }
 
